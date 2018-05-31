@@ -12,7 +12,7 @@
 		<property name="hibernate.show_sql">true</property>
 		<!-- choose whether to create db or update existing ddl -->
 		<!-- update by default -->
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- locations of domain object mappings -->
 		<mapping class="com.revature.beans.Account"></mapping>
 		<mapping class="com.revature.beans.Library"></mapping>
