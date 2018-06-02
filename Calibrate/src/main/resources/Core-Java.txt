@@ -1,0 +1,365 @@
+@	
+Which operator returns true if the left operand is an object that is an instance of the right operand class?
+`instanceof 
+typeof 
+is 
+isinstanceof 
+@	
+True or False: In the below code, a Bird is an instance of a Dog
+public class Animal { }
+`public class Dog extends Animal { }
+public class Bird extends Animal { }
+TRUE 
+FALSE 
+@	
+True or False: If one class can be described as a "specific example" of another, that relationship can be described through inheritance
+`TRUE 
+FALSE 
+@	
+True or False: Inheritance creates a "has-a(n)" relationship between two objects
+TRUE 
+`FALSE 
+@	
+What is the difference between the = and == operators?
+`The = operator is assignment, the == operator tests equality 
+The == operator is assignment, the = operator tests equality 
+@	
+What will be printed to the console?
+int a = 4;
+System.out.println(a<4 ? "a is greater than 4" : "a is less than 4");
+`"a is less than 4" 
+"a is greater than 4" 
+a<4 ? "a is greater than 4" : "a is less than 4" 
+@	
+The % operator...
+Returns the integer (and only integer) result of dividing the left operand by the right
+Returns the integer remainder of dividing the left operand by the right
+`Returns the remainder of the result of dividing the left operand by the right
+Returns the integer (and only integer) remainder of dividing the right operand by the left
+8	
+What is the output of the following code?
+int a = 4;
+System.out.println(a++);
+`4 
+5 
+9	
+What is the value stored at the index [1,2]?
+int[][] twoDimensionalArray = { {0, 1, 2}, {2, 4, 6}, {2, 1, 0} };
+`6 
+2 
+4 
+1 
+@
+What is the proper format for assigning a value to a variable?
+`int x = 5; 
+int 5 = x; 
+5 = x int; 
+x = 5 int; 
+@
+A boolean variable can only hold the values "true" and "false"
+`TRUE 
+FALSE 
+@
+What is the difference between a primitive and a reference variable?
+`A primitive variable stores a value, a reference variable stores the memory address of an object
+A primitive variable stores a value, a reference variable stores an object
+A primitive variable stores the memory address of a value, a reference variable stores the memory address of an object
+There is no difference 
+@
+What is the default type of variable used for decimals?
+`double 
+float 
+number 
+real 
+@
+What is the size of an int variable?
+`32 bits (4 bytes) 
+64 bits (8 bytes) 
+8 bits (1 byte) 
+16 bits (2 bytes) 
+@
+What is the purpose of the Java compiler?
+`To transform Java code into instructions usable by the JVM 
+To transform Java code into instructions usable by the operating system
+To transform Java code into instructions usable by a web browser
+@
+Which one of these is NOT a benefit provided by an IDE?
+They provide a GUI for writing code 
+They can compile your code for you 
+`They automatically download 3rd-party libraries that you need from the internet
+They make it easy to manage your project structure 
+@
+What is the root interface of the Collections API?
+Collections 
+List 
+`Collection 
+Throwable 
+@
+Which of the following is an example of a marker interface
+`Serializable 
+ResultSet 
+Connection 
+@
+Which of the following is not a virtual machine state of a thread?
+RUNNABLE 
+BLOCKED 
+`RUNNING 
+TERMINATED 
+WAITING 
+@
+Which of the following is not a Wrapper Class
+Boolean 
+Long 
+Double 
+Short 
+`None of the above 
+@
+Which of these is not included in a JDK
+Compiler 
+JRE 
+Garbage Collector 
+`Linker 
+Virtual Machine 
+@
+Each thread gets its own stack and heap.
+TRUE 
+`FALSE 
+@
+Class.forName("SuperLaser"); Will return an instance of the class SuperLaser?
+TRUE 
+`FALSE 
+@
+A try-finally block is legal and does not require a catch block.
+`TRUE 
+FALSE 
+@
+The changes to the instance variables of one object also have an effect on the instance variables of the other object.
+TRUE 
+`FALSE 
+@
+If a class defines a main method and a static block, the static block will execute first.
+`TRUE 
+FALSE 
+@
+The Finalize method can be overridden.
+`TRUE 
+FALSE 
+@
+The following is not true about Java
+Java is object oriented 
+Java is write once run anywhere 
+`Memory in Java is not allocated automatically 
+Java programs cannot control thread scheduling. 
+Java has an API to inspect and manipulate its own code at runtime.
+@
+The first four bytes of every .class file spells 'cafebabe' in hex.
+`TRUE 
+FALSE 
+@
+StringBuilder is
+Thread-safe 
+`not thread-safe 
+@
+The continue statement pulls the flow of control out of a looping block.
+TRUE 
+`FALSE 
+@
+The Comparator interface declares the method compare.
+`TRUE 
+FALSE 
+@
+The Comparable interface is used to define the natural ordering.
+`TRUE 
+FALSE 
+@
+RuntimeException and its subclasses are checked exceptions.
+TRUE 
+`FALSE 
+@
+Select the class that is not a Iterable.
+HashSet 
+LinkedList   
+ArrayDeque 
+`HashTable 
+TreeSet 
+@
+Reflection
+`Allows Runtime modification of objects 
+Requires you to include jar files 
+Is approximately 20% faster than traditional coding means 
+All of the above 
+@
+`Under what situation do you obtain a default constructor?
+When the class has no other constructors 
+When you define at least one constructor 
+When you define at least one constructor with at least one parameter
+none of the above 
+@
+`Select the incorrect choice regarding LinkedList.
+LinkedList is index driven. 
+LinkedList is faster at middle of the list retrieval/addition. 
+LinkedList implements List. 
+LinkedList implements Deque. 
+@
+Select the syntactically wrong declaration.
+List<Object> 
+Set<String> 
+`Set<Map.Entry<int,String>> 
+Map<Integer,String> 
+@
+Serializable interface methods must be implemented in the class it extends.
+TRUE 
+`FALSE 
+@
+Which of the following are Short-Circuit?
+| 
+`|| 
+& 
+`&& 
+@
+Serialization is used to send objects in character form across the network.
+TRUE 
+`FALSE 
+@
+Threads can be created by extending the Runnable class.
+TRUE 
+`FALSE 
+@
+Reflection API allows for instantiating objects
+`TRUE 
+FALSE 
+@
+Java is pass-by-value or pass-by-reference depending on the type of the variable.
+TRUE 
+`FALSE 
+@
+The following is true about Exceptions
+`Can be thrown to a try block 
+They are identical to errors 
+They can be compile time or run-time 
+None of the above 
+@
+FileReader reads only bytes.
+TRUE 
+`FALSE 
+@
+Garbage collection can be forced by
+Using the gc() method 
+Calling the finalize() method 
+`It can never be forced. 
+None of the above 
+@
+How do you get the size of an array?
+myArray.size 
+`myArray.length 
+myArray.size() 
+myArray.length() 
+@
+Method overriding is
+`Same method signature but different implementation 
+Method with different number or type of parameters 
+When the JVM overrides your calls for Garbage Collection. 
+@
+A List extends Collection to handle data which must contain unique elements. I.e. A List does NOT allow duplicate elements.
+TRUE 
+`FALSE 
+@
+A sub class can access private members of the super class.
+TRUE 
+`FALSE 
+@
+An unchecked exception must be dealt with in a try/catch block.
+TRUE 
+`FALSE 
+@
+Both String and StringBuffer are mutable.
+TRUE 
+`FALSE 
+@
+Assuming a method contains code which may raise an Exception (but not a RuntimeException), what is the correct way for the method to indicate that it expects the caller to handle that exception?
+throw Exception 
+new Exception 
+`throws Exception 
+Don't need to specify anything 
+@
+What is the standard signature for the main method?
+public void main(String args[]) 
+public void static main(String args[])  
+public static void main() 
+`public static void main(String args[]) 
+@
+True or False: Java can be run on any machine that has a JVM
+`TRUE 
+FALSE 
+@
+What does an Iterator do?
+It enables the traversal of a Map. 
+It is a class associated with the Collection heirarchy. 
+It compares two objects. 
+`It enables the traversal of a Collection 
+@
+What is the use of the '%' operator?
+`It returns the remainder of a division operation between integers 
+It converts the argument into a percentage 
+It divides two integers, but not decimals 
+@
+What is a reserved word, or keyword?
+A term used by the operating system to run Java code 
+`A word used by the JVM to represent an instruction 
+A word used by the IDE to understand Java code 
+@
+The equals() method is equivalent to the == operator, unless overridden
+`TRUE 
+FALSE 
+@
+A class can be abstract, even if all of its methods are concrete.
+`TRUE 
+FALSE 
+@
+What is wrong with this code?
+public class Question {  
+    public void doThing() {}  
+    public static void main(String[] args) {      
+        doThing();  
+    }
+}
+Nothing, the code will compile and execute without exception.
+`The doThing() method must be declared static to be used in main()
+The main() method should not be declared static 
+@
+True or False: A class in Java can extend multiple parent classes
+TRUE 
+`FALSE 
+@
+True or False: Child classes must have the same variable values as their parent class
+TRUE 
+`FALSE 
+@
+True or False: new String() will create a new String object in memory, even if there is a matching String in memory already
+`TRUE 
+FALSE 
+@
+What is the purpose of the hashcode() method?
+To identify which class an object is an instance of 
+To generate a random number 
+`To provide a unique identifier for an instance of an object 
+To print the values of all an object's properties 
+@
+"Collections" is?
+The interface that all java collections implement 
+`A class filled with static methods used to manipulate collections
+@
+Which interface does not extend the Collection interface?
+List 
+Set 
+Queue 
+`Map 
+@
+True or False: An array is a type of Collection in Java
+TRUE 
+`FALSE 
+@
+You need a collection to represent secret agents. Every agent has a unique codename that identifies them, and an Agent object that represents them. The best collection for this would be?
+An ArrayList< Agent > 
+A HashSet< Agent > 
+`A HashMap< String, Agent > 
