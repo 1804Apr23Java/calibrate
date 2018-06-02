@@ -44,6 +44,6 @@
 	</bean>
 	
 	<!-- enable Transaction annotations -->
-	<!-- <tx:annotation-driven></tx:annotation-driven> -->
+	<tx:annotation-driven></tx:annotation-driven>
 
 </beans>
