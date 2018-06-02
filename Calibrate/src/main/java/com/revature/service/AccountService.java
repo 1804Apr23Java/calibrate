@@ -15,8 +15,7 @@ public class AccountService {
 	AccountRepository ar;
 	
 	public List<Account> getAccounts() {
-		List<Account> accounts = ar.getAccounts();
-		return accounts;
+		return ar.getAccounts();
 	}
 
 }

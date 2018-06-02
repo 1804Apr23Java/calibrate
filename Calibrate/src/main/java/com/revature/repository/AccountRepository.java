@@ -14,15 +14,19 @@ import com.revature.beans.Account;
 
 @Repository
 @Transactional
+@EnableTransactionManagement
 public class AccountRepository {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
 	public List<Account> getAccounts() {
-		List<Account> accounts = new ArrayList<Account>();
 		Session s = sessionFactory.getCurrentSession();
-		accounts = s.createQuery("from Account").list();
+		System.out.println(0);
+		List<Account> accounts = s.createQuery("FROM Account").list();;
+		System.out.println(1);
+		System.out.println(accounts);
+		System.out.println(2);
 		return accounts;
 	}
 

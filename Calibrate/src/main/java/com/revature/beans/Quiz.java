@@ -30,9 +30,7 @@ public class Quiz {
 	@ManyToMany
 	@JoinTable(name = "QUIZ_QUESTION", 
 				joinColumns = @JoinColumn(name = "QUIZ_ID", referencedColumnName = "QUIZ_ID"),
-				inverseJoinColumns = @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID"), 
-				foreignKey=@ForeignKey(name = "FK_QUIZ_QUESTION_QUIZ"),
-				inverseForeignKey=@ForeignKey(name = "FK_QUIZ_QUESTION_QUESTION"))
+				inverseJoinColumns = @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID"))
 	private Set<Question> questions;
 
 	public Quiz(int id, String name, Set<Question> questions) {

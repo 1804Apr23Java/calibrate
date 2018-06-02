@@ -22,17 +22,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.revature.beans.Account;
 import com.revature.service.AccountService;
 
-@Controller("accountController")
+@Controller
 @RequestMapping("/account")
 public class AccountController {
 
 	@Autowired
-	private AccountService accountService;
+	private AccountService as;
 
 	@GetMapping("/all")
 	@ResponseBody
 	public ResponseEntity<List<Account>> getAllAccounts() {
-		return new ResponseEntity<>(accountService.getAccounts(), HttpStatus.OK);
+		return new ResponseEntity<List<Account>>(as.getAccounts(), HttpStatus.OK);
 	}
 
 }

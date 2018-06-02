@@ -37,9 +37,7 @@ public class Attempt {
 	@ManyToMany
 	@JoinTable(name = "ATTEMPT_ANSWER", 
 				joinColumns = @JoinColumn(name = "ATTEMPT_ID", referencedColumnName = "ATTEMPT_ID"), 
-				inverseJoinColumns = @JoinColumn(name = "ANSWER_ID", referencedColumnName = "ANSWER_ID"),
-				foreignKey = @ForeignKey(name = "FK_ATTEMPT_ANSWER_ATTEMPT"),									
-				inverseForeignKey = @ForeignKey(name = "FK_ATTEMPT_ANSWER_ANSWER"))
+				inverseJoinColumns = @JoinColumn(name = "ANSWER_ID", referencedColumnName = "ANSWER_ID"))
 	private Set<Answer> answers;
 
 	public Attempt(int id, Account account, Quiz quiz, Set<Answer> answers) {
