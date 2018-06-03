@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userview.component.css']
 })
 export class UserviewComponent implements OnInit {
+  
 
   constructor() { }
 
