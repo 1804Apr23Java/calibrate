@@ -9,22 +9,35 @@ import { Library } from '../../classes/library';
 export class LibraryComponent implements OnInit {
 
   libraries : Library[] = [];
+  libs:Array<Library> = [];
+
 
   constructor() { }
 
   ngOnInit() {
 
-    //Call some service to get real data    
+    //Call some service to get real data
+    
+    this.libs[0] = new Library();
+    this.libs[0].accountId = 0;
+    this.libs[0].libraryId = 0;
+    this.libs[0].name = 'Core Java';
+    this.libs[0].question = [];
+    this.libs[0].status = 0;
 
-    this.libraries[0].libraryId = 1;
-    this.libraries[0].name = "Java Core";
-    this.libraries[0].status = 0;
-    this.libraries[1].libraryId = 2;
-    this.libraries[1].name = "Angular";
-    this.libraries[1].status = 0;
-    this.libraries[2].libraryId = 3;
-    this.libraries[2].name = "Servlets";
-    this.libraries[2].status = 1;
+    this.libs[1] = new Library();
+    this.libs[1].accountId = 0;
+    this.libs[1].libraryId = 1;
+    this.libs[1].name = 'Servlets';
+    this.libs[1].question = [];
+    this.libs[1].status = 1;
+
+    this.libs[2] = new Library();
+    this.libs[2].accountId = 0;
+    this.libs[2].libraryId = 2;
+    this.libs[2].name = 'Angular';
+    this.libs[2].question = [];
+    this.libs[2].status = 2;
 
 
   }

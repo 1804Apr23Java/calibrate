@@ -1,13 +1,11 @@
-<p>
-  library works!
-</p>
 
+<div>
 <h2>My Libraries</h2>
 
-<h3>{{libraries[0]?.name}}</h3>
-
 <ul class="libraries">
-  <li *ngFor="let lib of libraries">
-    <span class="libs"> {{lib.name}} </span>
+  <li *ngFor="let lib of libs">
+    <span class="libs"> Name: {{lib.name}} </span> <br>
+    <span class="libs"> Status: {{lib.status}} </span>
   </li>
 </ul>
+</div>

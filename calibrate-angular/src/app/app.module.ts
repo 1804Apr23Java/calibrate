@@ -10,6 +10,8 @@ import { LibraryComponent } from './components/library/library.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserviewComponent } from './components/userview/userview.component';
 import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { QuizesComponent } from './components/quizes/quizes.component';
 
 const appRoutes: Routes = [
 
@@ -33,7 +35,9 @@ const appRoutes: Routes = [
     LibraryComponent,
     ProfileComponent,
     UserviewComponent,
-    NavbarLoggedComponent
+    NavbarLoggedComponent,
+    SidebarComponent,
+    QuizesComponent
     
   ],
   imports: [
