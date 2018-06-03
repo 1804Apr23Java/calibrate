@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  sidebarToggle: boolean;
+
   constructor() { }
 
+
   ngOnInit() {
+
+    this.sidebarToggle = true;
+  }
+
+  showLibraries(){
+    this.sidebarToggle = true;
+  }
+
+  showQuizzes(){
+    this.sidebarToggle = false;
   }
 
 }

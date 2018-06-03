@@ -11,7 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UserviewComponent } from './components/userview/userview.component';
 import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { QuizesComponent } from './components/quizes/quizes.component';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
 
 const appRoutes: Routes = [
 
@@ -37,7 +37,7 @@ const appRoutes: Routes = [
     UserviewComponent,
     NavbarLoggedComponent,
     SidebarComponent,
-    QuizesComponent
+    QuizzesComponent,
     
   ],
   imports: [

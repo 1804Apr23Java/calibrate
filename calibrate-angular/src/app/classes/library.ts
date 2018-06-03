@@ -14,3 +14,4 @@ enum Status {
     PENDING = 1,
     PUBLIC = 2
 }
+
