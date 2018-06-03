@@ -6,4 +6,15 @@ export class Account {
     public password: string;
     public username: string;
 
+    
+    constructor (accountId: number, username: string, password: string, email: string, isAdmin: boolean) {
+    
+    this.accountId = accountId;
+    this.email = email;
+    this.isAdmin = isAdmin;
+    this.password = password;
+    this.username = username;
+    
+    }
+
 }

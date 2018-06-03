@@ -27,7 +27,7 @@ export class AccountService {
     //return this.httpClient.get<Account>('http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateDev/account/82');
     return this.httpClient.get<Account>('localhost:8083/CalibrateNgTest/account/82');  
   }
-  
+
   getAccount(): Account { 
     
     //http request plz

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
@@ -13,6 +15,7 @@ import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { DisplayLibComponent } from './components/display-lib/display-lib.component';
+import { AccountService } from './services/account.service';
 
 const appRoutes: Routes = [
 
@@ -45,12 +48,14 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
