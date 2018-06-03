@@ -8,7 +8,7 @@ export class Question {
 
 }
 
-class Answers {
+export class Answers {
 
     answerId: number;
     isCorrect: boolean;
