@@ -1,20 +1,15 @@
 package com.revature.main;
 
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.revature.service.AccountService;
+import org.apache.commons.codec.digest.*;
 
 public class SpringDriver {
 
 	public static void main(String[] args) {
 
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
-		AbstractApplicationContext aac = new ClassPathXmlApplicationContext("beans.xml");
-
-		System.out.println(aac.getBean("accountService", AccountService.class).getAccounts());
+		String password = "pass40rD";
+		String passwordEnc = DigestUtils.sha256Hex(password);
 		
-		aac.close();
+		System.out.println(passwordEnc);
+		
 	}
 }
