@@ -12,10 +12,18 @@ export class LibraryComponent implements OnInit {
   libraries: Library[];
   //libs:Array<Library> = [];
 
+  selectedLib: Library;
+
+  onSelect(lib: Library): void {
+    this.selectedLib = lib;
+  }
+
+
+
   getLibraries(): void {
     this.libraries = this.libraryService.getLibraries();
   }
-  
+
   constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {

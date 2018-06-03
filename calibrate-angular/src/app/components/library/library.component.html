@@ -3,9 +3,15 @@
 <h2>My Libraries</h2>
 
 <ul class="libraries">
-  <li *ngFor="let lib of libraries">
-    <span class="libs"> Name: {{lib.name}} </span> <br>
-    <span class="libs"> Status: {{lib.status}} </span>
+  <li *ngFor="let lib of libraries"
+    [class.selected]="lib === selectedLib" (click)="onSelect(lib)">
+    <span class="libs">{{lib.name}} </span> <br>
+   <!-- <span class="libs"> Status: {{lib.status}} </span> -->
   </li>
 </ul>
+
+</div>
+
+<div>
+<app-display-lib [lib]="selectedLib"></app-display-lib>
 </div>

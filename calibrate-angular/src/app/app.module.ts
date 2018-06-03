@@ -12,6 +12,7 @@ import { UserviewComponent } from './components/userview/userview.component';
 import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
+import { DisplayLibComponent } from './components/display-lib/display-lib.component';
 
 const appRoutes: Routes = [
 
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     NavbarLoggedComponent,
     SidebarComponent,
     QuizzesComponent,
+    DisplayLibComponent,
     
   ],
   imports: [
