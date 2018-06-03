@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { NavbarSimpleComponent } from './components/navbar-simple/navbar-simple.component';

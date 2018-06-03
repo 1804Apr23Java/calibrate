@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../services/account.service';
 import { Account } from '../../classes/account';
+import { AccountService } from '../../services/account.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,17 +9,21 @@ import { Observable } from 'rxjs';
   styleUrls: ['./userview.component.css']
 })
 export class UserviewComponent implements OnInit {
-
-  user: Observable<Account>;
   
+  user: Account;
+  user2: Observable<Account>;
 
-  constructor() { }
+
+
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
 
-    
+    this.user = new Account(1, 'dave@gmail.com', false, 'chunli', 'DaveB');
 
+    this.user2 = this.accountService.fetchAccount();
 
+    console.log(this.user2);
   }
 
 }

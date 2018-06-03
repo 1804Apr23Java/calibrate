@@ -23,7 +23,9 @@ export class ProfileComponent implements OnInit {
     console.log('profile ngOnInit ran...');
 
     //Call some service to get real data
-    this.getAccount();
+
+    this.accountService.fetchAccount();
+    //this.getAccount();
   }
 
 }
