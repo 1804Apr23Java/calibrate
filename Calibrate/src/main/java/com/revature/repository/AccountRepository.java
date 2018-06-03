@@ -1,10 +1,10 @@
 package com.revature.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,11 +22,7 @@ public class AccountRepository {
 
 	public List<Account> getAccounts() {
 		Session s = sessionFactory.getCurrentSession();
-		System.out.println(0);
-		List<Account> accounts = s.createQuery("FROM Account").list();;
-		System.out.println(1);
-		System.out.println(accounts);
-		System.out.println(2);
+		List<Account> accounts = s.createQuery("FROM Account").list();
 		return accounts;
 	}
 
@@ -34,6 +30,13 @@ public class AccountRepository {
 		Session s = sessionFactory.getCurrentSession();
 		s.persist(f);
 		return f;
+	}
+	
+	public Account getAccount(int id) {
+		Session s = sessionFactory.getCurrentSession();
+		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
+		System.out.println("account");
+		return account;
 	}
 
 }

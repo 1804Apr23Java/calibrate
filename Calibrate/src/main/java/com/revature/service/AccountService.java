@@ -17,5 +17,9 @@ public class AccountService {
 	public List<Account> getAccounts() {
 		return ar.getAccounts();
 	}
+	
+	public Account getAccount(int id) {
+		return ar.getAccount(id);
+	}
 
 }

@@ -10,8 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.repository.AccountRepository;
 
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"beans.xml"})
+@ContextConfiguration(locations = {"classpath:beans.xml"})
 public class AccountTest {
 
 	@Autowired
