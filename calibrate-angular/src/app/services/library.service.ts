@@ -10,6 +10,8 @@ export class LibraryService {
   constructor() { }
 
 getLibraries(): Library[] {
+
+  //http request plz
   return LIBS;
 }
 

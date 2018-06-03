@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../../classes/account';
+import {AccountService } from '../../services/account.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -8,21 +10,20 @@ import { Account } from '../../classes/account';
 })
 export class ProfileComponent implements OnInit {
 
-  account = <Account>{};
+  account: Account;
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
+
+  getAccount() {
+    this.account = this.accountService.getAccount();
+  }
 
   ngOnInit() {
 
     console.log('profile ngOnInit ran...');
 
     //Call some service to get real data
-
-    this.account.username = "DaveB";
-    this.account.password = "davelovescollin";
-    this.account.isAdmin = false;
-    this.account.email = "dave@email.com";
-
+    this.getAccount();
   }
 
 }
