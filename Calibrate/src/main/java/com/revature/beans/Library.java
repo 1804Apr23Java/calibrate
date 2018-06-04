@@ -1,5 +1,8 @@
 package com.revature.beans;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,6 +36,9 @@ public class Library {
 	@JoinColumn(name = "ACCOUNT_ID", nullable=false, foreignKey=@ForeignKey(name = "FK_LIBRARY_ACCOUNT"))
 	private Account account;
 
+	@OneToMany(targetEntity=Question.class, cascade = CascadeType.ALL, mappedBy="library", fetch = FetchType.EAGER)
+	public Set<Question> questions;
+	
 	public Library(int id, String name, Status status, Account account) {
 		super();
 		this.id = id;
@@ -86,5 +93,13 @@ public class Library {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
 	}
 }

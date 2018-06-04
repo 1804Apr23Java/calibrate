@@ -2,15 +2,17 @@ package com.revature.beans;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,12 +29,15 @@ public class Quiz {
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "QUIZ_QUESTION", 
 				joinColumns = @JoinColumn(name = "QUIZ_ID", referencedColumnName = "QUIZ_ID"),
 				inverseJoinColumns = @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID"))
 	private Set<Question> questions;
 
+	@OneToMany(targetEntity=Attempt.class, cascade = CascadeType.ALL, mappedBy="quiz", fetch = FetchType.EAGER)
+	public Set<Attempt> attempts;
+	
 	public Quiz(int id, String name, Set<Question> questions) {
 		super();
 		this.id = id;
@@ -77,5 +82,13 @@ public class Quiz {
 	@Override
 	public String toString() {
 		return "Quiz [id=" + id + ", name=" + name + ", questions=" + questions + "]";
+	}
+
+	public Set<Attempt> getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(Set<Attempt> attempts) {
+		this.attempts = attempts;
 	}
 }
