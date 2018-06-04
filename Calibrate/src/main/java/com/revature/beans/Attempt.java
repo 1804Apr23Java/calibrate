@@ -32,11 +32,11 @@ public class Attempt {
 	@Column(name = "ATTEMPT_ID")
 	private int id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ACCOUNT_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_ACCOUNT"))
 	private Account account;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "QUIZ_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_QUIZ"))
 	private Quiz quiz;
 
@@ -102,7 +102,8 @@ public class Attempt {
 
 	@Override
 	public String toString() {
-		return "Attempt [id=" + id + ", account=" + account + ", quiz=" + quiz + ", answers=" + answers + "]";
+		return "Attempt [id=" + id + ", account=" + account + ", quiz=" + quiz + ", answers=" + answers
+				+ ", createdDate=" + createdDate + "]";
 	}
 
 }

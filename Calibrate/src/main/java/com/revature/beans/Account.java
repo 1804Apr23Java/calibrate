@@ -1,15 +1,10 @@
 package com.revature.beans;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,12 +29,6 @@ public class Account {
 
 	@Column(name = "ISADMIN", nullable = false)
 	private boolean isAdmin;
-
-	@OneToMany(targetEntity=Library.class, cascade = CascadeType.ALL, mappedBy="account", fetch = FetchType.EAGER)
-	public Set<Library> libraries;
-	
-	@OneToMany(targetEntity=Attempt.class, cascade = CascadeType.ALL, mappedBy="account", fetch = FetchType.EAGER)
-	public Set<Attempt> attempts;
 	
 	public Account(int id, String username, String password, String email, boolean isAdmin) {
 		super();
@@ -106,22 +95,6 @@ public class Account {
 	public String toString() {
 		return "Account [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", isAdmin=" + isAdmin + "]";
-	}
-
-	public Set<Library> getLibraries() {
-		return libraries;
-	}
-
-	public void setLibraries(Set<Library> libraries) {
-		this.libraries = libraries;
-	}
-
-	public Set<Attempt> getAttempts() {
-		return attempts;
-	}
-
-	public void setAttempts(Set<Attempt> attempts) {
-		this.attempts = attempts;
 	}
 
 }

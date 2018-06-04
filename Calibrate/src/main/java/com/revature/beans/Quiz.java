@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,9 +33,6 @@ public class Quiz {
 				joinColumns = @JoinColumn(name = "QUIZ_ID", referencedColumnName = "QUIZ_ID"),
 				inverseJoinColumns = @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID"))
 	private Set<Question> questions;
-
-	@OneToMany(targetEntity=Attempt.class, cascade = CascadeType.ALL, mappedBy="quiz", fetch = FetchType.EAGER)
-	public Set<Attempt> attempts;
 	
 	public Quiz(int id, String name, Set<Question> questions) {
 		super();
@@ -84,11 +80,5 @@ public class Quiz {
 		return "Quiz [id=" + id + ", name=" + name + ", questions=" + questions + "]";
 	}
 
-	public Set<Attempt> getAttempts() {
-		return attempts;
-	}
 
-	public void setAttempts(Set<Attempt> attempts) {
-		this.attempts = attempts;
-	}
 }

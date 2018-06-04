@@ -28,7 +28,7 @@ public class Answer {
 	@Column(name = "ISCORRECT", nullable = false)
 	private boolean isCorrect;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "QUESTION_ID", nullable = false, foreignKey=@ForeignKey(name = "FK_ANSWER_QUESTION"))
 	private Question question;
 
@@ -49,11 +49,6 @@ public class Answer {
 
 	public Answer() {
 		super();
-	}
-
-	@Override
-	public String toString() {
-		return "Answer [id=" + id + ", value=" + value + ", isCorrect=" + isCorrect + ", question=" + question + "]";
 	}
 
 	public int getId() {
@@ -86,5 +81,10 @@ public class Answer {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", value=" + value + ", isCorrect=" + isCorrect + ", question=" + question + "]";
 	}
 }
