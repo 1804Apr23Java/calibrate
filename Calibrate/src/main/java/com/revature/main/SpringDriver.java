@@ -6,7 +6,7 @@ public class SpringDriver {
 
 	public static void main(String[] args) {
 
-		String password = "pass4ord";
+		String password = "pass40rD";
 		String passwordEnc = DigestUtils.sha256Hex(password);
 		
 		System.out.println(passwordEnc);
