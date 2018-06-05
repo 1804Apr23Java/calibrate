@@ -12,10 +12,11 @@ import com.revature.repository.AccountRepository;
 
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:beans.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath:beans.xml"})
 public class AccountTest {
 
+	/*
 	@Autowired
 	private AccountRepository ar;
 
@@ -23,5 +24,5 @@ public class AccountTest {
 	public void testAccountRepository() {
 		assertNull(ar.getAccount(-1));
 	}
-	
+	*/
 }
