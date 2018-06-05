@@ -2,3 +2,8 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.list-as-link:hover{
+    cursor: pointer;
+    background-color: #eee;
+}

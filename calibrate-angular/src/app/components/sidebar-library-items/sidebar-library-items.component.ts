@@ -3,11 +3,11 @@ import { Library } from '../../classes/library';
 import { LibraryService } from '../../services/library.service';
 
 @Component({
-  selector: 'app-library',
-  templateUrl: './library.component.html',
-  styleUrls: ['./library.component.css']
+  selector: 'app-sidebar-library-items',
+  templateUrl: './sidebar-library-items.component.html',
+  styleUrls: ['./sidebar-library-items.component.css']
 })
-export class LibraryComponent implements OnInit {
+export class SidebarLibraryItemsComponent implements OnInit {
 
   libraries: Library[];
   //libs:Array<Library> = [];

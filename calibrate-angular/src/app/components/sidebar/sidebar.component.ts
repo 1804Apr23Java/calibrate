@@ -11,10 +11,8 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
-
   ngOnInit() {
-
-    this.sidebarToggle = true;
+    this.sidebarToggle = false;
   }
 
   showLibraries(){
@@ -24,5 +22,4 @@ export class SidebarComponent implements OnInit {
   showQuizzes(){
     this.sidebarToggle = false;
   }
-
 }
