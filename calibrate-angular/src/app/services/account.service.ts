@@ -14,7 +14,7 @@ export class AccountService {
   //inject Http object
   constructor(private http: Http, private httpClient: HttpClient) { }
 
-  private accountUrl = 'http://localhost:8083/CalibrateNgTest/account/82';
+  private accountUrl = './Calibrate/account/82';
 
   public fetchAccountInfo(accountId: number): Observable<Account> {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${accountId}`).pipe(map((response: Response) => {
@@ -26,7 +26,7 @@ export class AccountService {
 
   public fetchAccount(): Observable<Account> {
     console.log("Fetching Account");
-    return this.httpClient.get<Account>('http://localhost:8083/CalibrateNgTest/account/82');
+    return this.httpClient.get<Account>(this.accountUrl);
   } 
 
 

@@ -26,6 +26,7 @@
 	</bean>
 	
 	<!-- enable static resource retrieval -->
-	<mvc:resources mapping="/**" location="/WEB-INF/static/"></mvc:resources>
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/"></mvc:resources>
+	<!--  <mvc:resources mapping="/assets/images/**" location="/WEB-INF/static/assets/images/"></mvc:resources>  -->
 	
 </beans>

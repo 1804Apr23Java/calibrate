@@ -2,6 +2,7 @@ package com.revature.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -15,7 +16,13 @@ import com.revature.beans.Attempt;
 public class AttemptRepository {
 
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
+	
+	public Attempt getAttempt(int id) {
+		Session s = sessionFactory.getCurrentSession();
+		Attempt attempt = (Attempt) s.createCriteria(Attempt.class).add(Restrictions.eq("id", id)).uniqueResult();
+		return attempt;
+	}
 	
 	public Attempt persistAttempt(Attempt f) {
 		Session s = sessionFactory.getCurrentSession();

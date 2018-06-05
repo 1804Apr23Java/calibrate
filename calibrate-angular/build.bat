@@ -1,1 +1,1 @@
-ng build --prod --output-path="../Calibrate/src/main/webapp/static"
+ng build --output-path="../Calibrate/src/main/webapp/WEB-INF/static"

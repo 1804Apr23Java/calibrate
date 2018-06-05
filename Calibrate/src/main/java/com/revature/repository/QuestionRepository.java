@@ -16,7 +16,7 @@ import com.revature.beans.Question;
 public class QuestionRepository {
 
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	public Question getQuestion(int id) {
 		Session s = sessionFactory.getCurrentSession();

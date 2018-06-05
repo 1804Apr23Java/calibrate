@@ -1,7 +1,5 @@
 package com.revature.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +10,10 @@ import com.revature.repository.AccountRepository;
 public class AccountService {
 	
 	@Autowired
-	AccountRepository ar;
-	
-	public List<Account> getAccounts() {
-		return ar.getAccounts();
-	}
+	private AccountRepository accountRepository;
 	
 	public Account getAccount(int id) {
-		return ar.getAccount(id);
+		return accountRepository.getAccount(id);
 	}
 
 }

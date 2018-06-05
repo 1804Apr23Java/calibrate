@@ -6,15 +6,17 @@ import org.springframework.stereotype.Service;
 import com.revature.beans.Attempt;
 import com.revature.repository.AttemptRepository;
 
-@Service(value="attemptService")
+@Service
 public class AttemptService {
 
 	@Autowired
-	AttemptRepository ar;
+	private AttemptRepository attemptRepository;
 	
-public void addAttempt(Attempt attempt) {
-		
-		ar.persistAttempt(attempt);
-		
+	public Attempt getAttempt(int id) {
+		return attemptRepository.getAttempt(id);
+	}
+
+	public void addAttempt(Attempt attempt) {
+		attemptRepository.persistAttempt(attempt);
 	}
 }

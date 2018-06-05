@@ -1,6 +1,6 @@
 package com.revature.test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ public class AccountTest {
 
 	@Test
 	public void testAccountRepository() {
-		assertNotNull(ar.getAccounts());
+		assertNull(ar.getAccount(-1));
 	}
 	
 }

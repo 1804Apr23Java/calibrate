@@ -16,7 +16,7 @@ import com.revature.beans.Quiz;
 public class QuizRepository {
 
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	public Quiz getQuiz(int id) {
 		Session s = sessionFactory.getCurrentSession();
