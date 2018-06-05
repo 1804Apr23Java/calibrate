@@ -14,10 +14,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarQuizzesItemsComponent } from './components/sidebar-quizzes-items/sidebar-quizzes-items.component';
 import { DisplayLibComponent } from './components/display-lib/display-lib.component';
 import { LoginPortalComponent } from './components/login-portal/login-portal.component';
+import { UserMainContentComponent } from './components/user-main-content/user-main-content.component';
+import { UserviewMyLibrariesComponent } from './components/userview-my-libraries/userview-my-libraries.component';
 
 const appRoutes: Routes = [
 
-  { path: 'login', component: LoginpageComponent },
+  { path: 'login', component: LoginpageComponent},
   { path: 'loggedin', component: UserviewComponent },
 
   { path: '',
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
     SidebarComponent,
     SidebarQuizzesItemsComponent,
     DisplayLibComponent,
-    LoginPortalComponent
+    LoginPortalComponent,
+    UserMainContentComponent,
+    UserviewMyLibrariesComponent
     
   ],
   imports: [
