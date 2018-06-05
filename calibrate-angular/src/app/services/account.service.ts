@@ -16,22 +16,23 @@ export class AccountService {
 
   private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/account/82';
 
-  public fetchAccountInfo(accountId: number): Observable<Account> {
+  public fetchAccountById(accountId: number): Observable<Account> {
     return this.http.get(this.accountUrl).pipe(map((response: Response) => {
       return <Account>response.json();
-    }))
+    }));
   }
 
   //get account for real from our backend using HttpClient; newer vesion of module
 
   public fetchAccount(): Observable<Account> {
-    console.log("Fetching Account");
-    return this.httpClient.get<Account>(this.accountUrl);
-  } 
+    return this.http.get(this.accountUrl).pipe(map((response: Response) => {
+      return <Account>response.json();
+    }));
+  }
 
 
-  getAccount(): Account { 
-    
+  getAccount(): Account {
+
     //http request plz
     return ACCOUNT;
   }
