@@ -14,22 +14,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarQuizzesItemsComponent } from './components/sidebar-quizzes-items/sidebar-quizzes-items.component';
 import { DisplayLibComponent } from './components/display-lib/display-lib.component';
 import { LoginPortalComponent } from './components/login-portal/login-portal.component';
-import { UserMainContentComponent } from './components/user-main-content/user-main-content.component';
 import { UserviewMyLibrariesComponent } from './components/userview-my-libraries/userview-my-libraries.component';
-
-const appRoutes: Routes = [
-
-  { path: 'login', component: LoginpageComponent},
-  { path: 'loggedin', component: UserviewComponent },
-
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  }
-//  { path: '**', component: LoginpageComponent }
-];
-
-
+import { AppRoutingModule } from './/app-routing.module';
+import { UserviewPublicLibrariesComponent } from './components/userview-public-libraries/userview-public-libraries.component';
+import { UserviewPendingLibrariesComponent } from './components/userview-pending-libraries/userview-pending-libraries.component';
+import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
+import { ReviewQuizzesComponent } from './components/review-quizzes/review-quizzes.component';
 
 @NgModule({
   declarations: [
@@ -44,17 +34,17 @@ const appRoutes: Routes = [
     SidebarQuizzesItemsComponent,
     DisplayLibComponent,
     LoginPortalComponent,
-    UserMainContentComponent,
-    UserviewMyLibrariesComponent
+    UserviewMyLibrariesComponent,
+    UserviewPublicLibrariesComponent,
+    UserviewPendingLibrariesComponent,
+    TakeAQuizComponent,
+    ReviewQuizzesComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
