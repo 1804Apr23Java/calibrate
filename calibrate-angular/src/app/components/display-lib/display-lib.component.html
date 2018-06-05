@@ -1,0 +1,11 @@
+
+  Name: {{lib.name}} <br>
+  Status: {{lib.status}} <br>
+  Questions in Library: <br>
+  <ul class="displayLibParts">
+    <li *ngFor="let q of lib.question">
+      <span class="info">{{q.value}}</span>
+    </li>
+  </ul>
+
+

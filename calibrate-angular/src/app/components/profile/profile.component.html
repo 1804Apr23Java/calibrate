@@ -1,0 +1,24 @@
+<h1>Account Profile</h1>
+
+<p>Welcome {{account.username}}</p>
+
+<form>
+
+    <div>
+      <label for="username">Username: </label><br>
+      <input type="text" [(ngModel)]="account.username" name="username">
+    </div>
+    <div>
+      <label for="password">Password: </label><br>
+      <input type="password" [(ngModel)]="account.password" name="password">
+    </div>
+    <div>
+      <label for="isAdmin">Administrator: </label><br>
+      <input type="text" [(ngModel)]="account.isAdmin" name="isAdmin">
+    </div>
+    <div>
+      <label for="email">Email: </label><br>
+      <input type="text" [(ngModel)]="account.email" name="email">
+    </div>
+
+</form>
