@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\r\n"
+module.exports = "/* GLOBAL STYLES */\r\nbody{\r\n    font-family: Verdana, Geneva, Tahoma, sans-serif;\r\n}\r\n.list-as-link:hover{\r\n    cursor: pointer;\r\n    background-color: #eee;\r\n}"
 
 /***/ }),
 
