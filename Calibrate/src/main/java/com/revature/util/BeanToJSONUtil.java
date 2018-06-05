@@ -29,6 +29,8 @@ public class BeanToJSONUtil {
 	private QuestionRepository questionRepository;
 
 	public AnswerJSON answerToJSON(Answer answer) {
+		if (answer == null)
+			return null;
 		return new AnswerJSON(answer.getId(), answer.isCorrect(), answer.getValue(), answer.getQuestion().getId(),
 				false);
 	}
@@ -38,6 +40,8 @@ public class BeanToJSONUtil {
 	}
 
 	public AccountJSON accountToJSON(Account account) {
+		if (account == null)
+			return null;
 		return new AccountJSON(account.getId(), account.getEmail(), account.isAdmin(), account.getPassword(),
 				account.getUsername());
 	}
@@ -47,6 +51,8 @@ public class BeanToJSONUtil {
 	}
 
 	public QuestionJSON questionToJSON(Question question) {
+		if (question == null)
+			return null;
 		List<AnswerJSON> answers = answersToJSON(answerRepository.getAnswersByQuestion(question));
 		return new QuestionJSON(question.getId(), question.getDifficulty(), question.getValue(),
 				question.getLibrary().getId(), answers);
@@ -57,6 +63,8 @@ public class BeanToJSONUtil {
 	}
 
 	public LibraryJSON libraryToJSON(Library library) {
+		if (library == null)
+			return null;
 		List<QuestionJSON> questions = questionsToJSON(questionRepository.getQuestionsByLibrary(library));
 		return new LibraryJSON(library.getId(), library.getName(), library.getStatus(), library.getAccount().getId(),
 				questions);
@@ -67,6 +75,8 @@ public class BeanToJSONUtil {
 	}
 
 	public QuizJSON quizToJSON(Quiz quiz) {
+		if (quiz == null)
+			return null;
 		List<Question> questions = new ArrayList<Question>();
 		questions.addAll(quiz.getQuestions());
 		return new QuizJSON(quiz.getId(), quiz.getName(), questionsToJSON(questions));

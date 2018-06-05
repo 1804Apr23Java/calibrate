@@ -29,7 +29,7 @@ public class AnswerJSON {
 		this.answerId = answerId;
 	}
 
-	public boolean isCorrect() {
+	public boolean getIsCorrect() {
 		return isCorrect;
 	}
 
@@ -53,11 +53,11 @@ public class AnswerJSON {
 		this.questionId = questionId;
 	}
 
-	public boolean isSelected() {
+	public boolean getIsSelected() {
 		return isSelected;
 	}
 
-	public void setSelected(boolean isSelected) {
+	public void setIsSelected(boolean isSelected) {
 		this.isSelected = isSelected;
 	}
 	

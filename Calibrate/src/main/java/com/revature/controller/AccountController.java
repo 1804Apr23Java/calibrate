@@ -25,7 +25,5 @@ public class AccountController {
 	public ResponseEntity<AccountJSON> getAccount(@PathVariable int id) {
 		return new ResponseEntity<AccountJSON>(btju.accountToJSON(accountService.getAccount(id)), HttpStatus.OK);
 	}
-	
-
 
 }
