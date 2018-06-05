@@ -1,3 +1,66 @@
-<p>
-  take-a-quiz works!
-</p>
+<!-- TAKE A QUIZ CONTENT -->
+<!-- Will probably turn into form -->
+
+<!-- Take a Quiz Header Bar -->
+<div class="h4 user-view-header">
+  <p>
+    <span class="fa fa-tasks quiz-header-icon"></span>
+    <span>Take a Quiz</span>
+  </p>
+</div>
+
+<!-- Library Selector -->
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="selected-libraries-header-text">
+      <span>Libraries to Generate Quiz</span>
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span>
+      <span class="h3">Core Java</span>
+      <br>
+      <small>Author: Emily Higgins</small>
+      <br>
+      <small>Size: 83 questions</small>
+    </span>
+    <span class="fa fa-times fa-2x red-x-icon"></span>
+  </li>
+  <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+    <strong>Add a Library</strong>
+    <span class="fa fa-plus-square fa-2x add-library-plus-icon"></span>
+  </li>
+</ul>
+
+<!-- Number of Questions Selector -->
+<li class="list-group-item d-flex justify-content-between align-items-center mt-3">
+  <span>
+    <span class="h4">Number of Questions</span>
+    <br>
+    <small>Max questions: 83</small>
+  </span>
+  <span>
+    <input type="number" class="number-of-questions-input">
+  </span>
+</li>
+
+<!-- Additional Parameter Checkbox Selectors -->
+<li class="list-group-item d-flex justify-content-between align-items-center mt-3 additional-quiz-parameter">Use Hardest Questions
+  <span>
+    <input type="checkbox" class="quiz-parameter-checkbox">
+  </span>
+</li>
+<li class="list-group-item d-flex justify-content-between align-items-center mt-3 additional-quiz-parameter">Use Most Missed Questions
+  <span>
+    <input type="checkbox" class="quiz-parameter-checkbox">
+  </span>
+</li>
+
+<!-- Start Quiz Button -->
+<div class="text-center">
+  <button id="start-quiz-button" class="btn center-block" type="button">
+    <strong>Start Quiz!</strong>
+  </button>
+</div>
+
+<!-- END TAKE A QUIZ CONTENT-->
