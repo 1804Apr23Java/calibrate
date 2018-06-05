@@ -14,10 +14,10 @@ export class AccountService {
   //inject Http object
   constructor(private http: Http, private httpClient: HttpClient) { }
 
-  private accountUrl = './Calibrate/account/82';
+  private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/account/82';
 
   public fetchAccountInfo(accountId: number): Observable<Account> {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${accountId}`).pipe(map((response: Response) => {
+    return this.http.get(this.accountUrl).pipe(map((response: Response) => {
       return <Account>response.json();
     }))
   }
