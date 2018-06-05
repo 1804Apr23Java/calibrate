@@ -492,11 +492,11 @@ public class Driver {
 		Answer a81 = new Answer();
 		a81.setQuestion(q25);
 		a81.setCorrect(true);
-		a81.setValue("<button (click)=\"func\">…");
+		a81.setValue("<button (click)=\"func\">ï¿½");
 		Answer a82 = new Answer();
 		a82.setQuestion(q25);
 		a82.setCorrect(false);
-		a82.setValue("<button click=\"func\"> …");
+		a82.setValue("<button click=\"func\"> ï¿½");
 		Answer a83 = new Answer();
 		a83.setQuestion(q25);
 		a83.setCorrect(false);

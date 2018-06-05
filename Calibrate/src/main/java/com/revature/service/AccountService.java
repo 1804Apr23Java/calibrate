@@ -15,5 +15,13 @@ public class AccountService {
 	public Account getAccount(int id) {
 		return accountRepository.getAccount(id);
 	}
+	
+	public Account addAccount(Account account) {
+		return accountRepository.persistAccount(account);
+	}
+	
+	public Account updateAccount(int id, String username) {
+		return accountRepository.updateUsername(id, username);
+	}
 
 }

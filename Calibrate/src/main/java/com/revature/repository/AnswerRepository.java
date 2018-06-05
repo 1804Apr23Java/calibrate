@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Answer;
+import com.revature.beans.Question;
 
 @Repository
 @Transactional
@@ -24,4 +27,10 @@ public class AnswerRepository {
 		return answer;
 	}
 
+	public List<Answer> getAnswersByQuestion(Question question) {
+		Session s = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question", question)).list();
+		return answers;
+	}
 }

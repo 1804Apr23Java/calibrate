@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "QUESTION")
 public class Question {
@@ -28,8 +30,9 @@ public class Question {
 	@Column(name = "DIFFICULTY", nullable = false)
 	private int difficulty;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "LIBRARY_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_QUESTION_LIBRARY"))
+	@JoinColumn(name = "LIBRARY_ID", nullable = true, foreignKey = @ForeignKey(name = "FK_QUESTION_LIBRARY"))
 	private Library library;
 
 	public Question(int id, String value, int difficulty, Library library) {

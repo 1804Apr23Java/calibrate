@@ -18,15 +18,21 @@ public class AccountRepository {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public Account persistAccount(Account f) {
+	public Account persistAccount(Account account) {
 		Session s = sessionFactory.getCurrentSession();
-		s.persist(f);
-		return f;
+		s.persist(account);
+		return account;
 	}
 	
 	public Account getAccount(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
+		return account;
+	}
+	
+	public Account updateUsername(int id, String username) {
+		Account account = this.getAccount(id);
+		account.setUsername(username);
 		return account;
 	}
 

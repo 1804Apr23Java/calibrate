@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.beans.Account;
+import com.revature.json.AccountJSON;
 import com.revature.service.AccountService;
+import com.revature.util.BeanToJSONUtil;
 
 @RestController
 @RequestMapping("/account")
@@ -17,10 +18,14 @@ public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private BeanToJSONUtil btju;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Account> getAccount(@PathVariable int id) {
-		return new ResponseEntity<Account>(accountService.getAccount(id), HttpStatus.OK);
+	public ResponseEntity<AccountJSON> getAccount(@PathVariable int id) {
+		return new ResponseEntity<AccountJSON>(btju.accountToJSON(accountService.getAccount(id)), HttpStatus.OK);
 	}
+	
+
 
 }
