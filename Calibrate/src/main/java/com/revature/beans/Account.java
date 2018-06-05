@@ -24,7 +24,7 @@ public class Account {
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@Column(name = "EMAIL", nullable = false)
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "ISADMIN", nullable = false)

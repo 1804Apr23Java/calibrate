@@ -23,17 +23,27 @@ public class AccountRepository {
 		s.persist(account);
 		return account;
 	}
-	
+
 	public Account getAccount(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
 		return account;
 	}
-	
+
 	public Account updateUsername(int id, String username) {
 		Account account = this.getAccount(id);
 		account.setUsername(username);
 		return account;
+	}
+
+	public Account login(String email, String password) {
+		Session s = sessionFactory.getCurrentSession();
+		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("email", email)).uniqueResult();
+		if (account.getPassword().equals(password)) {
+			return account;
+		}
+		else
+			return null;
 	}
 
 }
