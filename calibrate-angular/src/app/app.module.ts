@@ -13,11 +13,7 @@ import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { DisplayLibComponent } from './components/display-lib/display-lib.component';
-<<<<<<< Updated upstream
-=======
-import { AccountService } from './services/account.service';
 import { LoginPortalComponent } from './components/login-portal/login-portal.component';
->>>>>>> Stashed changes
 
 const appRoutes: Routes = [
 
@@ -45,7 +41,7 @@ const appRoutes: Routes = [
     SidebarComponent,
     QuizzesComponent,
     DisplayLibComponent,
-    LoginPortalComponent,
+    LoginPortalComponent
     
   ],
   imports: [
