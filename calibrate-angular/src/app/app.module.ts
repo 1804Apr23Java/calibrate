@@ -20,6 +20,9 @@ import { UserviewPublicLibrariesComponent } from './components/userview-public-l
 import { UserviewPendingLibrariesComponent } from './components/userview-pending-libraries/userview-pending-libraries.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { ReviewQuizzesComponent } from './components/review-quizzes/review-quizzes.component';
+import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
+import { QuizSessionQuestionComponent } from './components/quiz-session-question/quiz-session-question.component';
+import { QuizSessionSidebarComponent } from './components/quiz-session-sidebar/quiz-session-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { ReviewQuizzesComponent } from './components/review-quizzes/review-quizz
     UserviewPublicLibrariesComponent,
     UserviewPendingLibrariesComponent,
     TakeAQuizComponent,
-    ReviewQuizzesComponent
+    ReviewQuizzesComponent,
+    QuizSessionComponent,
+    QuizSessionQuestionComponent,
+    QuizSessionSidebarComponent
     
   ],
   imports: [
