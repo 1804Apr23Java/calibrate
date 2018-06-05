@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Attempt;
 import com.revature.service.AttemptService;
+import com.revature.util.BeanToJSONUtil;
 
 @RestController
 @RequestMapping("/attempt")
@@ -18,6 +19,9 @@ public class AttemptController {
 	@Autowired
 	private AttemptService attemptService;
 	
+	@Autowired
+	private BeanToJSONUtil btju;
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Attempt> getAttempt(@PathVariable int id) {
 		return new ResponseEntity<Attempt>(attemptService.getAttempt(id), HttpStatus.OK);
