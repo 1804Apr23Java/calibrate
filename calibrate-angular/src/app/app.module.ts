@@ -6,43 +6,45 @@ import { RouterModule, Routes } from '@angular/router'
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { NavbarSimpleComponent } from './components/navbar-simple/navbar-simple.component';
-import { LibraryComponent } from './components/library/library.component';
+import { SidebarLibraryItemsComponent } from './components/sidebar-library-items/sidebar-library-items.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserviewComponent } from './components/userview/userview.component';
 import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.component';
-
-const appRoutes: Routes = [
-
-  { path: 'login', component: LoginpageComponent },
-  { path: 'loggedin', component: UserviewComponent },
-
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  }
- // { path: '**', component: PageNotFoundComponent }
-];
-
-
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarQuizzesItemsComponent } from './components/sidebar-quizzes-items/sidebar-quizzes-items.component';
+import { DisplayLibComponent } from './components/display-lib/display-lib.component';
+import { LoginPortalComponent } from './components/login-portal/login-portal.component';
+import { UserviewMyLibrariesComponent } from './components/userview-my-libraries/userview-my-libraries.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { UserviewPublicLibrariesComponent } from './components/userview-public-libraries/userview-public-libraries.component';
+import { UserviewPendingLibrariesComponent } from './components/userview-pending-libraries/userview-pending-libraries.component';
+import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
+import { ReviewQuizzesComponent } from './components/review-quizzes/review-quizzes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginpageComponent,
     NavbarSimpleComponent,
-    LibraryComponent,
+    SidebarLibraryItemsComponent,
     ProfileComponent,
     UserviewComponent,
-    NavbarLoggedComponent
+    NavbarLoggedComponent,
+    SidebarComponent,
+    SidebarQuizzesItemsComponent,
+    DisplayLibComponent,
+    LoginPortalComponent,
+    UserviewMyLibrariesComponent,
+    UserviewPublicLibrariesComponent,
+    UserviewPendingLibrariesComponent,
+    TakeAQuizComponent,
+    ReviewQuizzesComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
