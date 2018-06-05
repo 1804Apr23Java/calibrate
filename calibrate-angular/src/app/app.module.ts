@@ -11,7 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UserviewComponent } from './components/userview/userview.component';
 import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { QuizzesComponent } from './components/quizzes/quizzes.component';
+import { SidebarQuizzesItemsComponent } from './components/sidebar-quizzes-items/sidebar-quizzes-items.component';
 import { DisplayLibComponent } from './components/display-lib/display-lib.component';
 import { LoginPortalComponent } from './components/login-portal/login-portal.component';
 
@@ -39,7 +39,7 @@ const appRoutes: Routes = [
     UserviewComponent,
     NavbarLoggedComponent,
     SidebarComponent,
-    QuizzesComponent,
+    SidebarQuizzesItemsComponent,
     DisplayLibComponent,
     LoginPortalComponent
     
