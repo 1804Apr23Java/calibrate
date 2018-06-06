@@ -17,6 +17,10 @@ public class LibraryService {
 	@Autowired
 	private AccountService accountService;
 	
+	public Library addLibrary(Library library) {
+		return libraryRepository.persistLibrary(library);
+	}
+	
 	public Library getLibrary(int id) {
 		return libraryRepository.getLibrary(id);
 	}

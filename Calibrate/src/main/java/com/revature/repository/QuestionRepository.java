@@ -21,6 +21,12 @@ public class QuestionRepository {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public Question persistQuestion(Question question) {
+		Session s = sessionFactory.getCurrentSession();
+		s.persist(question);
+		return question;
+	}
+	
 	public Question getQuestion(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Question question = (Question) s.createCriteria(Question.class).add(Restrictions.eq("id", id)).uniqueResult();

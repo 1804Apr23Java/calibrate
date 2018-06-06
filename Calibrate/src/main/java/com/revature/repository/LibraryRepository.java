@@ -22,6 +22,12 @@ public class LibraryRepository {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public Library persistLibrary(Library library) {
+		Session s = sessionFactory.getCurrentSession();
+		s.persist(library);
+		return library;
+	}
+	
 	public Library getLibrary(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Library library = (Library) s.createCriteria(Library.class).add(Restrictions.eq("id", id)).uniqueResult();

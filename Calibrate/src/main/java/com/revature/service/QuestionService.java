@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.repository.QuestionRepository;
 
@@ -16,6 +17,10 @@ public class QuestionService {
 	
 	@Autowired
 	private LibraryService libraryService;
+	
+	public Question addQuestion(Question question) {
+		return questionRepository.persistQuestion(question);
+	}
 	
 	public Question getQuestion(int id) {
 		return questionRepository.getQuestion(id);
