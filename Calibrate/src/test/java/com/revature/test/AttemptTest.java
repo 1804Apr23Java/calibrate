@@ -41,9 +41,9 @@ public class AttemptTest {
 
 	@Test
 	public void testAddAttempt() {
-		Account account = new Account("name2", "name3", "name4", false);
+		Account account = new Account("name23", "name23", "name49", false);
 		acr.persistAccount(account);
-		Quiz quiz = new Quiz("name1", new HashSet<Question>());
+		Quiz quiz = new Quiz("name99", new HashSet<Question>());
 		qr.persistQuiz(quiz);
 		Set<Answer> answers = new HashSet<Answer>();
 		Attempt attempt = new Attempt(account, quiz, answers);
