@@ -26,10 +26,18 @@ export class LibraryService {
 
   // CHANGE this once Team Spring implements the api link
   // urlblargh:8080/library/pending or whatever
-  public getLibraryByStatus(libraryStatus: number): Observable<Library> {
+  public getLibrariesByStatus(libraryStatus: number): Observable<Library> {
     return this.http.get(`${this.libraryUrl}/${libraryStatus}`).pipe(map((response: Response) => {
       return <Library>response.json();
     }));
   }
 
+  //get list of libraries that belong to one user
+  // CHANGE this once Team Spring implements the api link
+  // urlblargh:8080/library/userid or whatever
+  public getLibrariesByUserId(userId: number): Observable<Library> {
+    return this.http.get(`${this.libraryUrl}/${userId}`).pipe(map((response: Response) => {
+      return <Library>response.json();
+    }));
+  }
 }
