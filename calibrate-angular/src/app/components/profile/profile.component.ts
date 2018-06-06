@@ -14,16 +14,16 @@ export class ProfileComponent implements OnInit {
 
   constructor(private accountService: AccountService) { }
 
-  getAccount() {
-    this.account = this.accountService.getAccount();
-  }
+  // getAccount() {
+  //   this.account = this.accountService.getAccount();
+  // }
 
   ngOnInit() {
 
-    console.log('profile ngOnInit ran...');
+    // console.log('profile ngOnInit ran...');
 
     //Call some service to get real data
-    this.getAccount();
+    // this.getAccount();
   }
 
 }
