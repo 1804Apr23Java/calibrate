@@ -15,11 +15,18 @@ export class AccountService {
     constructor(private http: Http, private httpClient: HttpClient) { }
 
     //set URL for api fetching without id 
-    private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/account';
+    private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/account';
   
     //get account by passing URL + id through http
     public getAccountById(accountId: number): Observable<Account> {
       return this.http.get(`${this.accountUrl}/${accountId}`).pipe(map((response: Response) => {
+        return <Account>response.json();
+      }));
+    }
+    
+    //get account by email and password, returns null if invalid
+    public getAccountByLoginInfo(username: String, password: String): Observable<Account> {
+      return this.http.get(`${this.accountUrl}/email/${username}/password/${password}`).pipe(map((response: Response) => {
         return <Account>response.json();
       }));
     }

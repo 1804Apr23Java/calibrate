@@ -15,7 +15,7 @@ export class QuizService {
   constructor(private http: Http, private httpClient: HttpClient) { }
 
   //set URL for api fetching without id 
-  private quizUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/quiz';
+  private quizUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/quiz';
 
   //get Quiz by passing URL + id through http
   public getQuizById(quizId: number): Observable<Quiz> {
