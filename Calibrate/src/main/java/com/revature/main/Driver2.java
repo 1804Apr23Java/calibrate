@@ -33,7 +33,7 @@ public class Driver2 {
 		libraryIds.add(61);
 		libraryIds.add(82);
 		
-		qs.generateQuiz("quiz66666", libraryIds, 10);
+		qs.generateQuizByHardest("quiz6diff776", libraryIds, 4);
 		aac.close();
 		
 	}
