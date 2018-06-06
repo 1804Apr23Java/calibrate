@@ -1,7 +1,6 @@
 package com.revature.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,7 +60,7 @@ public class BeanToJSONUtil {
 		
 		if (attempt == null)
 			return null;
-
+		
 		List<AnswerJSON> answers = answersToJSON(new ArrayList<Answer>(attempt.getAnswers()));
 		Set<Question> setQuestions = attempt.getQuiz().getQuestions();
 		List<QuestionJSON> listQuestions = questionsToJSON(new ArrayList<Question>(setQuestions));
