@@ -1,6 +1,6 @@
 package com.revature.main;
 
-import org.apache.commons.codec.digest.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class SpringDriver {
 
