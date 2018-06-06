@@ -13,7 +13,11 @@
 		base-package="com.revature"></context:component-scan>
 
 	<!-- enable MVC annotations -->
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.FormHttpMessageConverter"></bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<!-- set up the View Resolver -->
 	<bean name="viewResolver"
@@ -25,9 +29,6 @@
 			<value>.jsp</value> <!-- JSPs are one of MANY server-side templating tools -->
 		</property>
 	</bean>
-
-	<!-- enable static resource retrieval -->
-	<mvc:resources mapping="/**" location="/"></mvc:resources>
 
 	<!-- Resolves views selected for rendering by @Controllers to .html resources 
 		in the /WEB-INF/webcontent/views directory -->
