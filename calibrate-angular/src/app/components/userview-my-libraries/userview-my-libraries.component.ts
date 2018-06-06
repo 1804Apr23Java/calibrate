@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Library } from 'src/app/classes/library';
 
 @Component({
   selector: 'app-userview-my-libraries',
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class UserviewMyLibrariesComponent implements OnInit {
 
   constructor() { }
-
+  
   ngOnInit() {
+
   }
 
 }

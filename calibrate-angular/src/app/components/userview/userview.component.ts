@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../services/account.service';
+import { Account } from '../../classes/account';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-userview',
@@ -8,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 export class UserviewComponent implements OnInit {
   
 
-  constructor() { }
+  user: Account;
+  userstring: String;
+
+  constructor(private accountService: AccountService) { }
+
+  getAccountInformation(): void {
+    this.accountService.fetchAccount().subscribe(
+      (account: Account) => { this.user = account; this.userstring = JSON.stringify(this.user) }, error => console.log(`Error: ${error} `)
+    );
+  }
 
   ngOnInit() {
+    
+    this.getAccountInformation();
+
   }
 
 }

@@ -23,6 +23,8 @@ import { ReviewQuizzesComponent } from './components/review-quizzes/review-quizz
 import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 import { QuizSessionQuestionComponent } from './components/quiz-session-question/quiz-session-question.component';
 import { QuizSessionSidebarComponent } from './components/quiz-session-sidebar/quiz-session-sidebar.component';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { QuizSessionSidebarComponent } from './components/quiz-session-sidebar/q
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
