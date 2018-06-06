@@ -36,9 +36,9 @@ public class QuestionTest {
 
 	@Test
 	public void testAddQuestion() {
-		Account account = as.addAccount(new Account("user1", "pass1", "email1", false));
-		Library library = ls.addLibrary(new Library("library1", Status.PRIVATE, account));
-		Question question = qs.addQuestion(new Question("question1", 1, library));
+		Account account = as.addAccount(new Account("user4001", "pass4001", "email4001", false));
+		Library library = ls.addLibrary(new Library("library4001", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question4001", 1, library));
 		assertNotNull(question);
 	}
 
@@ -54,17 +54,17 @@ public class QuestionTest {
 
 	@Test
 	public void testGetRealQuestionsByLibrary() {
-		Account account = as.addAccount(new Account("user2", "pass2", "email2", false));
-		Library library = ls.addLibrary(new Library("library2", Status.PRIVATE, account));
-		qs.addQuestion(new Question("question3", 1, library));
+		Account account = as.addAccount(new Account("user4002", "pass4002", "email4002", false));
+		Library library = ls.addLibrary(new Library("library4002", Status.PRIVATE, account));
+		qs.addQuestion(new Question("question4002", 1, library));
 		List<Question> questions = qs.getQuestionsByLibrary(library.getId());
 		assertEquals(1, questions.size());
 	}
 
 	@Test
 	public void testGetFakeQuestionsByLibrary() {
-		Account account = as.addAccount(new Account("user3", "pass3", "email3", false));
-		Library library = ls.addLibrary(new Library("library3", Status.PRIVATE, account));
+		Account account = as.addAccount(new Account("user4003", "pass4003", "email4003", false));
+		Library library = ls.addLibrary(new Library("library4003", Status.PRIVATE, account));
 		List<Question> fakeQuestions = qs.getQuestionsByLibrary(library.getId());
 		assertEquals(0, fakeQuestions.size());
 	}

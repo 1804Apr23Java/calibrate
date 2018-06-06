@@ -28,10 +28,10 @@ public class AnswerRepository {
 		return answer;
 	}
 
-	public List<Answer> getAnswersByQuestion(Question question) {
+	public List<Answer> getAnswersByQuestion(int questionId) {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question", question))
+		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question.id", questionId))
 				.list();
 		if(answers == null)
 			return null;

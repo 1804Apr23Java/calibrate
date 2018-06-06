@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="com.revature.test.AccountTest" time="0.141" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="com.revature.test.AttemptTest" time="0.502" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
@@ -60,13 +60,7 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.revature.test.AccountTest" name="testGetFakeAccount" time="0.016"/>
-  <testcase classname="com.revature.test.AccountTest" name="testLoginWithWrongPassword" time="0.009"/>
-  <testcase classname="com.revature.test.AccountTest" name="testUpdateRealUsername" time="0.024"/>
-  <testcase classname="com.revature.test.AccountTest" name="testLoginWithFakeLogin" time="0.009"/>
-  <testcase classname="com.revature.test.AccountTest" name="testAddAccount" time="0.004"/>
-  <testcase classname="com.revature.test.AccountTest" name="testAddAccountWithDuplicateEmail" time="0.044"/>
-  <testcase classname="com.revature.test.AccountTest" name="testLoginWithRealLogin" time="0.018"/>
-  <testcase classname="com.revature.test.AccountTest" name="testGetRealAccount" time="0.012"/>
-  <testcase classname="com.revature.test.AccountTest" name="testUpdateFakeUsername" time="0.005"/>
+  <testcase classname="com.revature.test.AttemptTest" name="testGetFakeAttempt" time="0.348"/>
+  <testcase classname="com.revature.test.AttemptTest" name="testAddAttempt" time="0.113"/>
+  <testcase classname="com.revature.test.AttemptTest" name="testGetRealAttempt" time="0.041"/>
 </testsuite>

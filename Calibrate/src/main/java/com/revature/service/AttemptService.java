@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,9 @@ public class AttemptService {
 
 	public Attempt addAttempt(Attempt attempt) {
 		return attemptRepository.persistAttempt(attempt);
+	}
+	
+	public List<Attempt> getAttemptByAccount(int accountId) {
+		return attemptRepository.getAttemptByAccount(accountId);
 	}
 }

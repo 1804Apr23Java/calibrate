@@ -58,10 +58,10 @@ public class BeanToJSONUtil {
 	 * questions;
 	 */
 	public QuizJSON attemptToJSON(Attempt attempt) {
-		
+
 		if (attempt == null)
 			return null;
-		
+
 		List<AnswerJSON> answers = answersToJSON(new ArrayList<Answer>(attempt.getAnswers()));
 		List<QuestionJSON> questions = questionsToJSON(new ArrayList<Question>(attempt.getQuiz().getQuestions()));
 
@@ -75,10 +75,25 @@ public class BeanToJSONUtil {
 		return new QuizJSON(attempt.getQuiz().getId(), attempt.getQuiz().getName(), questions);
 	}
 
+
+	public List<QuizJSON> attemptsToJSON(List<Attempt> attempts) {
+		return attempts.stream().map(this::attemptToJSON).collect(Collectors.toList());
+	}
+
+	
+	public QuizJSON attemptToJSONNoQuestions(Attempt attempt) {
+		return new QuizJSON(attempt.getQuiz().getId(), attempt.getQuiz().getName(), null);
+	}
+	
+	public List<QuizJSON> attemptsToJSONNoQuestions(List<Attempt> attempts) {
+		return attempts.stream().map(this::attemptToJSONNoQuestions).collect(Collectors.toList());	
+	}
+	
+
 	public QuestionJSON questionToJSON(Question question) {
 		if (question == null)
 			return null;
-		List<AnswerJSON> answers = answersToJSON(answerRepository.getAnswersByQuestion(question));
+		List<AnswerJSON> answers = answersToJSON(answerRepository.getAnswersByQuestion(question.getId()));
 		return new QuestionJSON(question.getId(), question.getDifficulty(), question.getValue(),
 				question.getLibrary().getId(), answers);
 	}

@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -24,9 +26,17 @@ public class AttemptRepository {
 		return attempt;
 	}
 	
-	public Attempt persistAttempt(Attempt f) {
+	public Attempt persistAttempt(Attempt attempt) {
 		Session s = sessionFactory.getCurrentSession();
-		s.persist(f);
-		return f;
+		s.persist(attempt);
+		return attempt;
 	}
+	
+	public List<Attempt> getAttemptByAccount(int accountId) {
+		Session s = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Attempt> attempts = (List<Attempt>) s.createCriteria(Attempt.class).add(Restrictions.eq("account.id", accountId)).list();
+		return attempts;
+	}
+	
 }

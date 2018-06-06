@@ -27,15 +27,15 @@ public class AccountTest {
 
 	@Test
 	public void testAddAccount() {
-		Account account = as.addAccount(new Account("user1", "pass1", "email1", false));
+		Account account = as.addAccount(new Account("user1001", "pass1001", "email1001", false));
 		assertNotNull(account);
 	}
 
 	@Test
 	public void testAddAccountWithDuplicateEmail() {
-		as.addAccount(new Account("user2", "pass2", "dupEmail", false));
+		as.addAccount(new Account("user1002", "pass1002", "dupEmail", false));
 		thrown.expect(DataIntegrityViolationException.class);
-		as.addAccount(new Account("user3", "pass3", "dupEmail", false));
+		as.addAccount(new Account("user1003", "pass1003", "dupEmail", false));
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class AccountTest {
 
 	@Test
 	public void testGetRealAccount() {
-		Account account = as.addAccount(new Account("user4", "pass4", "email4", false));
+		Account account = as.addAccount(new Account("user1004", "pass1004", "email1004", false));
 		Account realAccount = as.getAccount(account.getId());
 		assertNotNull(realAccount);
 	}
@@ -58,7 +58,7 @@ public class AccountTest {
 
 	@Test
 	public void testUpdateRealUsername() {
-		Account account = as.addAccount(new Account("user5", "pass5", "email5", false));
+		Account account = as.addAccount(new Account("user1005", "pass1005", "email1005", false));
 		Account realAccount = as.updateUsername(account.getId(), "collinmeaney399@gmail.com");
 		assertNotNull(realAccount);
 	}
@@ -74,21 +74,21 @@ public class AccountTest {
 
 	@Test
 	public void testLoginWithRealLogin() {
-		as.addAccount(new Account("user6", "pass6", "email6", false));
-		Account loginAccount = as.login("email6", "pass6");
+		as.addAccount(new Account("user1006", "pass1006", "email1006", false));
+		Account loginAccount = as.login("email1006", "pass1006");
 		assertNotNull(loginAccount);
 	}
 
 	@Test
 	public void testLoginWithFakeLogin() {
-		Account fakeAccount = as.login("email7", "pass7");
+		Account fakeAccount = as.login("email1007", "pass1007");
 		assertNull(fakeAccount);
 	}
 
 	@Test
 	public void testLoginWithWrongPassword() {
-		as.addAccount(new Account("user8", "pass8", "email8", false));
-		Account fakeAccount = as.login("email8", "pass9");
+		as.addAccount(new Account("user1008", "pass1008", "email1008", false));
+		Account fakeAccount = as.login("email1008", "pass1009");
 		assertNull(fakeAccount);
 	}
 }

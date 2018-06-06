@@ -24,13 +24,13 @@ public class QuizTest {
 	
 	@Test
 	public void testPersistQuiz() {
-		Quiz quiz = qs.addQuiz(new Quiz("name1", new HashSet<Question>()));
+		Quiz quiz = qs.addQuiz(new Quiz("name5001", new HashSet<Question>()));
 		assertNotNull(quiz);
 	}
 	
 	@Test
 	public void testGetRealQuiz() {
-		Quiz quiz = qs.addQuiz(new Quiz("name2", new HashSet<Question>()));
+		Quiz quiz = qs.addQuiz(new Quiz("name5002", new HashSet<Question>()));
 		assertNotNull(quiz.getId());
 	}
 

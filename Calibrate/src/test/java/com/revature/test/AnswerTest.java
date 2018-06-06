@@ -40,18 +40,18 @@ public class AnswerTest {
 	
 	@Test
 	public void testAddAnswer() {
-		Account account = acs.addAccount(new Account("user1","pass1","email1", false));
-		Library library = ls.addLibrary(new Library("library1", Status.PRIVATE, account));
-		Question question = qs.addQuestion(new Question("question1", 1, library));
+		Account account = acs.addAccount(new Account("user2001","pass2001","email2001", false));
+		Library library = ls.addLibrary(new Library("library2001", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question2001", 1, library));
 		Answer answer = as.addAnswer(new Answer("answer1", true, question));
 		assertNotNull(answer);
 	}
 	
 	@Test
 	public void testGetRealAnswerById() {
-		Account account = acs.addAccount(new Account("user2","pass2","email2", false));
-		Library library = ls.addLibrary(new Library("library2", Status.PRIVATE, account));
-		Question question = qs.addQuestion(new Question("question2", 1, library));
+		Account account = acs.addAccount(new Account("user2002","pass2002","email2002", false));
+		Library library = ls.addLibrary(new Library("library2002", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question2002", 1, library));
 		Answer answer = as.addAnswer(new Answer("answer2", true, question));
 		Answer answerById = as.getAnswer(answer.getId());
 		assertNotNull(answerById);
@@ -65,10 +65,10 @@ public class AnswerTest {
 	@Test
 	public void testGetRealAnswersByQuestion() {
 
-		Account account = acs.addAccount(new Account("user3","pass3","email3", false));
-		Library library = ls.addLibrary(new Library("library3", Status.PRIVATE, account));
-		Question question = qs.addQuestion(new Question("question3", 1, library));
-		as.addAnswer(new Answer("answer3", true, question));
+		Account account = acs.addAccount(new Account("user2003","pass2003","email2003", false));
+		Library library = ls.addLibrary(new Library("library2003", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question2003", 1, library));
+		as.addAnswer(new Answer("answer2003", true, question));
 		List<Answer> answers = as.getAnswersByQuestion(question.getId());
 		assertNotNull(answers);
 		assertEquals(answers.size(), 1);

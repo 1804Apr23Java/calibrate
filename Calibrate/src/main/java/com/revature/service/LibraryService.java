@@ -14,9 +14,7 @@ public class LibraryService {
 
 	@Autowired
 	private LibraryRepository libraryRepository;
-	
-	@Autowired
-	private AccountService accountService;
+
 	
 	public Library addLibrary(Library library) {
 		return libraryRepository.persistLibrary(library);
@@ -31,7 +29,7 @@ public class LibraryService {
 	}
 	
 	public List<Library> getLibrariesByAccount(int accountId) {
-		return libraryRepository.getLibrariesByAccount(accountService.getAccount(accountId));
+		return libraryRepository.getLibrariesByAccount(accountId);
 	}
 	
 }

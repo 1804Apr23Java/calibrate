@@ -4,7 +4,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,16 +36,16 @@ public class AttemptTest {
 
 	@Test
 	public void testAddAttempt() {
-		Account account = acs.addAccount(new Account("user1", "pass1", "email1", false));
-		Quiz quiz = qs.addQuiz(new Quiz("quiz1", new HashSet<Question>()));
+		Account account = acs.addAccount(new Account("user3001", "pass3001", "email3001", false));
+		Quiz quiz = qs.addQuiz(new Quiz("quiz3001", new HashSet<Question>()));
 		Attempt attempt = as.addAttempt(new Attempt(account, quiz, new HashSet<Answer>()));
 		assertNotNull(attempt);
 	}
 
 	@Test
 	public void testGetRealAttempt() {
-		Account account = acs.addAccount(new Account("user2", "pass2", "email2", false));
-		Quiz quiz = qs.addQuiz(new Quiz("quiz2", new HashSet<Question>()));
+		Account account = acs.addAccount(new Account("user3002", "pass3002", "email3002", false));
+		Quiz quiz = qs.addQuiz(new Quiz("quiz3002", new HashSet<Question>()));
 		Attempt attempt = as.addAttempt(new Attempt(account, quiz, new HashSet<Answer>()));
 		Attempt attemptById = as.getAttempt(attempt.getId());
 		assertNotNull(attemptById);

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.beans.Account;
 import com.revature.beans.Library;
 import com.revature.beans.Status;
 
@@ -34,10 +33,10 @@ public class LibraryRepository {
 		return library;
 	}
 	
-	public List<Library> getLibrariesByAccount(Account account) {
+	public List<Library> getLibrariesByAccount(int accountId) {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<Library> libraries = (List<Library>) s.createCriteria(Library.class).add(Restrictions.eq("account", account)).list();
+		List<Library> libraries = (List<Library>) s.createCriteria(Library.class).add(Restrictions.eq("account.id", accountId)).list();
 		return libraries;
 	}
 

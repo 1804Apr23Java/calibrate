@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ public class AttemptController {
 
 	@Autowired
 	private AttemptService attemptService;
-	
+
 	@Autowired
 	private BeanToJSONUtil btju;
 
@@ -26,5 +28,11 @@ public class AttemptController {
 	public ResponseEntity<QuizJSON> getAttempt(@PathVariable int id) {
 		return new ResponseEntity<QuizJSON>(btju.attemptToJSON(attemptService.getAttempt(id)), HttpStatus.OK);
 	}
-	
+
+	@GetMapping("/byUser/{accountId}")
+	public ResponseEntity<List<QuizJSON>> getAttemptsById(@PathVariable int accountId) {
+		return new ResponseEntity<List<QuizJSON>>(
+				btju.attemptsToJSONNoQuestions(attemptService.getAttemptByAccount(accountId)), HttpStatus.OK);
+	}
+
 }
