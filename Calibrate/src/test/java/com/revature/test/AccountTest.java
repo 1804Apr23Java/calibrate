@@ -1,6 +1,5 @@
 package com.revature.test;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -30,12 +29,12 @@ public class AccountTest {
 		assertNotNull(persistedAccount);
 	}
 	
-	@Test
-	public void testAddAccountWithDuplicateEmail() {
-		Account account = new Account("ewrewj", "ewrwerwe", "sfe", false);
-		Account persistedAccount = as.addAccount(account);
-		assertNotNull(persistedAccount);
-	}
+//	@Test
+//	public void testAddAccountWithDuplicateEmail() {
+//		Account account = new Account("ewrewj", "ewrwerwe", "sfe", false);
+//		Account persistedAccount = as.addAccount(account);
+//		assertNotNull(persistedAccount);
+//	}
 	
 	@Test
 	public void testGetFakeAccount() {
@@ -64,12 +63,30 @@ public class AccountTest {
 		assertNotNull(realAccount);
 	}
 	
+//	@Test
+//	public void testUpdateRepeatedUsername() {
+//		Account account = new Account("12", "23", "testemail", false);
+//		Account account2 = new Account("13", "24", "testemail2", false);
+//		as.addAccount(account);
+//		as.addAccount(account2);
+//		assertNull(ar.updateUsername(account2.getId(), "testemail"));
+//	}
+	
 	@Test
-	public void testUpdateRepeatedUsername() {
-		Account account = new Account("12", "23", "testemail", false);
-		Account account2 = new Account("13", "24", "testemail2", false);
-		as.addAccount(account);
-		as.addAccount(account2);
-		assertNull(ar.updateUsername(account2.getId(), "testemail"));
+	public void testLoginWithRealLogin() {
+		Account realAccount = ar.login("", "");
+		assertNotNull(realAccount);
+	}
+	
+	@Test
+	public void testLoginWithFakeLogin() {
+		Account fakeAccount = ar.login("jrioejroijreioa", "eiojroiewjriowejroi");
+		assertNull(fakeAccount);
+	}
+	
+	@Test
+	public void testLoginWithWrongUsername() {
+		Account fakeAccount = ar.login("", "uehufihwfuh");
+		assertNull(fakeAccount);
 	}
 }

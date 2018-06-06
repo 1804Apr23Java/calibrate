@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Answer;
+import com.revature.beans.Attempt;
 import com.revature.beans.Question;
 
 @Repository
@@ -33,4 +34,9 @@ public class AnswerRepository {
 		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question", question)).list();
 		return answers;
 	}
-}
+	
+	public Answer persistAnswer(Answer f) {
+		Session s = sessionFactory.getCurrentSession();
+		s.persist(f);
+		return f;
+	}}
