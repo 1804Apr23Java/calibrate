@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Library;
+import com.revature.beans.Status;
 import com.revature.repository.LibraryRepository;
 
 @Service
@@ -24,9 +25,9 @@ public class LibraryService {
 	public Library getLibrary(int id) {
 		return libraryRepository.getLibrary(id);
 	}
-	
-	public List<Library> getPublicLibraries() {
-		return libraryRepository.getPublicLibraries();
+
+	public List<Library> getLibrariesByStatus(Status status) {
+		return libraryRepository.getLibrariesByStatus(status);
 	}
 	
 	public List<Library> getLibrariesByAccount(int accountId) {

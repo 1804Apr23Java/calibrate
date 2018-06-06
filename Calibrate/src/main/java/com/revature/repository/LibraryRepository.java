@@ -34,17 +34,17 @@ public class LibraryRepository {
 		return library;
 	}
 	
-	public List<Library> getPublicLibraries() {
-		Session s = sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<Library> libraries = (List<Library>) s.createCriteria(Library.class).add(Restrictions.eq("status", Status.PUBLIC)).list();
-		return libraries;
-	}
-	
 	public List<Library> getLibrariesByAccount(Account account) {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Library> libraries = (List<Library>) s.createCriteria(Library.class).add(Restrictions.eq("account", account)).list();
+		return libraries;
+	}
+
+	public List<Library> getLibrariesByStatus(Status status) {
+		Session s = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Library> libraries = (List<Library>) s.createCriteria(Library.class).add(Restrictions.eq("status", status)).list();
 		return libraries;
 	}
 }

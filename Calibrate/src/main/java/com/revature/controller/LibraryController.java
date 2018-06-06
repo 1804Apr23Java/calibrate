@@ -40,7 +40,12 @@ public class LibraryController {
 	
 	@GetMapping("/public")
 	public ResponseEntity<List<LibraryJSON>> getPublicLibraries() {
-		return new ResponseEntity <List<LibraryJSON>>(btju.librariesToJSON(libraryService.getPublicLibraries()), HttpStatus.OK);
+		return new ResponseEntity <List<LibraryJSON>>(btju.librariesToJSON(libraryService.getLibrariesByStatus(Status.PUBLIC)), HttpStatus.OK);
+	}
+
+	@GetMapping("/pending")
+	public ResponseEntity<List<LibraryJSON>> getPendingLibraries() {
+		return new ResponseEntity <List<LibraryJSON>>(btju.librariesToJSON(libraryService.getLibrariesByStatus(Status.PENDING)), HttpStatus.OK);
 	}
 	
 	@GetMapping("/byUser/{accountId}")
