@@ -20,16 +20,16 @@ export class SidebarLibraryItemsComponent implements OnInit {
 
 
 
-  getLibraries(): void {
-    this.libraries = this.libraryService.getLibraries();
-  }
+  // getLibraries(): void {
+  //   this.libraries = this.libraryService.getLibraries();
+  // }
 
   constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {
 
     //Call some service to get real data
-    this.getLibraries();
+    // this.getLibraries();
   }
 
 }

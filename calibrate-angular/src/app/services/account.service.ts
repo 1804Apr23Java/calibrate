@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../classes/account';
-import { ACCOUNT } from '../mock-account';
 
 import { Http, Response } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,29 +11,17 @@ import { map } from 'rxjs/operators';
 })
 export class AccountService {
 
-
-    //inject Http object
+    //inject Http objects
     constructor(private http: Http, private httpClient: HttpClient) { }
 
-    private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/account/82';
+    //set URL for api fetching without id 
+    private accountUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/account';
   
-    public fetchAccountById(accountId: number): Observable<Account> {
-      return this.http.get(this.accountUrl).pipe(map((response: Response) => {
+    //get account by passing URL + id through http
+    public getAccountById(accountId: number): Observable<Account> {
+      return this.http.get(`${this.accountUrl}/${accountId}`).pipe(map((response: Response) => {
         return <Account>response.json();
       }));
     }
-  
-    //get account for real from our backend using HttpClient; newer vesion of module
-    public fetchAccount(): Observable<Account> {
-      return this.http.get(this.accountUrl).pipe(map((response: Response) => {
-        return <Account>response.json();
-      }));
-    }
-
-  getAccount(): Account { 
-    
-    //http request plz
-    return ACCOUNT;
-  }
 
 }

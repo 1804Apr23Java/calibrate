@@ -1,24 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Library } from '../classes/library';
-import { Observable, of } from 'rxjs';
-// import { HttpClient } from '@angular/common/http';
+
+import { Http, Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibraryService {
 
-  // libraryApiUrl: String = "http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/library/";
+  //inject Http objects
+  constructor(private http: Http, private httpClient: HttpClient) { }
 
-  constructor() { }
+  //set URL for api fetching without id 
+  private libraryUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateNgTest/library';
 
-  // getAllLibrariesByUserId(userId: Number): Observable<Library[]> {
-  //   return this.http.get<Library[]>(this.libraryApiUrl + String(userId));
+  //get Library by passing URL + id through http
+  public getLibraryById(libraryId: number): Observable<Library> {
+    return this.http.get(`${this.libraryUrl}/${libraryId}`).pipe(map((response: Response) => {
+      return <Library>response.json();
+    }));
+  }
 
-  // }
-
-  // getLibraryById(): Library {
-
-  // }
+  // CHANGE this once Team Spring implements the api link
+  // urlblargh:8080/library/pending or whatever
+  public getLibraryByStatus(libraryStatus: number): Observable<Library> {
+    return this.http.get(`${this.libraryUrl}/${libraryStatus}`).pipe(map((response: Response) => {
+      return <Library>response.json();
+    }));
+  }
 
 }

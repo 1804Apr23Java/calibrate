@@ -10,21 +10,21 @@ import { Observable } from 'rxjs';
 })
 export class UserviewComponent implements OnInit {
   
-
+  accountId: number;
   user: Account;
   userstring: String;
 
   constructor(private accountService: AccountService) { }
 
-  getAccountInformation(): void {
-    this.accountService.fetchAccount().subscribe(
+  getAccountById(accountId: number): void {
+    this.accountService.getAccountById(accountId).subscribe(
       (account: Account) => { this.user = account; this.userstring = JSON.stringify(this.user) }, error => console.log(`Error: ${error} `)
     );
   }
 
   ngOnInit() {
     
-    this.getAccountInformation();
+    this.getAccountById(81);
 
   }
 
