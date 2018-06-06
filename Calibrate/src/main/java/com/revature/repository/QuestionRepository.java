@@ -40,4 +40,11 @@ public class QuestionRepository {
 		return questions;
 	}
 	
+	public List<Question> getQuestionsByLibraries(List<Integer> libraryIds) {
+		Session s = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Question> questions = s.createCriteria(Question.class).add(Restrictions.in("library.id", libraryIds)).list();
+		return questions;
+	}
+	
 }

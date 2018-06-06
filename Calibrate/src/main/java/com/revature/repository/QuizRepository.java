@@ -24,4 +24,10 @@ public class QuizRepository {
 		return quiz;
 	}
 	
+	public Quiz persistQuiz(Quiz quiz) {
+		Session s = sessionFactory.getCurrentSession();
+		s.persist(quiz);
+		return quiz;
+	}
+	
 }

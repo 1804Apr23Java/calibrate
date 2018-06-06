@@ -2,7 +2,6 @@ package com.revature.util;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,18 +61,16 @@ public class BeanToJSONUtil {
 			return null;
 		
 		List<AnswerJSON> answers = answersToJSON(new ArrayList<Answer>(attempt.getAnswers()));
-		Set<Question> setQuestions = attempt.getQuiz().getQuestions();
-		List<QuestionJSON> listQuestions = questionsToJSON(new ArrayList<Question>(setQuestions));
+		List<QuestionJSON> questions = questionsToJSON(new ArrayList<Question>(attempt.getQuiz().getQuestions()));
 
-		for (QuestionJSON question : listQuestions) {
+		for (QuestionJSON question : questions) {
 			for (AnswerJSON answer : question.getAnswers()) {
 				if (answers.contains(answer)) {
 					answer.setIsSelected(true);
 				}
 			}
 		}
-		
-		return new QuizJSON(attempt.getQuiz().getId(), attempt.getQuiz().getName(), listQuestions);
+		return new QuizJSON(attempt.getQuiz().getId(), attempt.getQuiz().getName(), questions);
 	}
 
 	public QuestionJSON questionToJSON(Question question) {
@@ -103,8 +100,7 @@ public class BeanToJSONUtil {
 	public QuizJSON quizToJSON(Quiz quiz) {
 		if (quiz == null)
 			return null;
-		List<Question> questions = new ArrayList<Question>();
-		questions.addAll(quiz.getQuestions());
+		List<Question> questions = new ArrayList<Question>(quiz.getQuestions());
 		return new QuizJSON(quiz.getId(), quiz.getName(), questionsToJSON(questions));
 	}
 
