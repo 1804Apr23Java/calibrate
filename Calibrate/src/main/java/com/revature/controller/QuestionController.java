@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Account;
+import com.revature.beans.Library;
 import com.revature.beans.Question;
+import com.revature.beans.Status;
+import com.revature.json.LibraryJSON;
 import com.revature.json.QuestionJSON;
+import com.revature.service.LibraryService;
 import com.revature.service.QuestionService;
 import com.revature.util.BeanToJSONUtil;
 
@@ -25,6 +30,9 @@ public class QuestionController {
 	private QuestionService questionService;
 
 	@Autowired
+	private LibraryService libraryService;
+	
+	@Autowired
 	private BeanToJSONUtil btju;
 	
 	@GetMapping("/{id}")
@@ -36,6 +44,21 @@ public class QuestionController {
 	public ResponseEntity<List<Question>> getQuestionsByLibrary(@PathVariable int libraryId) {
 		return new ResponseEntity<List<Question>>(questionService.getQuestionByLibrary(libraryId), HttpStatus.OK);
 	}
+	
+	//partially done; repository and service are done
+//	@GetMapping("/questionId/{questionId}/LibraryId/{libraryId}")
+//	public ResponseEntity<QuestionJSON> addQuestion(@PathVariable int questionId, @PathVariable int libraryId) {
+//		Library library = libraryService.getLibrary(libraryId);
+//		if(library == null){
+//			return null;
+//		}
+//		Question question = new Question()
+//		if(account == null) {
+//			return null;
+//		}
+//		Library library = new Library(libraryName, Status.PRIVATE, account);
+//		return new ResponseEntity <LibraryJSON>(btju.libraryToJSON(libraryService.addLibrary(library)), HttpStatus.OK);
+//	}
 	
 	
 }
