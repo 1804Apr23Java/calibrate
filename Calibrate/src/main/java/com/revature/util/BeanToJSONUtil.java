@@ -1,7 +1,9 @@
 package com.revature.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.revature.beans.Account;
 import com.revature.beans.Answer;
+import com.revature.beans.Attempt;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.beans.Quiz;
@@ -48,6 +51,30 @@ public class BeanToJSONUtil {
 
 	public List<AccountJSON> accountsToJSON(List<Account> accounts) {
 		return accounts.stream().map(this::accountToJSON).collect(Collectors.toList());
+	}
+
+	/*
+	 * private int quizId; private String name; private List<QuestionJSON>
+	 * questions;
+	 */
+	public QuizJSON attemptToJSON(Attempt attempt) {
+		
+		if (attempt == null)
+			return null;
+
+		List<AnswerJSON> answers = answersToJSON(new ArrayList<Answer>(attempt.getAnswers()));
+		Set<Question> setQuestions = attempt.getQuiz().getQuestions();
+		List<QuestionJSON> listQuestions = questionsToJSON(new ArrayList<Question>(setQuestions));
+
+		for (QuestionJSON question : listQuestions) {
+			for (AnswerJSON answer : question.getAnswers()) {
+				if (answers.contains(answer)) {
+					answer.setIsSelected(true);
+				}
+			}
+		}
+		
+		return new QuizJSON(attempt.getQuiz().getId(), attempt.getQuiz().getName(), listQuestions);
 	}
 
 	public QuestionJSON questionToJSON(Question question) {

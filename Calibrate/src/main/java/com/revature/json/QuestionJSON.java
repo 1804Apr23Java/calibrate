@@ -62,5 +62,10 @@ public class QuestionJSON {
 	public void setAnswers(List<AnswerJSON> answers) {
 		this.answers = answers;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "QuestionJSON [questionId=" + questionId + ", difficulty=" + difficulty + ", value=" + value
+				+ ", libraryId=" + libraryId + ", answers=" + answers + "]";
+	}
 }

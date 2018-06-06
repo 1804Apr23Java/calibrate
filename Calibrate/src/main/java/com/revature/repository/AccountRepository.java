@@ -39,11 +39,10 @@ public class AccountRepository {
 	public Account login(String email, String password) {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("email", email)).uniqueResult();
-		if (account.getPassword().equals(password)) {
-			return account;
-		}
-		else
+		if (account == null || !account.getPassword().equals(password)) {
 			return null;
+		}
+		return account;
 	}
 
 }

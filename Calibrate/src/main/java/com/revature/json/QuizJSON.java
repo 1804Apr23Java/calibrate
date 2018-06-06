@@ -42,5 +42,12 @@ public class QuizJSON {
 	public void setQuestions(List<QuestionJSON> questions) {
 		this.questions = questions;
 	}
+
+	@Override
+	public String toString() {
+		return "QuizJSON [quizId=" + quizId + ", name=" + name + ", questions=" + questions + "]";
+	}
+
+	
 	
 }

@@ -65,4 +65,12 @@ public class LibraryJSON {
 		this.questions = questions;
 	}
 
+	@Override
+	public String toString() {
+		return "LibraryJSON [libraryId=" + libraryId + ", name=" + name + ", status=" + status + ", accountId="
+				+ accountId + ", questions=" + questions + "]";
+	}
+	
+	
+
 }

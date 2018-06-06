@@ -60,5 +60,12 @@ public class AccountJSON {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	@Override
+	public String toString() {
+		return "AccountJSON [accountId=" + accountId + ", email=" + email + ", isAdmin=" + isAdmin + ", password="
+				+ password + ", username=" + username + "]";
+	}
+	
 	
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.beans.Attempt;
+import com.revature.json.QuizJSON;
 import com.revature.service.AttemptService;
 import com.revature.util.BeanToJSONUtil;
 
@@ -23,8 +23,8 @@ public class AttemptController {
 	private BeanToJSONUtil btju;
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Attempt> getAttempt(@PathVariable int id) {
-		return new ResponseEntity<Attempt>(attemptService.getAttempt(id), HttpStatus.OK);
+	public ResponseEntity<QuizJSON> getAttempt(@PathVariable int id) {
+		return new ResponseEntity<QuizJSON>(btju.attemptToJSON(attemptService.getAttempt(id)), HttpStatus.OK);
 	}
 	
 }

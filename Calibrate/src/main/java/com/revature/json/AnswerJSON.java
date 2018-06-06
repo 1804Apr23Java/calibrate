@@ -60,6 +60,35 @@ public class AnswerJSON {
 	public void setIsSelected(boolean isSelected) {
 		this.isSelected = isSelected;
 	}
+
+	@Override
+	public String toString() {
+		return "AnswerJSON [answerId=" + answerId + ", isCorrect=" + isCorrect + ", value=" + value + ", questionId="
+				+ questionId + ", isSelected=" + isSelected + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + answerId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AnswerJSON other = (AnswerJSON) obj;
+		if (answerId != other.answerId)
+			return false;
+		return true;
+	}
+
 	
 	
 }
