@@ -1,5 +1,6 @@
 package com.revature.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -16,69 +17,66 @@ import com.revature.beans.Answer;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.beans.Status;
-import com.revature.repository.AccountRepository;
-import com.revature.repository.AnswerRepository;
-import com.revature.repository.LibraryRepository;
-import com.revature.repository.QuestionRepository;
+import com.revature.service.AccountService;
+import com.revature.service.AnswerService;
+import com.revature.service.LibraryService;
+import com.revature.service.QuestionService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:beans.xml" })
 public class AnswerTest {
 
 	@Autowired
-	AnswerRepository ar;
+	private AnswerService as;
 	
 	@Autowired
-	AccountRepository acr;
+	private AccountService acs;
 	
 	@Autowired
-	LibraryRepository lr;
+	private LibraryService ls;
 	
 	@Autowired
-	QuestionRepository qr;
+	private QuestionService qs;
 	
 	@Test
 	public void testAddAnswer() {
-		Account account = new Account("name","name","name", false);
-		acr.persistAccount(account);
-		Library library = new Library("name", Status.PRIVATE, account);
-		lr.persistLibrary(library);
-		Question question = new Question("name", 1, library);
-		qr.persistQuestion(question);
-		Answer answer = new Answer("name", true, question);
-		Answer realAnswer = ar.persistAnswer(answer);
-		assertNotNull(realAnswer);
+		Account account = acs.addAccount(new Account("user1","pass1","email1", false));
+		Library library = ls.addLibrary(new Library("library1", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question1", 1, library));
+		Answer answer = as.addAnswer(new Answer("answer1", true, question));
+		assertNotNull(answer);
 	}
 	
 	@Test
 	public void testGetRealAnswerById() {
-		Account account = new Account("name2","name2","name2", false);
-		acr.persistAccount(account);
-		Library library = new Library("name2", Status.PRIVATE, account);
-		lr.persistLibrary(library);
-		Question question = new Question("name2", 1, library);
-		qr.persistQuestion(question);
-		Answer answer = new Answer("name2", true, question);
-		Answer realAnswer1 = ar.persistAnswer(answer);
-		Answer realAnswer = ar.getAnswer(realAnswer1.getId());
-		assertNotNull(realAnswer);
+		Account account = acs.addAccount(new Account("user2","pass2","email2", false));
+		Library library = ls.addLibrary(new Library("library2", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question2", 1, library));
+		Answer answer = as.addAnswer(new Answer("answer2", true, question));
+		Answer answerById = as.getAnswer(answer.getId());
+		assertNotNull(answerById);
 	}
 	
 	@Test
 	public void testGetFakeAnswerById() {
-		Answer fakeAnswer = ar.getAnswer(3);
-		assertNull(fakeAnswer);
+		assertNull(as.getAnswer(-1));
 	}
 	
 	@Test
 	public void testGetRealAnswersByQuestion() {
-		List<Answer> realAnswer = ar.getAnswersByQuestion(qr.getQuestion(1));
-		assertNotNull(realAnswer);
+
+		Account account = acs.addAccount(new Account("user3","pass3","email3", false));
+		Library library = ls.addLibrary(new Library("library3", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question3", 1, library));
+		as.addAnswer(new Answer("answer3", true, question));
+		List<Answer> answers = as.getAnswersByQuestion(question.getId());
+		assertNotNull(answers);
+		assertEquals(answers.size(), 1);
 	}
 	
 	@Test
 	public void testGetFakeAnswersByQuestion() {
-		List<Answer> fakeAnswer = ar.getAnswersByQuestion(qr.getQuestion(8));
+		List<Answer> fakeAnswer = as.getAnswersByQuestion(-1);
 		assertNull(fakeAnswer);
 	}
 }

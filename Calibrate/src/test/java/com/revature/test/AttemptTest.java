@@ -17,10 +17,9 @@ import com.revature.beans.Answer;
 import com.revature.beans.Attempt;
 import com.revature.beans.Question;
 import com.revature.beans.Quiz;
-import com.revature.repository.AccountRepository;
-import com.revature.repository.AttemptRepository;
-import com.revature.repository.QuizRepository;
+import com.revature.service.AccountService;
 import com.revature.service.AttemptService;
+import com.revature.service.QuizService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:beans.xml" })
@@ -28,38 +27,33 @@ import com.revature.service.AttemptService;
 public class AttemptTest {
 
 	@Autowired
-	AttemptRepository ar;
+	private AttemptService as;
 
 	@Autowired
-	AttemptService as;
+	private AccountService acs;
 
 	@Autowired
-	private AccountRepository acr;
-
-	@Autowired
-	private QuizRepository qr;
+	private QuizService qs;
 
 	@Test
 	public void testAddAttempt() {
-		Account account = new Account("name23", "name23", "name49", false);
-		acr.persistAccount(account);
-		Quiz quiz = new Quiz("name99", new HashSet<Question>());
-		qr.persistQuiz(quiz);
-		Set<Answer> answers = new HashSet<Answer>();
-		Attempt attempt = new Attempt(account, quiz, answers);
-		Attempt realAttempt = ar.persistAttempt(attempt);
-		assertNotNull(realAttempt);
+		Account account = acs.addAccount(new Account("user1", "pass1", "email1", false));
+		Quiz quiz = qs.addQuiz(new Quiz("quiz1", new HashSet<Question>()));
+		Attempt attempt = as.addAttempt(new Attempt(account, quiz, new HashSet<Answer>()));
+		assertNotNull(attempt);
 	}
 
 	@Test
 	public void testGetRealAttempt() {
-		Attempt realAttempt = ar.getAttempt(1);
-		assertNotNull(realAttempt);
+		Account account = acs.addAccount(new Account("user2", "pass2", "email2", false));
+		Quiz quiz = qs.addQuiz(new Quiz("quiz2", new HashSet<Question>()));
+		Attempt attempt = as.addAttempt(new Attempt(account, quiz, new HashSet<Answer>()));
+		Attempt attemptById = as.getAttempt(attempt.getId());
+		assertNotNull(attemptById);
 	}
 
 	@Test
 	public void testGetFakeAttempt() {
-		Attempt fakeAttempt = ar.getAttempt(99);
-		assertNull(fakeAttempt);
+		assertNull(as.getAttempt(-1));
 	}
 }

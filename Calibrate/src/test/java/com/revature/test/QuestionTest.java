@@ -1,5 +1,6 @@
 package com.revature.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -15,9 +16,9 @@ import com.revature.beans.Account;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.beans.Status;
-import com.revature.repository.AccountRepository;
-import com.revature.repository.LibraryRepository;
-import com.revature.repository.QuestionRepository;
+import com.revature.service.AccountService;
+import com.revature.service.LibraryService;
+import com.revature.service.QuestionService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:beans.xml" })
@@ -25,60 +26,46 @@ import com.revature.repository.QuestionRepository;
 public class QuestionTest {
 
 	@Autowired
-	QuestionRepository qr;
-	
+	QuestionService qs;
+
 	@Autowired
-	AccountRepository ar;
-	
+	AccountService as;
+
 	@Autowired
-	LibraryRepository lr;
-	
+	LibraryService ls;
+
 	@Test
 	public void testAddQuestion() {
-		Account account = new Account("join", "join", "join", false);
-		ar.persistAccount(account);
-		Library library = new Library("join", Status.PRIVATE, account);
-		lr.persistLibrary(library);
-		Question question = new Question("join", 1, library);
-		Question realQuestion = qr.persistQuestion(question);
-		assertNotNull(realQuestion);
+		Account account = as.addAccount(new Account("user1", "pass1", "email1", false));
+		Library library = ls.addLibrary(new Library("library1", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question1", 1, library));
+		assertNotNull(question);
 	}
-	
+
 	@Test
 	public void testGetRealQuestion() {
-		Question realQuestion = qr.getQuestion(1);
-		assertNotNull(realQuestion);
+		assertNotNull(qs.getQuestion(1));
 	}
-	
+
 	@Test
 	public void testGetFakeQuestion() {
-		Question fakeQuestion = qr.getQuestion(99);
-		assertNull(fakeQuestion);
+		assertNull(qs.getQuestion(99));
 	}
-	
+
 	@Test
 	public void testGetRealQuestionsByLibrary() {
-		Account account = new Account("join99", "join99", "join99", false);
-		ar.persistAccount(account);
-		
-		Library library1 = new Library("join99", Status.PRIVATE, account);
-		lr.persistLibrary(library1);
-		
-		Question question = new Question("join99", 1, library1);
-		Question realQuestion1 = qr.persistQuestion(question);		
-		
-		Library library = lr.getLibrary(library1.getId());
-		List<Question> realQuestion = qr.getQuestionsByLibrary(library);
-		assertNotNull(realQuestion);
+		Account account = as.addAccount(new Account("user2", "pass2", "email2", false));
+		Library library = ls.addLibrary(new Library("library2", Status.PRIVATE, account));
+		qs.addQuestion(new Question("question3", 1, library));
+		List<Question> questions = qs.getQuestionsByLibrary(library.getId());
+		assertEquals(1, questions.size());
 	}
-	
+
 	@Test
 	public void testGetFakeQuestionsByLibrary() {
-		Account account = new Account("joiner", "joiner", "joiner", false);
-		ar.persistAccount(account);
-		Library library = new Library("joiner", Status.PRIVATE, account);
-		lr.persistLibrary(library);
-		List<Question> fakeQuestions = qr.getQuestionsByLibrary(library);
-		assertNull(fakeQuestions);
+		Account account = as.addAccount(new Account("user3", "pass3", "email3", false));
+		Library library = ls.addLibrary(new Library("library3", Status.PRIVATE, account));
+		List<Question> fakeQuestions = qs.getQuestionsByLibrary(library.getId());
+		assertEquals(0, fakeQuestions.size());
 	}
 }

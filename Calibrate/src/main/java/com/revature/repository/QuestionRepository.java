@@ -37,8 +37,6 @@ public class QuestionRepository {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Question> questions = (List<Question>)s.createCriteria(Question.class).add(Restrictions.eq("library", library)).list();
-		if(questions.isEmpty())
-			return null;
 		return questions;
 	}
 	

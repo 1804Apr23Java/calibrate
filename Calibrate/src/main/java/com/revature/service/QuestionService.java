@@ -25,7 +25,7 @@ public class QuestionService {
 		return questionRepository.getQuestion(id);
 	}
 	
-	public List<Question> getQuestionByLibrary(int libraryId) {
+	public List<Question> getQuestionsByLibrary(int libraryId) {
 		List<Question>questions = questionRepository.getQuestionsByLibrary(libraryService.getLibrary(libraryId));
 		return questions;
 	}

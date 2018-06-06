@@ -32,8 +32,8 @@ public class AccountRepository {
 
 	public Account updateUsername(int id, String username) {
 		Session s = sessionFactory.getCurrentSession();
-		Account account = this.getAccount(id);
-		if(account == null)
+		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
+		if (account == null)
 			return null;
 		account.setUsername(username);
 		s.persist(account);

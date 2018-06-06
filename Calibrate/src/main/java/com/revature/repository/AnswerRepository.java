@@ -33,14 +33,14 @@ public class AnswerRepository {
 		@SuppressWarnings("unchecked")
 		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question", question))
 				.list();
-		if(answers == null || answers.isEmpty())
+		if(answers == null)
 			return null;
 		return answers;
 	}
 
-	public Answer persistAnswer(Answer f) {
+	public Answer persistAnswer(Answer answer) {
 		Session s = sessionFactory.getCurrentSession();
-		s.persist(f);
-		return f;
+		s.persist(answer);
+		return answer;
 	}
 }

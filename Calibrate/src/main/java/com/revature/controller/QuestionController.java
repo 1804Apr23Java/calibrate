@@ -38,7 +38,7 @@ public class QuestionController {
 	
 	@GetMapping("/byLibrary/{libraryId}")
 	public ResponseEntity<List<Question>> getQuestionsByLibrary(@PathVariable int libraryId) {
-		return new ResponseEntity<List<Question>>(questionService.getQuestionByLibrary(libraryId), HttpStatus.OK);
+		return new ResponseEntity<List<Question>>(questionService.getQuestionsByLibrary(libraryId), HttpStatus.OK);
 	}
 	
 	//partially done; repository and service are done

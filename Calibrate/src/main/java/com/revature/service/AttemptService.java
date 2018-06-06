@@ -16,7 +16,7 @@ public class AttemptService {
 		return attemptRepository.getAttempt(id);
 	}
 
-	public void addAttempt(Attempt attempt) {
-		attemptRepository.persistAttempt(attempt);
+	public Attempt addAttempt(Attempt attempt) {
+		return attemptRepository.persistAttempt(attempt);
 	}
 }

@@ -28,5 +28,9 @@ public class AnswerService {
 			return null;
 		return answerRepository.getAnswersByQuestion(question);
 	}
+	
+	public Answer addAnswer(Answer answer) {
+		return answerRepository.persistAnswer(answer);
+	}
 
 }
