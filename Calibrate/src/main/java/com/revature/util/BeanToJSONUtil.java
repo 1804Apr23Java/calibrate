@@ -37,6 +37,8 @@ public class BeanToJSONUtil {
 	}
 
 	public List<AnswerJSON> answersToJSON(List<Answer> answers) {
+		if (answers == null)
+			return null;
 		return answers.stream().map(this::answerToJSON).collect(Collectors.toList());
 	}
 

@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,11 @@ public class AnswerController {
 	@GetMapping("/{id}")
 	public ResponseEntity<AnswerJSON> getAnswer(@PathVariable int id) {
 		return new ResponseEntity<AnswerJSON>(btju.answerToJSON(answerService.getAnswer(id)), HttpStatus.OK);
+	}
+	
+	@GetMapping("/question/{id}")
+	public ResponseEntity<List<AnswerJSON>> getAnswerByQuestion(@PathVariable int id){
+		return new ResponseEntity<List<AnswerJSON>>(btju.answersToJSON(answerService.getAnswersByQuestion(id)), HttpStatus.OK);
 	}
 	
 }

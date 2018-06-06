@@ -29,7 +29,7 @@ public class Answer {
 	private boolean isCorrect;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "QUESTION_ID", nullable = false, foreignKey=@ForeignKey(name = "FK_ANSWER_QUESTION"))
+	@JoinColumn(name = "QUESTION_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ANSWER_QUESTION"))
 	private Question question;
 
 	public Answer(int id, String value, boolean isCorrect, Question question) {
@@ -109,6 +109,5 @@ public class Answer {
 			return false;
 		return true;
 	}
-	
-	
+
 }

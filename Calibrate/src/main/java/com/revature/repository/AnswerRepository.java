@@ -18,10 +18,10 @@ import com.revature.beans.Question;
 @Transactional
 @EnableTransactionManagement
 public class AnswerRepository {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public Answer getAnswer(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Answer answer = (Answer) s.createCriteria(Answer.class).add(Restrictions.eq("id", id)).uniqueResult();
@@ -31,12 +31,16 @@ public class AnswerRepository {
 	public List<Answer> getAnswersByQuestion(Question question) {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question", question)).list();
+		List<Answer> answers = (List<Answer>) s.createCriteria(Answer.class).add(Restrictions.eq("question", question))
+				.list();
+		if(answers == null || answers.isEmpty())
+			return null;
 		return answers;
 	}
-	
+
 	public Answer persistAnswer(Answer f) {
 		Session s = sessionFactory.getCurrentSession();
 		s.persist(f);
 		return f;
-	}}
+	}
+}

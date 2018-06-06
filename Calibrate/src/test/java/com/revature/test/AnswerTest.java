@@ -1,6 +1,9 @@
 package com.revature.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,15 +39,46 @@ public class AnswerTest {
 	
 	@Test
 	public void testAddAnswer() {
-		Account account = new Account("","","", false);
+		Account account = new Account("name","name","name", false);
 		acr.persistAccount(account);
-		Library library = new Library("", Status.PRIVATE, account);
+		Library library = new Library("name", Status.PRIVATE, account);
 		lr.persistLibrary(library);
-		Question question = new Question("", 1, library);
+		Question question = new Question("name", 1, library);
 		qr.persistQuestion(question);
-		Answer answer = new Answer("", true, question);
+		Answer answer = new Answer("name", true, question);
 		Answer realAnswer = ar.persistAnswer(answer);
 		assertNotNull(realAnswer);
 	}
 	
+	@Test
+	public void testGetRealAnswerById() {
+		Account account = new Account("name2","name2","name2", false);
+		acr.persistAccount(account);
+		Library library = new Library("name2", Status.PRIVATE, account);
+		lr.persistLibrary(library);
+		Question question = new Question("name2", 1, library);
+		qr.persistQuestion(question);
+		Answer answer = new Answer("name2", true, question);
+		Answer realAnswer1 = ar.persistAnswer(answer);
+		Answer realAnswer = ar.getAnswer(realAnswer1.getId());
+		assertNotNull(realAnswer);
+	}
+	
+	@Test
+	public void testGetFakeAnswerById() {
+		Answer fakeAnswer = ar.getAnswer(3);
+		assertNull(fakeAnswer);
+	}
+	
+	@Test
+	public void testGetRealAnswersByQuestion() {
+		List<Answer> realAnswer = ar.getAnswersByQuestion(qr.getQuestion(1));
+		assertNotNull(realAnswer);
+	}
+	
+	@Test
+	public void testGetFakeAnswersByQuestion() {
+		List<Answer> fakeAnswer = ar.getAnswersByQuestion(qr.getQuestion(8));
+		assertNull(fakeAnswer);
+	}
 }
