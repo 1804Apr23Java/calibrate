@@ -14,7 +14,6 @@ import { UserviewComponent } from './components/userview/userview.component';
 import { NavbarLoggedComponent } from './components/navbar-logged/navbar-logged.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarQuizzesItemsComponent } from './components/sidebar-quizzes-items/sidebar-quizzes-items.component';
-import { DisplayLibComponent } from './components/display-lib/display-lib.component';
 import { LoginPortalComponent } from './components/login-portal/login-portal.component';
 import { UserviewMyLibrariesComponent } from './components/userview-my-libraries/userview-my-libraries.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +38,6 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarLoggedComponent,
     SidebarComponent,
     SidebarQuizzesItemsComponent,
-    DisplayLibComponent,
     LoginPortalComponent,
     UserviewMyLibrariesComponent,
     UserviewPublicLibrariesComponent,
