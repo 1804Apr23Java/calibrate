@@ -35,8 +35,9 @@ export class LibraryService {
   // CHANGE this once Team Spring implements the api link
   // urlblargh:8080/library/userid or whatever
   public getLibrariesByUserId(userId: number): Observable<Library[]> {
-    return this.http.get(`${this.libraryUrl}/${userId}`).pipe(map((response: Response) => {
+    return this.http.get(`${this.libraryUrl}/byAccount/${userId}`).pipe(map((response: Response) => {
       return <Library[]>response.json();
     }));
   }
+
 }

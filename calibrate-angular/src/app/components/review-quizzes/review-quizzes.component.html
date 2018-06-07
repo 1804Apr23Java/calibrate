@@ -10,45 +10,18 @@
 
 <!-- List of all Previous Quizzes -->
 <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center list-as-link">
+  <li *ngFor="let attempt of attemptList" class="list-group-item d-flex justify-content-between align-items-center list-as-link">
     <!-- *ngFor for each library found -->
     <span>
-      <span class="h3">Core Java, Angular 4</span>
+      <span class="h3">{{attempt.name}}</span>
       <br>
-      <small>Taken on June 3, 2018 - 12:02 pm</small>
+      <small>{{attempt.timestamp}}</small>
       <br>
-      <small>Size: 30 questions</small>
+      <small>Size: {{attempt.length}} questions</small>
     </span>
     <!-- Generate appropriate circle color with TypeScript -->
     <span class="fa fa-circle fa-4x previous-quiz-score-circle">
-      <span class="previous-quiz-score">70%</span>
-    </span>
-  </li>
-
-  <!-- Repeated elements for prototype's sake, just need to *ngFor in Angular -->
-  <!-- also shows off desired backgrounds -->
-  <li class="list-group-item d-flex justify-content-between align-items-center list-as-link">
-    <span>
-      <span class="h3">Spring Tools</span>
-      <br>
-      <small>Taken on June 2, 2018 - 11:44 pm</small>
-      <br>
-      <small>Size: 55 questions</small>
-    </span>
-    <span class="fa fa-circle fa-4x previous-quiz-score-circle" style="color:red">
-      <span class="previous-quiz-score">33%</span>
-    </span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center list-as-link">
-    <span>
-      <span class="h3">Hibernate, Spring Tools</span>
-      <br>
-      <small>Taken on June 1, 2018 - 9:11 am</small>
-      <br>
-      <small>Size: 41 questions</small>
-    </span>
-    <span class="fa fa-circle fa-4x previous-quiz-score-circle" style="color: green">
-      <span class="previous-quiz-score">91%</span>
+      <span class="previous-quiz-score">{{attempt.score}}</span>
     </span>
   </li>
 </ul>

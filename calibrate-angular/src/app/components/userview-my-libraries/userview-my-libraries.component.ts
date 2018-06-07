@@ -11,18 +11,25 @@ import { Observable } from 'rxjs';
 
 export class UserviewMyLibrariesComponent implements OnInit {
 
-  userLibraryList: Library[];
+  libraryList: Library[] = [];
+  libraryListString: String;
 
   constructor(private libraryService: LibraryService) { }
   
   getLibrariesByUserId(userId: number): void {
     this.libraryService.getLibrariesByUserId(userId).subscribe(
-      //userLibraryList => list from service
+      (list: any) => { 
+        this.libraryList = list; 
+        this.libraryListString = JSON.stringify(this.libraryList);
+       }
     );
   }
 
   ngOnInit() {
-    //call service to get libraries by localStorage - user - userId
+    //TEST for user stored in local storage, this will normally be set on login
+    localStorage.setItem("loggedInUser", "81");
+    //END TEST
+    this.getLibrariesByUserId(parseInt(localStorage.getItem("loggedInUser")));
   }
 
 }
