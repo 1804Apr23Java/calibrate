@@ -30,6 +30,7 @@ public class AccountRepository {
 		return account;
 	}
 
+	
 	public Account updateUsername(int id, String username) {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
@@ -39,6 +40,7 @@ public class AccountRepository {
 		s.persist(account);
 		return account;
 	}
+
 
 	public Account login(String email, String password) {
 		Session s = sessionFactory.getCurrentSession();

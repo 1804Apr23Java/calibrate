@@ -16,20 +16,12 @@ import javax.persistence.Table;
 @Table(name = "ANSWER")
 public class Answer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "answerSequence")
-	@SequenceGenerator(allocationSize = 1, name = "answerSequence", sequenceName = "SQ_ANSWER_PK")
-	@Column(name = "ANSWER_ID")
 	private int id;
 
-	@Column(name = "VALUE", nullable = false)
 	private String value;
 
-	@Column(name = "ISCORRECT", nullable = false)
 	private boolean isCorrect;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "QUESTION_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ANSWER_QUESTION"))
 	private Question question;
 
 	public Answer(int id, String value, boolean isCorrect, Question question) {
@@ -51,6 +43,10 @@ public class Answer {
 		super();
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "answerSequence")
+	@SequenceGenerator(allocationSize = 1, name = "answerSequence", sequenceName = "SQ_ANSWER_PK")
+	@Column(name = "ANSWER_ID")
 	public int getId() {
 		return id;
 	}
@@ -59,6 +55,7 @@ public class Answer {
 		this.id = id;
 	}
 
+	@Column(name = "VALUE", nullable = false)
 	public String getValue() {
 		return value;
 	}
@@ -67,14 +64,17 @@ public class Answer {
 		this.value = value;
 	}
 
-	public boolean isCorrect() {
+	@Column(name = "ISCORRECT", nullable = false)
+	public boolean getIsCorrect() {
 		return isCorrect;
 	}
 
-	public void setCorrect(boolean isCorrect) {
+	public void setIsCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "QUESTION_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ANSWER_QUESTION"))
 	public Question getQuestion() {
 		return question;
 	}
@@ -109,7 +109,5 @@ public class Answer {
 			return false;
 		return true;
 	}
-	
-	
 
 }

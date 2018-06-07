@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -43,7 +45,7 @@ public class LibraryRepository {
 		@SuppressWarnings("unchecked")
 		List<Library> libraries = (List<Library>) s.createCriteria(Library.class)
 				.add(Restrictions.eq("account.id", accountId)).list();
-		return libraries;
+		return new ArrayList<Library>(new HashSet<Library>(libraries));
 	}
 
 	public List<Library> getLibrariesByStatus(Status status) {
@@ -51,7 +53,7 @@ public class LibraryRepository {
 		@SuppressWarnings("unchecked")
 		List<Library> libraries = (List<Library>) s.createCriteria(Library.class).add(Restrictions.eq("status", status))
 				.list();
-		return libraries;
+		return new ArrayList<Library>(new HashSet<Library>(libraries));
 	}
 
 	public boolean deleteLibrary(int id) {

@@ -10,17 +10,17 @@ public class AttemptJSON {
 	private List<QuestionJSON> questions;
 	private Date createdDate;
 	private int numberOfQuestions;
-	private int score;
+	private int numCorrect;
 
 	public AttemptJSON(int quizId, String name, List<QuestionJSON> questions, Date createdDate, int numberOfQuestions,
-			int score) {
+			int numCorrect) {
 		super();
 		this.quizId = quizId;
 		this.name = name;
 		this.questions = questions;
 		this.createdDate = createdDate;
 		this.numberOfQuestions = numberOfQuestions;
-		this.score = score;
+		this.numCorrect = numCorrect;
 	}
 
 	public AttemptJSON() {
@@ -67,12 +67,12 @@ public class AttemptJSON {
 		this.numberOfQuestions = numberOfQuestions;
 	}
 
-	public int getScore() {
-		return score;
+	public int getNumCorrect() {
+		return numCorrect;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setNumCorrect(int score) {
+		this.numCorrect = score;
 	}
 
 }

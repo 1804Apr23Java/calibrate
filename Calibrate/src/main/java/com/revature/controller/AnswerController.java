@@ -31,7 +31,7 @@ public class AnswerController {
 		return new ResponseEntity<AnswerJSON>(btju.answerToJSON(answerService.getAnswer(id)), HttpStatus.OK);
 	}
 	
-	@GetMapping("/question/{id}")
+	@GetMapping("/byQuestion/{id}")
 	public ResponseEntity<List<AnswerJSON>> getAnswerByQuestion(@PathVariable int id){
 		return new ResponseEntity<List<AnswerJSON>>(btju.answersToJSON(answerService.getAnswersByQuestion(id)), HttpStatus.OK);
 	}

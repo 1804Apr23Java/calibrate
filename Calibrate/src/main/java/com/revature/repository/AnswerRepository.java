@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Answer;
-import com.revature.beans.Attempt;
-import com.revature.beans.Question;
 
 @Repository
 @Transactional

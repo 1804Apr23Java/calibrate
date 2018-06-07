@@ -38,8 +38,7 @@ public class AttemptRepository {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Attempt> attempts = (List<Attempt>) s.createCriteria(Attempt.class).add(Restrictions.eq("account.id", accountId)).list();
-		attempts = new ArrayList (new HashSet (attempts));
-		return attempts;
+		return new ArrayList<Attempt> (new HashSet<Attempt> (attempts));
 	}
 	
 }

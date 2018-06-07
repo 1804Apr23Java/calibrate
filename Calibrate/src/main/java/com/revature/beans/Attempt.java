@@ -26,27 +26,10 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "ATTEMPT")
 public class Attempt {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attemptSequence")
-	@SequenceGenerator(allocationSize = 1, name = "attemptSequence", sequenceName = "SQ_ATTEMPT_PK")
-	@Column(name = "ATTEMPT_ID")
 	private int id;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ACCOUNT_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_ACCOUNT"))
 	private Account account;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "QUIZ_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_QUIZ"))
 	private Quiz quiz;
-
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "ATTEMPT_ANSWER", joinColumns = @JoinColumn(name = "ATTEMPT_ID", referencedColumnName = "ATTEMPT_ID"), inverseJoinColumns = @JoinColumn(name = "ANSWER_ID", referencedColumnName = "ANSWER_ID"))
 	private Set<Answer> answers;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreationTimestamp
-	@Column(name = "CreatedDate", updatable = false)
 	private Date createdDate;
 
 	public Attempt(int id, Account account, Quiz quiz, Set<Answer> answers) {
@@ -68,6 +51,10 @@ public class Attempt {
 		super();
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attemptSequence")
+	@SequenceGenerator(allocationSize = 1, name = "attemptSequence", sequenceName = "SQ_ATTEMPT_PK")
+	@Column(name = "ATTEMPT_ID")
 	public int getId() {
 		return id;
 	}
@@ -76,6 +63,8 @@ public class Attempt {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ACCOUNT_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_ACCOUNT"))
 	public Account getAccount() {
 		return account;
 	}
@@ -84,6 +73,8 @@ public class Attempt {
 		this.account = account;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "QUIZ_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_QUIZ"))
 	public Quiz getQuiz() {
 		return quiz;
 	}
@@ -92,12 +83,25 @@ public class Attempt {
 		this.quiz = quiz;
 	}
 
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "ATTEMPT_ANSWER", joinColumns = @JoinColumn(name = "ATTEMPT_ID", referencedColumnName = "ATTEMPT_ID"), inverseJoinColumns = @JoinColumn(name = "ANSWER_ID", referencedColumnName = "ANSWER_ID"))
 	public Set<Answer> getAnswers() {
 		return answers;
 	}
 
 	public void setAnswers(Set<Answer> answers) {
 		this.answers = answers;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	@Column(name = "CreatedDate", updatable = false)
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	@Override
@@ -151,7 +155,5 @@ public class Attempt {
 			return false;
 		return true;
 	}
-	
-	
 
 }

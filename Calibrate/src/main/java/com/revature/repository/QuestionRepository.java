@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -37,14 +39,14 @@ public class QuestionRepository {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Question> questions = (List<Question>)s.createCriteria(Question.class).add(Restrictions.eq("library", library)).list();
-		return questions;
+		return new ArrayList<Question>(new HashSet<Question>(questions));
 	}
 	
 	public List<Question> getQuestionsByLibraries(List<Integer> libraryIds) {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Question> questions = s.createCriteria(Question.class).add(Restrictions.in("library.id", libraryIds)).list();
-		return questions;
+		return new ArrayList<Question>(new HashSet<Question>(questions));
 	}
 	
 }

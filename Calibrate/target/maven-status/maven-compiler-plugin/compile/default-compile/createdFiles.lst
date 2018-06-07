@@ -16,6 +16,7 @@ com/revature/json/AnswerJSON.class
 com/revature/main/SpringDriver.class
 com/revature/service/AnswerService.class
 com/revature/service/QuestionService.class
+com/revature/json/AttemptJSON.class
 com/revature/controller/QuizController.class
 com/revature/repository/QuestionRepository.class
 com/revature/json/QuizJSON.class

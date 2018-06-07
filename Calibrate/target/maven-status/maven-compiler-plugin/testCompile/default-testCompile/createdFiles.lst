@@ -1,5 +1,6 @@
 com/revature/test/AttemptTest.class
-com/revature/test/QuestionTest.class
 com/revature/test/AccountTest.class
-com/revature/test/QuizTest.class
+com/revature/test/LibraryTest.class
 com/revature/test/AnswerTest.class
+com/revature/test/QuestionTest.class
+com/revature/test/QuizTest.class

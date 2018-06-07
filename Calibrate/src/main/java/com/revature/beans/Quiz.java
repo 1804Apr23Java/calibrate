@@ -19,19 +19,8 @@ import javax.persistence.Table;
 @Table(name = "QUIZ")
 public class Quiz {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quizSequence")
-	@SequenceGenerator(allocationSize = 1, name = "quizSequence", sequenceName = "SQ_QUIZ_PK")
-	@Column(name = "QUIZ_ID")
 	private int id;
-
-	@Column(name = "NAME", nullable = false)
 	private String name;
-
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinTable(name = "QUIZ_QUESTION", 
-				joinColumns = @JoinColumn(name = "QUIZ_ID", referencedColumnName = "QUIZ_ID"),
-				inverseJoinColumns = @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID"))
 	private Set<Question> questions;
 	
 	public Quiz(int id, String name, Set<Question> questions) {
@@ -51,6 +40,10 @@ public class Quiz {
 		super();
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quizSequence")
+	@SequenceGenerator(allocationSize = 1, name = "quizSequence", sequenceName = "SQ_QUIZ_PK")
+	@Column(name = "QUIZ_ID")
 	public int getId() {
 		return id;
 	}
@@ -59,6 +52,7 @@ public class Quiz {
 		this.id = id;
 	}
 
+	@Column(name = "NAME", nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -67,6 +61,10 @@ public class Quiz {
 		this.name = name;
 	}
 
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "QUIZ_QUESTION", 
+				joinColumns = @JoinColumn(name = "QUIZ_ID", referencedColumnName = "QUIZ_ID"),
+				inverseJoinColumns = @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID"))
 	public Set<Question> getQuestions() {
 		return questions;
 	}
