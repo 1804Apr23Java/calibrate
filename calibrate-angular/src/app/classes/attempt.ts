@@ -1,6 +1,6 @@
 import { Question } from './question';
 
-export class Quiz {
+export class Attempt {
 
     quizId: number;
     name: string;
