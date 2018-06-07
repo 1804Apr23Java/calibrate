@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//import { ATTEMPT } from '../mock-quiz';
+import { ATTEMPT } from '../mock-quiz';
 import { Http, Response } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class AttemptService {
   list: number[] = [];
   private attemptUrl = 'http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/attempt/submit/byAccount/';
 
-  ///submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answerIds}
+  //submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answerIds}
 
 
   public submitAttempt(attempt: Quiz): Observable<Attempt> {

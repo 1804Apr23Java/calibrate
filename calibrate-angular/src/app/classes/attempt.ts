@@ -5,7 +5,7 @@ export class Attempt {
     quizId: number;
     name: string;
     questions: Question[];
-    createdData: number;
+    createdDate: number;
     numberOfQuestions: number;
     numCorrect: number;
 
