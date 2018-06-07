@@ -40,9 +40,17 @@ export class LibraryService {
     }));
   }
 
+
+  //   "/new/{libraryName}/accountId/{accountId}"
   // add new library from user input
   // need to send library name, question array and userId (for author)
-  public addLibraryFromUser(): void {
+  public addLibrary(libraryName: string){
+
+    console.log(`http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/library/new/${libraryName}/accountId/${localStorage.getItem('accountId')}`);
+
+    return this.http.get(`http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/library/new/${libraryName}/accountId/${localStorage.getItem('accountId')}`).pipe(map((response: Response) => {
+      return <Library>response.json();
+    }));
     
   }
 

@@ -30,6 +30,7 @@ export class UserviewComponent implements OnInit {
   librarystring: String;
   libraryList: any;
   libraryListString: String;
+  newLibrary: Library;
   attempt: Attempt;
   newQuiz: Quiz;
 
@@ -76,17 +77,32 @@ f        localStorage.setItem('accountUsername', this.returnedAccount.username);
 
   */
 
- generateQuiz(): void {
+  generateLibrary(): void {
 
-  //quiz: NewQuiz, libraryIds: number[], quizLength: number
+    //library: libraryName
 
-  this.quizService.getNewGeneratedQuiz(this.newQuizName, [81, 82], 12).subscribe(
-    (quiz: Quiz) => {
-      this.newQuiz = quiz;
-      console.log(JSON.stringify('Generated Quiz: ' + JSON.stringify(this.newQuiz)));
-    },
-    error => { console.log(`Error: ${error} `);});
-}
+    this.libraryService.addLibrary('New Library!!').subscribe(
+      (library: Library) => {
+        this.newLibrary = library;
+        console.log(JSON.stringify('Generated Library: ' + JSON.stringify(this.newLibrary)));
+      },
+      error => { console.log(`Error: ${error} `); });
+  }
+
+
+
+
+  generateQuiz(): void {
+
+    //quiz: NewQuiz, libraryIds: number[], quizLength: number
+
+    this.quizService.getNewGeneratedQuiz(this.newQuizName, [81, 82], 12).subscribe(
+      (quiz: Quiz) => {
+        this.newQuiz = quiz;
+        console.log(JSON.stringify('Generated Quiz: ' + JSON.stringify(this.newQuiz)));
+      },
+      error => { console.log(`Error: ${error} `); });
+  }
 
 
 
@@ -98,7 +114,7 @@ f        localStorage.setItem('accountUsername', this.returnedAccount.username);
         console.log(JSON.stringify(this.attempt));
         this.getScore();
       },
-      error => { console.log(`Error: ${error} `);});
+      error => { console.log(`Error: ${error} `); });
   }
 
   getScore(): number {
@@ -116,8 +132,9 @@ f        localStorage.setItem('accountUsername', this.returnedAccount.username);
 
     //this.readInAttempt();   <-- WORKS
     //this.generateQuiz();    <-- WORKS
+    this.generateLibrary();
 
-   
+
 
 
     // this.getAccountById(81);
