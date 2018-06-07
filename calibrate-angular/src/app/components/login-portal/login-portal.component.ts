@@ -44,9 +44,26 @@ export class LoginPortalComponent implements OnInit {
 
   }
 
+  addEnterEvents(){
+    document.getElementById("email").addEventListener("keyup", function(event){
+      event.preventDefault();
+      if(event.keyCode === 13){
+        document.getElementById("login-button").click();
+      }
+    });
+    document.getElementById("password").addEventListener("keyup", function(event){
+      event.preventDefault();
+      if(event.keyCode === 13){
+        document.getElementById("login-button").click();
+      }
+    });
+  }
+
   ngOnInit() {
 
-    localStorage.setItem('accountId', '');
+    //if localStorage.getItem is true, route to user, otherwise route to login
+
+    this.addEnterEvents();
    
   }
 
