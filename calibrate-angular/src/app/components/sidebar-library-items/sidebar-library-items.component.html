@@ -23,7 +23,7 @@
     <li routerLink="./publiclibraries" class="list-group-item d-flex justify-content-between align-items-center list-as-link">Public Libraries
         <span class="badge badge-light badge-pill">18</span>
     </li>
-    <li routerLink="./pendinglibraries" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center list-as-link">Pending Libraries
+    <li *ngIf="accountIsAdmin" routerLink="./pendinglibraries" class="list-group-item list-group-item-info d-flex justify-content-between align-items-center list-as-link">Pending Libraries
         <span class="badge badge-light badge-pill">6</span>
     </li>                    
 </ul>

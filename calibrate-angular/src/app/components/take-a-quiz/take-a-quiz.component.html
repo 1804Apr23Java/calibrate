@@ -16,17 +16,19 @@
       <span>Libraries to Generate Quiz</span>
     </div>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li *ngFor="let library of currentlySelectedLibraries" class="list-group-item d-flex justify-content-between align-items-center">
     <span>
-      <span class="h3">Core Java</span>
+      <span class="h3">{{library.name}}</span>
       <br>
-      <small>Author: Emily Higgins</small>
+      <small>Author: {{library.author}}</small>
       <br>
-      <small>Size: 83 questions</small>
+      <small>Size: {{library.questions.length}} questions</small>
     </span>
-    <span class="fa fa-times fa-2x red-x-icon"></span>
+    <span (click)="deleteLibraryFromList(library)"><span class="fa fa-times fa-2x red-x-icon"></span></span>
+    
   </li>
-  <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+  <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center add-library-list-item"
+    data-toggle="modal" data-target="#addLibraryModal">
     <strong>Add a Library</strong>
     <span class="fa fa-plus-square fa-2x add-library-plus-icon"></span>
   </li>
@@ -37,10 +39,10 @@
   <span>
     <span class="h4">Number of Questions</span>
     <br>
-    <small>Max questions: 83</small>
+    <small>Max questions: {{maxQuestions}}</small>
   </span>
   <span>
-    <input type="number" class="number-of-questions-input">
+    <input type="number" class="modal-form-input">
   </span>
 </li>
 
@@ -50,17 +52,82 @@
     <input type="checkbox" class="quiz-parameter-checkbox">
   </span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-center mt-3 additional-quiz-parameter">Use Most Missed Questions
+<!-- <li class="list-group-item d-flex justify-content-between align-items-center mt-3 additional-quiz-parameter">Use Most Missed Questions
   <span>
     <input type="checkbox" class="quiz-parameter-checkbox">
   </span>
-</li>
+</li> -->
 
 <!-- Start Quiz Button -->
 <div class="text-center">
-  <button id="start-quiz-button" class="btn center-block" type="button">
+  <button id="start-quiz-button" class="btn center-block" type="button" routerLink="/quiz-session">
     <strong>Start Quiz!</strong>
   </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addLibraryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a Library</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- LIST OF ALL USER LIBRARIES-->
+
+        <div class="h4 user-view-header">
+          <p>
+            <span class="fa fa-book quiz-header-icon"></span>
+            <span>My Libraries</span>
+          </p>
+        </div>
+        <ul class="list-group">
+          <!-- *ngFor for each library found -->
+          <li *ngFor="let library of libraryList" class="list-group-item d-flex justify-content-between align-items-center list-as-link" (click)="addLibraryToList(library)">
+            <span>
+              <span class="h3">{{library.name}}</span>
+              <br>
+              <small>Size: {{library.questions.length}} questions</small>
+            </span>
+          </li>
+        </ul>
+
+      <!-- END LIST OF ALL USER LIBRARIES -->
+
+      <!-- LIST OF ALL PUBLIC LIBRARIES -->
+
+      <div class="h4 user-view-header mt-3">
+        <p>
+          <span class="fa fa-book quiz-header-icon"></span>
+          <span>Public Libraries</span>
+        </p>
+      </div>
+      <ul class="list-group">
+        <!-- *ngFor for each library found -->
+        <li *ngFor="let publicLibrary of publicLibraryList" class="list-group-item d-flex justify-content-between align-items-center list-as-link" (click)="addLibraryToList(publicLibrary)">
+          <span>
+            <span class="h3">{{publicLibrary.name}}</span>
+            <br>
+            <small>Author: {{publicLibrary.author}}</small>
+            <br>
+            <small>Size: {{publicLibrary.questions.length}} questions</small>
+          </span>
+        </li>
+      </ul>
+
+      </div>
+
+      <!-- END LIST OF ALL PUBLIC LIBRARIES -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- END TAKE A QUIZ CONTENT-->

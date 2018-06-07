@@ -8,6 +8,7 @@ import { UserviewPublicLibrariesComponent } from './components/userview-public-l
 import { UserviewPendingLibrariesComponent } from './components/userview-pending-libraries/userview-pending-libraries.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
 import { ReviewQuizzesComponent } from './components/review-quizzes/review-quizzes.component';
+import { QuizSessionComponent } from './components/quiz-session/quiz-session.component';
 
 
 const appRoutes: Routes = [
@@ -23,7 +24,12 @@ const appRoutes: Routes = [
       { path: 'review-quizzes', component: ReviewQuizzesComponent }
     ] 
   },
+  { path: 'quiz-session',
+    component: QuizSessionComponent,
+    children:[
 
+    ]
+  },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'

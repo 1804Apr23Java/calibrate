@@ -9,27 +9,25 @@ import { LibraryService } from '../../services/library.service';
 })
 export class SidebarLibraryItemsComponent implements OnInit {
 
-  libraries: Library[];
-  //libs:Array<Library> = [];
-
+  libraries: Library[];  
   selectedLib: Library;
+  accountIsAdmin: boolean = false;
 
   onSelect(lib: Library): void {
     this.selectedLib = lib;
   }
 
-
-
-  getLibraries(): void {
-    this.libraries = this.libraryService.getLibraries();
+  checkIfAdmin(): void{
+    if(localStorage.getItem("accountIsAdmin") === "true"){
+      this.accountIsAdmin = true;
+    }
   }
+
 
   constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {
-
-    //Call some service to get real data
-    this.getLibraries();
+    this.checkIfAdmin();
   }
 
 }
