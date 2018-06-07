@@ -16,7 +16,9 @@
     </span>
     <span>
       <!-- <span class="fa fa-edit fa-2x yellow-edit-icon"></span> -->
-      <span class="fa fa-times fa-2x red-x-icon ml-3"></span>
+      <span data-toggle="modal" data-target="#deleteLibraryModal">
+        <span class="fa fa-times fa-2x red-x-icon ml-3"></span>
+      </span>
     </span>
   </li>
 </ul>
@@ -73,7 +75,7 @@
           </div>
 
           <!-- New Answer Input -->
-          <!-- default 4 answers, replace with *ngFor -->
+          <!-- default 4 answers, replace with *ngFor, find a better way than dummy array? -->
           <div class="form-group">
             <label for="question-value" class="col-form-label">Question Value</label>
             <textarea class="form-control" id="question-value"></textarea>
@@ -130,5 +132,29 @@
       </div>
     </div>
   </div>
+</div>
+<!-- END MODAL -->
 
-  <!-- END MODAL -->
+<!-- DELETE LIBRARY MODAL -->
+
+<div class="modal fade" id="deleteLibraryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Library</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        You are about to delete your library. This can not be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteLibraryFromList(library)" data-dismiss="modal">Delete library</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END DELETE LIBRARY MODAL -->

@@ -25,6 +25,10 @@ export class UserviewMyLibrariesComponent implements OnInit {
     );
   }
   
+  deleteLibraryFromList(redXSelectedLibrary: Library): void {
+    //delete Library from database
+    this.libraryList.splice(this.libraryList.indexOf(redXSelectedLibrary), 1);
+  }
 
   ngOnInit() {
     this.getLibrariesByUserId(parseInt(localStorage.getItem("accountId")));

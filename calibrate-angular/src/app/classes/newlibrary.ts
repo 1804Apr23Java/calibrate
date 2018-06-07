@@ -1,6 +1,6 @@
 import { Question } from './question';
 
-export class Library {
+export class NewLibrary {
     name: string;
     accountId: number;
     question: Question[];

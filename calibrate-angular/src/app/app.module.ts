@@ -17,7 +17,7 @@ import { SidebarQuizzesItemsComponent } from './components/sidebar-quizzes-items
 import { DisplayLibComponent } from './components/display-lib/display-lib.component';
 import { LoginPortalComponent } from './components/login-portal/login-portal.component';
 import { UserviewMyLibrariesComponent } from './components/userview-my-libraries/userview-my-libraries.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { UserviewPublicLibrariesComponent } from './components/userview-public-libraries/userview-public-libraries.component';
 import { UserviewPendingLibrariesComponent } from './components/userview-pending-libraries/userview-pending-libraries.component';
 import { TakeAQuizComponent } from './components/take-a-quiz/take-a-quiz.component';
