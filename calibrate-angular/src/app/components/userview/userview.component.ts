@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { AttemptService } from '../../services/attempt.service';
 import { ATTEMPT } from '../../mock-quiz';
 import { Attempt } from '../../classes/attempt';
+import { QuizService } from '../../services/quiz.service';
+import { NewQuiz } from '../../classes/newquiz';
+import { Quiz } from '../../classes/quiz';
 
 
 import { LibraryService } from '../../services/library.service';
@@ -28,8 +31,11 @@ export class UserviewComponent implements OnInit {
   libraryList: any;
   libraryListString: String;
   attempt: Attempt;
+  newQuiz: Quiz;
 
-  constructor(private accountService: AccountService, private libraryService: LibraryService, private router: Router, private attemptService: AttemptService) { }
+  newQuizName: string = 'Brand New Quiz!';
+
+  constructor(private accountService: AccountService, private libraryService: LibraryService, private router: Router, private attemptService: AttemptService, private quizService: QuizService) { }
 
   // getAccountById(accountId: number): void {
   //   this.accountService.getAccountById(accountId).subscribe(
@@ -59,7 +65,7 @@ export class UserviewComponent implements OnInit {
         localStorage.setItem('accountId', this.returnedAccount.accountId.toString());
         localStorage.setItem('accountEmail', this.returnedAccount.email);
         localStorage.setItem('accountIsAdmin', this.returnedAccount.isAdmin.toString());
-        localStorage.setItem('accountUsername', this.returnedAccount.username);
+f        localStorage.setItem('accountUsername', this.returnedAccount.username);
         //localStorage.setItem('accountObject', JSON.stringify(this.returnedAccount));
         this.router.navigate(['user']);
       }, 
@@ -70,8 +76,21 @@ export class UserviewComponent implements OnInit {
 
   */
 
-  readInAttempt(): void {
+ generateQuiz(): void {
 
+  //quiz: NewQuiz, libraryIds: number[], quizLength: number
+
+  this.quizService.getNewGeneratedQuiz(this.newQuizName, [81, 82], 12).subscribe(
+    (quiz: Quiz) => {
+      this.newQuiz = quiz;
+      console.log(JSON.stringify('Generated Quiz: ' + JSON.stringify(this.newQuiz)));
+    },
+    error => { console.log(`Error: ${error} `);});
+}
+
+
+
+  readInAttempt(): void {
 
     this.attemptService.submitAttempt(this.mockQuiz).subscribe(
       (attempt: Attempt) => {
@@ -95,7 +114,9 @@ export class UserviewComponent implements OnInit {
       this.router.navigate(['login']);
     }
 
-    this.readInAttempt();
+    //this.readInAttempt();   <-- WORKS
+    //this.generateQuiz();    <-- WORKS
+
    
 
 

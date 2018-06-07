@@ -5,5 +5,5 @@ export class Quiz {
     quizId: number;
     name: string;
     questions: Question[];
-    
+
 }

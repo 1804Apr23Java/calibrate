@@ -29,7 +29,7 @@ export class AttemptService {
 
     //submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answ
 
-    console.log('sending to: ' + `${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1, -1)}`);
+    //console.log('sending to: ' + `${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1, -1)}`);
 
     return this.http.get(`${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1,-1)}`)
       .pipe(map((response: Response) => { return <Attempt>response.json();
@@ -38,7 +38,7 @@ export class AttemptService {
 
   getSelectedArray(completedQuiz): number[] {
 
-    console.log("getSelectedArray: " + JSON.stringify(completedQuiz.questions));
+    //console.log("getSelectedArray: " + JSON.stringify(completedQuiz.questions));
 
     let list: number[] = [];
 
