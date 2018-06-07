@@ -48,7 +48,12 @@ export class TakeAQuizComponent implements OnInit {
   
   getMaxQuestions(): void{
     this.maxQuestions = 0;
-      //sum lengths of question property, like {{library.questions.length}}
+    let library: any;
+    for(let l of this.currentlySelectedLibraries){
+      library = l;
+      this.maxQuestions = this.maxQuestions + library.questions.length;
+      console.log(this.maxQuestions);
+    }
   }
 
   deleteLibraryFromList(redXSelectedLibrary: Library): void {

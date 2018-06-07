@@ -15,14 +15,14 @@ export class UserviewPendingLibrariesComponent implements OnInit {
 
   constructor(private libraryService: LibraryService) { }
 
-    getAllPendingLibraries(): void{
-      this.libraryService.getLibrariesByStatus("pending").subscribe(
-        (list: any) => { 
-          this.libraryList = list; 
-          this.libraryListString = JSON.stringify(this.libraryList);
-         }
-      );
-    }
+  getAllPendingLibraries(): void {
+    this.libraryService.getLibrariesByStatus("pending").subscribe(
+      (list: any) => {
+        this.libraryList = list;
+        this.libraryListString = JSON.stringify(this.libraryList);
+      }
+    );
+  }
 
   ngOnInit() {
     this.getAllPendingLibraries();
