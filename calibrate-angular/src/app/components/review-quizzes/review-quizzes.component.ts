@@ -9,7 +9,7 @@ import { QuizService } from '../../services/quiz.service';
 })
 export class ReviewQuizzesComponent implements OnInit {
 
-  attemptsList: any[] = [];
+  attemptsList: Quiz[] = [];
   attemptsListString: String;
   accountId: number;
 
@@ -17,25 +17,14 @@ export class ReviewQuizzesComponent implements OnInit {
     private quizService: QuizService
   ) { }
 
-  // getPreviousQuizzesByUserId(accountId: number): void{
-  //   this.quizService.getPreviousQuizzesByUserId(this.accountId).subscribe(
-  //     (list: Quiz[]) => { 
-  //       console.log('am i real');
-  //       this.attemptsList = list; 
-  //       for (let val in list) {
-  //         console.log(JSON.stringify(val));
-  //       }
-  //       this.attemptsListString = JSON.stringify(this.attemptsList);
-  //      }
-  //   );
-  // }
-
-  getPreviousQuizzesByUserId(accountId: number): void {
-    this.quizService.getPreviousQuizzesByUserId(accountId).subscribe(
-      (list: any) => { 
+  getPreviousQuizzesByUserId(accountId: number): void{
+    this.quizService.getPreviousQuizzesByUserId(this.accountId).subscribe(
+      (list: Quiz[]) => { 
+        console.log('am i real');
         this.attemptsList = list; 
-        console.log('called component getPreviousQuizzes');
-        console.log(this.attemptsList);
+        for (let val in list) {
+          console.log(JSON.stringify(val));
+        }
         this.attemptsListString = JSON.stringify(this.attemptsList);
        }
     );

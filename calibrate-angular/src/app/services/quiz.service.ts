@@ -26,9 +26,10 @@ export class QuizService {
   }
 
   //get previous quiz attempts by user id
+  //"Attempts" on backend
   public getPreviousQuizzesByUserId(userId: number): Observable<any[]> {
     return this.http.get(`http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/attempt/byAccount/${userId}`).pipe(map((response: Response) => {
-      return <any[]>response.json();
+      return <Quiz[]>response.json();
     }));
   }
 
