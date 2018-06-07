@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
+import { Account } from './classes/account';
+import { AccountService } from './services/account.service';
 
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
@@ -47,7 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     QuizSessionComponent,
     QuizSessionQuestionComponent,
     QuizSessionSidebarComponent
-    
+
   ],
   imports: [
     BrowserModule,
