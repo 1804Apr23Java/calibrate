@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AccountService {
-
   //inject Http objects
   constructor(private http: Http, private httpClient: HttpClient) { }
 
