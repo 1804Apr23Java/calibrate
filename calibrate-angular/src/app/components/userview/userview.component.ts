@@ -4,7 +4,7 @@ import { Account } from '../../classes/account';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AttemptService } from '../../services/attempt.service';
-import { ATTEMPT } from '../../mock-quiz';
+//import { ATTEMPT } from '../../mock-quiz';
 import { Attempt } from '../../classes/attempt';
 
 
@@ -21,7 +21,7 @@ export class UserviewComponent implements OnInit {
   accountId: number;
   user: Account;
   userstring: String;
-  mockQuiz = ATTEMPT;
+  //mockQuiz = ATTEMPT;
 
   library: Library;
   librarystring: String;
@@ -56,7 +56,7 @@ export class UserviewComponent implements OnInit {
     }
 
    // this.attempt = this.attemptService.submitAttempt(this.mockQuiz).subscribe();
-   //  console.log(this.attempt);
+   // console.log(this.attempt);
     
 
     
