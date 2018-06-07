@@ -12,6 +12,7 @@ export class ReviewQuizzesComponent implements OnInit {
   attemptsList: any[] = [];
   attemptsListString: String;
   accountId: number;
+  chosenAttempt: any;
 
   constructor(
     private quizService: QuizService
@@ -34,11 +35,18 @@ export class ReviewQuizzesComponent implements OnInit {
     this.quizService.getPreviousQuizzesByUserId(accountId).subscribe(
       (list: any) => { 
         this.attemptsList = list; 
-        console.log('called component getPreviousQuizzes');
-        console.log(this.attemptsList);
         this.attemptsListString = JSON.stringify(this.attemptsList);
        }
     );
+  }
+
+  setChosenLibrary(attempt: any): void {
+    this.chosenAttempt = attempt;
+    console.log(this.chosenAttempt);
+  }
+
+  getAttemptByAttemptId(attemptId: number): void {
+    
   }
 
   ngOnInit() {
