@@ -40,9 +40,13 @@ export class TakeAQuizComponent implements OnInit {
   addLibraryToList(userAddedLibrary: Library): void {
     if(!this.currentlySelectedLibraries.includes(userAddedLibrary)){
       this.currentlySelectedLibraries.push(userAddedLibrary);
-    }
-      
+    }      
     //close modal here
+  }
+
+  deleteLibraryFromList(redXSelectedLibrary: Library): void {
+    console.log('deleted');
+    this.currentlySelectedLibraries.slice(this.currentlySelectedLibraries.indexOf(redXSelectedLibrary), 1);
   }
 
   ngOnInit() {

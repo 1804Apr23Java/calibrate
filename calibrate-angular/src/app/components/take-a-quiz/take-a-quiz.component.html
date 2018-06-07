@@ -24,7 +24,8 @@
       <br>
       <small>Size: {{library.questions.length}} questions</small>
     </span>
-    <span class="fa fa-times fa-2x red-x-icon"></span>
+    <span (click)="deleteLibraryFromList(library)"><span class="fa fa-times fa-2x red-x-icon"></span></span>
+    
   </li>
   <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center add-library-list-item"
     data-toggle="modal" data-target="#addLibraryModal">

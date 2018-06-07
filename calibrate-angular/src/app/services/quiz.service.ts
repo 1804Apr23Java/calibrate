@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Quiz } from '../classes/quiz';
+import { Library } from '../classes/library';
 
 import { Http, Response } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
