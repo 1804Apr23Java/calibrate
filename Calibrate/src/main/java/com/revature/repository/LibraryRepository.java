@@ -70,4 +70,14 @@ public class LibraryRepository {
 		}
 		return false;
 	}
+	
+	public boolean updateLibrary(int id, Status status) {
+		Session s = sessionFactory.getCurrentSession();
+		Library library = getLibrary(id);
+		if(library == null) {
+			return false;
+		}
+		library.setStatus(status);
+		return true;
+	}
 }

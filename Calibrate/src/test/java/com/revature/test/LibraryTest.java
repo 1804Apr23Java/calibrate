@@ -82,4 +82,16 @@ public class LibraryTest {
 	public void testDeleteFakeLibrary() {
 		assertFalse(ls.deleteLibrary(9999));
 	}
+	
+	@Test
+	public void testUpdateRealLibrary() {
+		Account account = acs.addAccount(new Account("user7006","pass7006","email7006", false));
+		Library library = ls.addLibrary(new Library("library7006", Status.PRIVATE, account));
+		assertTrue(ls.updateLibrary(library.getId(), Status.PUBLIC));
+	}
+	
+	@Test
+	public void testUpdateFakeLibrary() {
+		assertFalse(ls.updateLibrary(9999, Status.PUBLIC));
+	}
 }

@@ -72,5 +72,10 @@ public class LibraryController {
 	public ResponseEntity<Boolean> deleteLibrary(@PathVariable int id) {
 		return new ResponseEntity<Boolean>(libraryService.deleteLibrary(id), HttpStatus.OK);
 	}
+	
+	@GetMapping("/id/{id}/status/{status}")
+	public ResponseEntity<Boolean> updateLibrary(@PathVariable int id, @PathVariable Status status){
+		return new ResponseEntity<Boolean>(libraryService.updateLibrary(id, status), HttpStatus.OK);
+	}
 
 }

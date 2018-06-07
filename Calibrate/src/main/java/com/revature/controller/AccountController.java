@@ -32,4 +32,5 @@ public class AccountController {
 	public ResponseEntity<AccountJSON> login(@PathVariable String email, @PathVariable String password) {
 		return new ResponseEntity<AccountJSON>(btju.accountToJSON(accountService.login(email, password)), HttpStatus.OK);
 	}
+	
 }
