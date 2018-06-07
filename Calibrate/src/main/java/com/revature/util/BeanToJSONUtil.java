@@ -86,7 +86,8 @@ public class BeanToJSONUtil {
 	}
 	
 	public List<QuizJSON> attemptsToJSONNoQuestions(List<Attempt> attempts) {
-		return attempts.stream().map(this::attemptToJSONNoQuestions).collect(Collectors.toList());	
+		return attempts.stream().map(this::attemptToJSON).collect(Collectors.toList());
+			
 	}
 	
 

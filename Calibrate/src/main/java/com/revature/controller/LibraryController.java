@@ -48,7 +48,7 @@ public class LibraryController {
 		return new ResponseEntity <List<LibraryJSON>>(btju.librariesToJSON(libraryService.getLibrariesByStatus(Status.PENDING)), HttpStatus.OK);
 	}
 	
-	@GetMapping("/byUser/{accountId}")
+	@GetMapping("/byAccount/{accountId}")
 	public ResponseEntity<List<LibraryJSON>> getPublicLibraries(@PathVariable int accountId) {
 		return new ResponseEntity <List<LibraryJSON>>(btju.librariesToJSON(libraryService.getLibrariesByAccount(accountId)), HttpStatus.OK);
 	}
