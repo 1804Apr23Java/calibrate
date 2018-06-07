@@ -33,4 +33,12 @@ export class QuizService {
     }));
   }
 
+  //generate new quiz from input parameters
+  //need to use this.http.post
+  //need to create JSON stringified object of String name, List<Integer> libraryIds, int length
+  //need to return generated quiz object
+  public getNewGeneratedQuiz(){
+    
+  }
+
 }

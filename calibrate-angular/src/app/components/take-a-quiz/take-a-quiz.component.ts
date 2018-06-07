@@ -16,6 +16,7 @@ export class TakeAQuizComponent implements OnInit {
   publicLibraryListString: String;
 
   currentlySelectedLibraries: Library[] = [];
+  maxQuestions: number = 0;
 
   constructor(private libraryService: LibraryService) { }
 
@@ -41,17 +42,24 @@ export class TakeAQuizComponent implements OnInit {
     if(!this.currentlySelectedLibraries.includes(userAddedLibrary)){
       this.currentlySelectedLibraries.push(userAddedLibrary);
     }      
+    this.getMaxQuestions();
     //close modal here
+  }
+  
+  getMaxQuestions(): void{
+    this.maxQuestions = 0;
+      //sum lengths of question property, like {{library.questions.length}}
   }
 
   deleteLibraryFromList(redXSelectedLibrary: Library): void {
-    console.log('deleted');
-    this.currentlySelectedLibraries.slice(this.currentlySelectedLibraries.indexOf(redXSelectedLibrary), 1);
+    this.currentlySelectedLibraries.splice(this.currentlySelectedLibraries.indexOf(redXSelectedLibrary), 1);
+    this.getMaxQuestions();
   }
 
   ngOnInit() {
     this.getLibrariesByUserId(parseInt(localStorage.getItem("accountId")));
     this.getAllPublicLibraries();
+    this.getMaxQuestions();
   }
 
 }

@@ -27,6 +27,8 @@
     </div>
   </form>
 <br>
-  <p class="text-center" *ngIf="badCreds">Wrong username or password!</p>
+<div *ngIf="badCreds" class="alert alert-danger" role="alert">
+    Wrong username or password!
+</div>
 
 </div>

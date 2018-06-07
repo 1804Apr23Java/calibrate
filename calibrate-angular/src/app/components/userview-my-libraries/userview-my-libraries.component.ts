@@ -24,6 +24,7 @@ export class UserviewMyLibrariesComponent implements OnInit {
        }
     );
   }
+  
 
   ngOnInit() {
     this.getLibrariesByUserId(parseInt(localStorage.getItem("accountId")));
