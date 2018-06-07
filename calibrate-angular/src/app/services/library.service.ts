@@ -40,4 +40,10 @@ export class LibraryService {
     }));
   }
 
+  // add new library from user input
+  // need to send library name, question array and userId (for author)
+  public addLibraryFromUser(): void {
+    
+  }
+
 }

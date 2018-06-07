@@ -20,4 +20,115 @@
     </span>
   </li>
 </ul>
+<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center add-library-list-item"
+  data-toggle="modal" data-target="#addPrivateLibraryModal">
+  <strong>Add a Library</strong>
+  <span class="fa fa-plus-square fa-2x add-library-plus-icon"></span>
+</li>
 <!-- END MY LIBRARIES CONTENT -->
+
+<!-- MODAL -->
+
+<div class="modal fade" id="addPrivateLibraryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a Library</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Name of Library Input -->
+        <li class="list-group-item d-flex justify-content-between align-items-center mt-3">
+          <span>
+            <span class="h4">Library Name</span>
+          </span>
+          <span>
+            <input type="text" class="modal-form-input">
+          </span>
+        </li>
+
+        <!-- Number of Questions Selector -->
+        <li class="list-group-item d-flex justify-content-between align-items-center mt-3">
+          <span>
+            <span class="h4">Number of Questions</span>
+          </span>
+          <span>
+            <input type="number" class="modal-form-input">
+          </span>
+        </li>
+
+        <!-- New Question Input -->
+        <!-- ngFor for number of questions -->
+
+        <li class="list-group-item mt-3">
+
+          <div class="h4 user-view-header">
+            <p>
+              <span>Question 1</span>
+              <!-- ngFor for number of questions -->
+            </p>
+          </div>
+
+          <!-- New Answer Input -->
+          <!-- default 4 answers, replace with *ngFor -->
+          <div class="form-group">
+            <label for="question-value" class="col-form-label">Question Value</label>
+            <textarea class="form-control" id="question-value"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="answer-1" class="col-form-label">Answer</label>
+            <textarea class="form-control" id="answer-1"></textarea>
+
+            <span>
+              <input type="checkbox" class="pl-2 quiz-parameter-checkbox">
+            </span>
+            <small class="pl-3">Correct Answer?</small>
+          </div>
+
+          <!-- END New Answer Input-->
+
+          <!-- START copy and paste answer inputs so 4 times -->
+          <div class="form-group">
+            <label for="answer-1" class="col-form-label">Answer</label>
+            <textarea class="form-control" id="answer-1"></textarea>
+
+            <span>
+              <input type="checkbox" class="pl-2 quiz-parameter-checkbox">
+            </span>
+            <small class="pl-3">Correct Answer?</small>
+          </div>
+          <div class="form-group">
+            <label for="answer-1" class="col-form-label">Answer</label>
+            <textarea class="form-control" id="answer-1"></textarea>
+
+            <span>
+              <input type="checkbox" class="pl-2 quiz-parameter-checkbox">
+            </span>
+            <small class="pl-3">Correct Answer?</small>
+          </div>
+          <div class="form-group">
+            <label for="answer-1" class="col-form-label">Answer</label>
+            <textarea class="form-control" id="answer-1"></textarea>
+
+            <span>
+              <input type="checkbox" class="pl-2 quiz-parameter-checkbox">
+            </span>
+            <small class="pl-3">Correct Answer?</small>
+          </div>
+          <!-- END copy and paste answer inputs so 4 times -->
+
+
+        </li>
+        <!-- END New Question Input -->
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- END MODAL -->

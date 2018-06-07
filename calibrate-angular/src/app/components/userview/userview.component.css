@@ -47,7 +47,7 @@
     transform: translate(-50%, -50%);
 }
 
-.number-of-questions-input{
+.modal-form-input{
     border-radius: 15px;
     border: 3px solid #aaa;
     padding: 20px; 
@@ -55,7 +55,7 @@
     height: 40px;
 }
 
-.number-of-questions-input:focus{
+.modal-form-input:focus{
     outline: none;
 }
 
