@@ -71,12 +71,12 @@ public class AnswerTest {
 		as.addAnswer(new Answer("answer2003", true, question));
 		List<Answer> answers = as.getAnswersByQuestion(question.getId());
 		assertNotNull(answers);
-		assertEquals(answers.size(), 1);
+		assertEquals(1, answers.size());
 	}
 	
 	@Test
 	public void testGetFakeAnswersByQuestion() {
-		List<Answer> fakeAnswer = as.getAnswersByQuestion(-1);
-		assertNull(fakeAnswer);
+		List<Answer> fakeAnswers = as.getAnswersByQuestion(-1);
+		assertEquals(0, fakeAnswers.size());
 	}
 }

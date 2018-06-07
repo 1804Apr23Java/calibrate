@@ -2,6 +2,7 @@ package com.revature.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,9 +20,6 @@ import com.revature.service.AccountService;
 @ContextConfiguration(locations = { "classpath:beans.xml" })
 public class AccountTest {
 
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
-
 	@Autowired
 	private AccountService as;
 
@@ -31,10 +29,9 @@ public class AccountTest {
 		assertNotNull(account);
 	}
 
-	@Test
+	@Test(expected=DataIntegrityViolationException.class)
 	public void testAddAccountWithDuplicateEmail() {
 		as.addAccount(new Account("user1002", "pass1002", "dupEmail", false));
-		thrown.expect(DataIntegrityViolationException.class);
 		as.addAccount(new Account("user1003", "pass1003", "dupEmail", false));
 	}
 
