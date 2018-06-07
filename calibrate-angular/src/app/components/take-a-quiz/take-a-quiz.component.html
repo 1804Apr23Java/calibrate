@@ -42,7 +42,7 @@
     <small>Max questions: {{maxQuestions}}</small>
   </span>
   <span>
-    <input type="number" class="modal-form-input">
+    <input (keyup)="validateNumber()" type="number" class="modal-form-input" id="desiredNumberOfQuestions">
   </span>
 </li>
 

@@ -48,12 +48,28 @@ export class TakeAQuizComponent implements OnInit {
   
   getMaxQuestions(): void{
     this.maxQuestions = 0;
-      //sum lengths of question property, like {{library.questions.length}}
+    let library: any;
+    for(let l of this.currentlySelectedLibraries){
+      library = l;
+      this.maxQuestions = this.maxQuestions + library.questions.length;
+    }
   }
 
   deleteLibraryFromList(redXSelectedLibrary: Library): void {
     this.currentlySelectedLibraries.splice(this.currentlySelectedLibraries.indexOf(redXSelectedLibrary), 1);
     this.getMaxQuestions();
+    this.validateNumber();
+  }
+
+  validateNumber(): void {
+    let numberInputElement = <HTMLInputElement>document.getElementById("desiredNumberOfQuestions");
+    let changedNumber = numberInputElement.value;
+    if(parseInt(changedNumber) < 0){
+      numberInputElement.value = "0";
+    } else if (parseInt(changedNumber) > this.maxQuestions){
+      numberInputElement.value = this.maxQuestions.toString();
+    }
+
   }
 
   ngOnInit() {

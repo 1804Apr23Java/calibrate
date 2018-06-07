@@ -46,4 +46,10 @@ export class LibraryService {
     
   }
 
+  // update library by status
+  // need endpoint
+  public updateLibraryStatus(): void {
+
+  }
+
 }
