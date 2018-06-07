@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.revature.beans.Question;
 import com.revature.json.QuestionJSON;
 import com.revature.service.LibraryService;
@@ -41,20 +42,10 @@ public class QuestionController {
 		return new ResponseEntity<List<Question>>(questionService.getQuestionsByLibrary(libraryId), HttpStatus.OK);
 	}
 	
-	//partially done; repository and service are done
-//	@GetMapping("/questionId/{questionId}/LibraryId/{libraryId}")
-//	public ResponseEntity<QuestionJSON> addQuestion(@PathVariable int questionId, @PathVariable int libraryId) {
-//		Library library = libraryService.getLibrary(libraryId);
-//		if(library == null){
-//			return null;
-//		}
-//		Question question = new Question()
-//		if(account == null) {
-//			return null;
-//		}
-//		Library library = new Library(libraryName, Status.PRIVATE, account);
-//		return new ResponseEntity <LibraryJSON>(btju.libraryToJSON(libraryService.addLibrary(library)), HttpStatus.OK);
-//	}
+	@GetMapping("/add/value/{value}/difficulty/{difficulty}/libraryId/{libraryId}")
+	public ResponseEntity<QuestionJSON> addQuestion(@PathVariable String value, @PathVariable int difficulty, @PathVariable int libraryId) {
+		return new ResponseEntity <QuestionJSON>(btju.questionToJSON(questionService.addQuestionToLibrary(value, difficulty, libraryId)), HttpStatus.OK);
+	}
 	
 	
 }

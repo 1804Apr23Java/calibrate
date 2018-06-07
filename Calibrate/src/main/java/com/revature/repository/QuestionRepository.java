@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Library;
 import com.revature.beans.Question;
+import com.revature.service.LibraryService;
 
 @Repository
 @Transactional
@@ -22,6 +23,9 @@ public class QuestionRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private LibraryService libraryService;
 	
 	public Question persistQuestion(Question question) {
 		Session s = sessionFactory.getCurrentSession();

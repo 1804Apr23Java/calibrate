@@ -98,7 +98,7 @@ public class Question {
 	}
 	
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "LIBRARY_ID", nullable = true, foreignKey = @ForeignKey(name = "FK_QUESTION_LIBRARY"))
 	public Library getLibrary() {
 		return library;

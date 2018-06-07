@@ -1,5 +1,6 @@
 package com.revature.repository;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -14,7 +15,9 @@ import com.revature.beans.Account;
 @Transactional
 @EnableTransactionManagement
 public class AccountRepository {
-
+	
+	final static Logger logger = Logger.getLogger(AccountRepository.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -46,6 +49,8 @@ public class AccountRepository {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("email", email)).uniqueResult();
 		if (account == null || !account.getPassword().equals(password)) {
+			System.out.println("hello");
+			logger.warn("this is a warning log message");
 			return null;
 		}
 		return account;
