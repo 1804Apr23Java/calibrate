@@ -63,5 +63,9 @@ public class LibraryController {
 		return new ResponseEntity <LibraryJSON>(btju.libraryToJSON(libraryService.addLibrary(library)), HttpStatus.OK);
 	}
 	
+	@GetMapping("/delete/{id}")
+	public ResponseEntity<Boolean> deleteLibrary(@PathVariable int id) {
+		return new ResponseEntity <Boolean>(libraryService.deleteLibrary(id), HttpStatus.OK);
+	}
 	
 }

@@ -32,4 +32,7 @@ public class LibraryService {
 		return libraryRepository.getLibrariesByAccount(accountId);
 	}
 	
+	public boolean deleteLibrary(int id) {
+		return libraryRepository.deleteLibrary(id);
+	}
 }

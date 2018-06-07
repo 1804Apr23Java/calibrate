@@ -1,11 +1,10 @@
 package com.revature.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,12 +13,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.beans.Account;
-import com.revature.beans.Answer;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.beans.Status;
 import com.revature.service.AccountService;
-import com.revature.service.AnswerService;
 import com.revature.service.LibraryService;
 import com.revature.service.QuestionService;
 
@@ -32,6 +29,9 @@ public class LibraryTest {
 	
 	@Autowired
 	AccountService acs;
+	
+	@Autowired
+	QuestionService qs;
 	
 	@Test
 	public void testAddLibrary() {
@@ -67,5 +67,19 @@ public class LibraryTest {
 	@Test
 	public void testFakeLibrariesByAccount() {
 		assertEquals(0, ls.getLibrariesByAccount(9999).size());
+	}
+	
+	@Test
+	public void testDeleteRealLibrary() {
+		Account account = acs.addAccount(new Account("user7005","pass7005","email7005", false));
+		Library library = ls.addLibrary(new Library("library7005", Status.PRIVATE, account));
+		Question question = qs.addQuestion(new Question("question7005", 1, library));
+		assertTrue(ls.deleteLibrary(library.getId()));
+		assertNull(qs.getQuestion(question.getId()).getLibrary());
+	}
+	
+	@Test
+	public void testDeleteFakeLibrary() {
+		assertFalse(ls.deleteLibrary(9999));
 	}
 }
