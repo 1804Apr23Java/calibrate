@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Account } from '../../classes/account';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { LibraryService } from '../../services/library.service';
 import { Library } from '../../classes/library';
@@ -23,8 +24,7 @@ export class UserviewComponent implements OnInit {
   libraryListString: String;
 
   constructor(
-    private accountService: AccountService, private libraryService: LibraryService
-  ) { }
+    private accountService: AccountService, private libraryService: LibraryService, private router: Router ) { }
 
   // getAccountById(accountId: number): void {
   //   this.accountService.getAccountById(accountId).subscribe(
@@ -45,6 +45,11 @@ export class UserviewComponent implements OnInit {
   // }
 
   ngOnInit() {
+
+    if(localStorage.getItem('accountId') == ''){
+      this.router.navigate(['login']);
+    }
+
     
     // this.getAccountById(81);
     // this.getLibraryById(81);

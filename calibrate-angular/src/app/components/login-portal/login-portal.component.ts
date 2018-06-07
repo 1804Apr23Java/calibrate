@@ -27,12 +27,13 @@ export class LoginPortalComponent implements OnInit {
         //localStorage.setItem('accountObject', JSON.stringify(this.returnedAccount));
         this.router.navigate(['user']);
       }, 
-        error => { console.log(`Error: ${error} `), localStorage.setItem('accountId','') }
+        error => { console.log(`Error: ${error} `), localStorage.setItem('accountId',''), this.badCreds = true; }
     );
 
   }
 
 
+  badCreds: boolean = false;
   account = new Account();
   returnedAccount = new Account();
   userString = new String();
@@ -45,6 +46,7 @@ export class LoginPortalComponent implements OnInit {
 
   ngOnInit() {
 
+    localStorage.setItem('accountId', '');
    
   }
 
