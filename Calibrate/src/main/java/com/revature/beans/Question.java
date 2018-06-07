@@ -91,4 +91,43 @@ public class Question {
 		return "Question [id=" + id + ", value=" + value + ", difficulty=" + difficulty + ", library=" + library + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + difficulty;
+		result = prime * result + id;
+		result = prime * result + ((library == null) ? 0 : library.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		if (difficulty != other.difficulty)
+			return false;
+		if (id != other.id)
+			return false;
+		if (library == null) {
+			if (other.library != null)
+				return false;
+		} else if (!library.equals(other.library))
+			return false;
+		if (value == null) {
+			if (other.value != null)
+				return false;
+		} else if (!value.equals(other.value))
+			return false;
+		return true;
+	}
+	
+	
+
 }

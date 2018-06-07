@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -36,8 +38,7 @@ public class AttemptRepository {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Attempt> attempts = (List<Attempt>) s.createCriteria(Attempt.class).add(Restrictions.eq("account.id", accountId)).list();
-		for (Attempt attempt: attempts)
-			System.out.println(attempt);
+		attempts = new ArrayList (new HashSet (attempts));
 		return attempts;
 	}
 	
