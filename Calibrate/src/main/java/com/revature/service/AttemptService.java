@@ -39,8 +39,8 @@ public class AttemptService {
 		return attemptRepository.persistAttempt(attempt);
 	}
 	
-	public List<Attempt> getAttemptByAccount(int accountId) {
-		return attemptRepository.getAttemptByAccount(accountId);
+	public List<Attempt> getAttemptsByAccount(int accountId) {
+		return attemptRepository.getAttemptsByAccount(accountId);
 	}
 	
 	public Attempt addAttempt(int accountId, int quizId, List<Integer> answerIds) {

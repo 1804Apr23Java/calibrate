@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.json.AttemptJSON;
-import com.revature.json.QuizJSON;
 import com.revature.service.AttemptService;
 import com.revature.util.BeanToJSONUtil;
 
@@ -33,9 +32,9 @@ public class AttemptController {
 	}
 
 	@GetMapping("/byAccount/{accountId}")
-	public ResponseEntity<List<QuizJSON>> getAttemptsById(@PathVariable int accountId) {
-		return new ResponseEntity<List<QuizJSON>>(
-				btju.attemptsToJSONNoQuestions(attemptService.getAttemptByAccount(accountId)), HttpStatus.OK);
+	public ResponseEntity<List<AttemptJSON>> getAttemptsById(@PathVariable int accountId) {
+		return new ResponseEntity<List<AttemptJSON>>(
+				btju.attemptsToJSON(attemptService.getAttemptsByAccount(accountId)), HttpStatus.OK);
 	}
 
 	@GetMapping("/submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answerIds}")

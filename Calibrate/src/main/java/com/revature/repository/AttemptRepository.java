@@ -34,7 +34,7 @@ public class AttemptRepository {
 		return attempt;
 	}
 	
-	public List<Attempt> getAttemptByAccount(int accountId) {
+	public List<Attempt> getAttemptsByAccount(int accountId) {
 		Session s = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Attempt> attempts = (List<Attempt>) s.createCriteria(Attempt.class).add(Restrictions.eq("account.id", accountId)).list();
