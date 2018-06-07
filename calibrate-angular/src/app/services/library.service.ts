@@ -48,8 +48,8 @@ export class LibraryService {
 
   // update library by status
   // need endpoint
-  public updateLibraryStatus(): void {
-
+  public updateLibraryStatus(libraryId: number, status: String): void {
+    this.http.get(`${this.libraryUrl}/id/${libraryId}/status/${status}`);
   }
 
 }

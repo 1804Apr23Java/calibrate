@@ -86,6 +86,7 @@ input[type=checkbox] {
 
 .previous-quiz-score-circle{
     position:relative;
+    color: lightgreen;
     z-index: 0;
 }
 
