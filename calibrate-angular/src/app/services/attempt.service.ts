@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Quiz } from '../classes/quiz';
+import { Attempt } from '../classes/attempt';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AttemptService {
   ///submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answerIds}
 
 
-  public submitAttempt(attempt: Quiz): Observable<any[]> {
+  public submitAttempt(attempt: Quiz): Observable<Attempt> {
 
 
     this.list = this.getSelectedArray(attempt);
@@ -31,7 +32,7 @@ export class AttemptService {
     console.log('sending to: ' + `${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1, -1)}`);
 
     return this.http.get(`${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1,-1)}`)
-      .pipe(map((response: Response) => { return <any>response.json();
+      .pipe(map((response: Response) => { return <Attempt>response.json();
       }));
   }
 

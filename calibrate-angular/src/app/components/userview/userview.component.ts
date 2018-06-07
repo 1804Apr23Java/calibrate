@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AttemptService } from '../../services/attempt.service';
 import { ATTEMPT } from '../../mock-quiz';
+import { Attempt } from '../../classes/attempt';
+
 
 import { LibraryService } from '../../services/library.service';
 import { Library } from '../../classes/library';
@@ -25,8 +27,8 @@ export class UserviewComponent implements OnInit {
   librarystring: String;
   libraryList: any;
   libraryListString: String;
-  quiz: any;
-
+  attempt: any;
+  
   constructor( private accountService: AccountService, private libraryService: LibraryService, private router: Router, private attemptService: AttemptService ) { }
 
   // getAccountById(accountId: number): void {
@@ -53,8 +55,8 @@ export class UserviewComponent implements OnInit {
       this.router.navigate(['login']);
     }
 
-    this.quiz = this.attemptService.submitAttempt(this.mockQuiz).subscribe();
-    console.log(JSON.stringify(this.quiz));
+   // this.attempt = this.attemptService.submitAttempt(this.mockQuiz).subscribe();
+   //  console.log(this.attempt);
     
 
     
