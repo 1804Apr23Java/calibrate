@@ -26,10 +26,7 @@ export class UserviewMyLibrariesComponent implements OnInit {
   }
 
   ngOnInit() {
-    //TEST for user stored in local storage, this will normally be set on login
-    localStorage.setItem("loggedInUser", "81");
-    //END TEST
-    this.getLibrariesByUserId(parseInt(localStorage.getItem("loggedInUser")));
+    this.getLibrariesByUserId(parseInt(localStorage.getItem("accountId")));
   }
 
 }

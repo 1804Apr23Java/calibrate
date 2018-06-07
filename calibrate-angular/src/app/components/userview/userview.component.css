@@ -106,3 +106,7 @@ input[type=checkbox] {
 .green-check-icon{
     color:green;
 }
+
+.add-library-list-item:hover{
+    cursor: pointer;
+}
