@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,9 +33,14 @@ public class QuizController {
 		return new ResponseEntity<QuizJSON>(btju.quizToJSON(q), HttpStatus.OK);
 	}
 	
-	@PostMapping("/generate")
-	public ResponseEntity<QuizJSON> generateQuiz(@RequestBody String name, List<Integer> libraryIds, int length) {
+	@GetMapping("/generate/{name}/byRandom/withLibraries/{libraryIds}/numQuestions/{length}")
+	public ResponseEntity<QuizJSON> generateQuiz(@PathVariable String name, @PathVariable List<Integer> libraryIds, @PathVariable int length) {
 		return new ResponseEntity<QuizJSON>(btju.quizToJSON(quizService.generateQuiz(name, libraryIds, length)), HttpStatus.OK);
+	}
+
+	@GetMapping("/generate/{name}/byHardest/withLibraries/{libraryIds}/numQuestions/{length}")
+	public ResponseEntity<QuizJSON> generateQuizByHardest(@PathVariable String name, @PathVariable List<Integer> libraryIds, @PathVariable int length) {
+		return new ResponseEntity<QuizJSON>(btju.quizToJSON(quizService.generateQuizByHardest(name, libraryIds, length)), HttpStatus.OK);
 	}
 	
 }
