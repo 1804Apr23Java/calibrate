@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttemptService } from '../../services/attempt.service';
 
 @Component({
   selector: 'app-quiz-session',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizSessionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private attemptService: AttemptService) { }
 
   ngOnInit() {
+
+
   }
 
 }

@@ -3,6 +3,8 @@ import { AccountService } from '../../services/account.service';
 import { Account } from '../../classes/account';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AttemptService } from '../../services/attempt.service';
+import { ATTEMPT } from '../../mock-quiz';
 
 import { LibraryService } from '../../services/library.service';
 import { Library } from '../../classes/library';
@@ -17,14 +19,15 @@ export class UserviewComponent implements OnInit {
   accountId: number;
   user: Account;
   userstring: String;
+  mockQuiz = ATTEMPT;
 
   library: Library;
   librarystring: String;
   libraryList: any;
   libraryListString: String;
+  quiz: any;
 
-  constructor(
-    private accountService: AccountService, private libraryService: LibraryService, private router: Router ) { }
+  constructor( private accountService: AccountService, private libraryService: LibraryService, private router: Router, private attemptService: AttemptService ) { }
 
   // getAccountById(accountId: number): void {
   //   this.accountService.getAccountById(accountId).subscribe(
@@ -49,6 +52,10 @@ export class UserviewComponent implements OnInit {
     if(localStorage.getItem('accountId') == ''){
       this.router.navigate(['login']);
     }
+
+    this.quiz = this.attemptService.submitAttempt(this.mockQuiz).subscribe();
+    console.log(JSON.stringify(this.quiz));
+    
 
     
     // this.getAccountById(81);
