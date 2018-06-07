@@ -1,5 +1,6 @@
 package com.revature.beans;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -42,6 +43,24 @@ public class Library {
 		this.questions = questions;
 	}
 
+	public Library(int id, String name, Status status, Account account) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.status = status;
+		this.account = account;
+		this.questions = new HashSet<Question>();
+	}
+
+	public Library(String name, Status status, Account account) {
+		super();
+		this.name = name;
+		this.status = status;
+		this.account = account;
+		this.questions = new HashSet<Question>();
+	}
+
+	
 	public Library() {
 		super();
 	}
@@ -98,43 +117,5 @@ public class Library {
 	@Override
 	public String toString() {
 		return "Library [id=" + id + ", name=" + name + ", status=" + status + ", account=" + account + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((account == null) ? 0 : account.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Library other = (Library) obj;
-		if (account == null) {
-			if (other.account != null)
-				return false;
-		} else if (!account.equals(other.account))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (status != other.status)
-			return false;
-		return true;
-	}
-	
+	}	
 }

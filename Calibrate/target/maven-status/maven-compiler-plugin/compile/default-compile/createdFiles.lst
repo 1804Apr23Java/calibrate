@@ -26,12 +26,12 @@ com/revature/main/Driver.class
 com/revature/controller/AnswerController.class
 com/revature/repository/AnswerRepository.class
 com/revature/controller/AttemptController.class
+com/revature/main/HibernateScript.class
 com/revature/repository/LibraryRepository.class
 com/revature/util/BeanToJSONUtil.class
 com/revature/beans/Account.class
 com/revature/service/QuizService.class
 com/revature/controller/AccountController.class
 com/revature/repository/QuizRepository.class
-com/revature/main/Driver2.class
 com/revature/repository/AttemptRepository.class
 com/revature/beans/Library.class

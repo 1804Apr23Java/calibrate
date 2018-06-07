@@ -1,11 +1,11 @@
 package com.revature.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.revature.beans.Attempt;
 import com.revature.service.AccountService;
 import com.revature.service.AttemptService;
 
@@ -22,11 +22,19 @@ public class Driver {
 		//qr.getQuiz(1).getQuestions().stream().forEach(a -> System.out.println(a.getValue()));
 		//QuizService qs = aac.getBean(QuizService.class);
 		
+		/*
 		List<Attempt> attempts = as.getAttemptByAccount(44);
 		List<Attempt> attempts2 = as.getAttemptByAccount(43);
 		
 		System.out.println("a1: " + attempts);
 		System.out.println("a2: " + attempts2);
+		*/
+		
+		List<Integer> l = new<Integer>ArrayList();
+		l.add(318);
+		l.add(294);
+		
+		as.addAttempt(44, 1, l);
 		
 		aac.close();
 	}

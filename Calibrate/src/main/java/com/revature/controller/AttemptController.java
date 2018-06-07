@@ -38,4 +38,10 @@ public class AttemptController {
 				btju.attemptsToJSONNoQuestions(attemptService.getAttemptByAccount(accountId)), HttpStatus.OK);
 	}
 
+	@GetMapping("/submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answerIds}")
+	public ResponseEntity<AttemptJSON> submitAttempt(@PathVariable int accountId, @PathVariable int quizId,
+			@PathVariable List<Integer> answerIds) {
+		return new ResponseEntity<AttemptJSON>(btju.attemptToJSON(attemptService.addAttempt(accountId, quizId, answerIds)), HttpStatus.OK);
+	}
+
 }

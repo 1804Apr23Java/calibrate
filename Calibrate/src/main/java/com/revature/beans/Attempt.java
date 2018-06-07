@@ -63,7 +63,7 @@ public class Attempt {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "ACCOUNT_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_ACCOUNT"))
 	public Account getAccount() {
 		return account;
@@ -73,7 +73,7 @@ public class Attempt {
 		this.account = account;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "QUIZ_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_ATTEMPT_QUIZ"))
 	public Quiz getQuiz() {
 		return quiz;
@@ -83,7 +83,7 @@ public class Attempt {
 		this.quiz = quiz;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "ATTEMPT_ANSWER", joinColumns = @JoinColumn(name = "ATTEMPT_ID", referencedColumnName = "ATTEMPT_ID"), inverseJoinColumns = @JoinColumn(name = "ANSWER_ID", referencedColumnName = "ANSWER_ID"))
 	public Set<Answer> getAnswers() {
 		return answers;
@@ -109,51 +109,4 @@ public class Attempt {
 		return "Attempt [id=" + id + ", account=" + account + ", quiz=" + quiz + ", answers=" + answers
 				+ ", createdDate=" + createdDate + "]";
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((account == null) ? 0 : account.hashCode());
-		result = prime * result + ((answers == null) ? 0 : answers.hashCode());
-		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((quiz == null) ? 0 : quiz.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Attempt other = (Attempt) obj;
-		if (account == null) {
-			if (other.account != null)
-				return false;
-		} else if (!account.equals(other.account))
-			return false;
-		if (answers == null) {
-			if (other.answers != null)
-				return false;
-		} else if (!answers.equals(other.answers))
-			return false;
-		if (createdDate == null) {
-			if (other.createdDate != null)
-				return false;
-		} else if (!createdDate.equals(other.createdDate))
-			return false;
-		if (id != other.id)
-			return false;
-		if (quiz == null) {
-			if (other.quiz != null)
-				return false;
-		} else if (!quiz.equals(other.quiz))
-			return false;
-		return true;
-	}
-
 }

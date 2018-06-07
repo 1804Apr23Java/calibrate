@@ -82,10 +82,10 @@ public class BeanToJSONUtil {
 		int numberOfQuestions = questions.size();
 		int numCorrect = 0;
 		for (Question question : questions) {
-			List<Answer> correctAnswers = question.getAnswers().stream().filter(answer -> answer.getIsCorrect())
+			List<Integer> correctAnswers = question.getAnswers().stream().filter(answer -> answer.getIsCorrect()).map(answer -> answer.getId())
 					.collect(Collectors.toList());
-			List<Answer> chosenAnswers = attempt.getAnswers().stream()
-					.filter(answer -> answer.getQuestion().equals(question)).collect(Collectors.toList());
+			List<Integer> chosenAnswers = attempt.getAnswers().stream()
+					.filter(answer -> answer.getQuestion().getId() == (question.getId())).map(answer -> answer.getId()).collect(Collectors.toList());
 			if (correctAnswers.equals(chosenAnswers))
 				numCorrect++;
 		}
