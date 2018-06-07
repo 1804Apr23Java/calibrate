@@ -20,9 +20,11 @@ export class LoginPortalComponent implements OnInit {
     this.accountService.getLogin(this.account).subscribe(
       (account: Account) => { 
         this.returnedAccount = account; 
-        this.userString = JSON.stringify(this.returnedAccount); 
-        console.log(this.userString) 
         localStorage.setItem('accountId', this.returnedAccount.accountId.toString());
+        localStorage.setItem('accountEmail', this.returnedAccount.email);
+        localStorage.setItem('accountIsAdmin', this.returnedAccount.isAdmin.toString());
+        localStorage.setItem('accountUsername', this.returnedAccount.username);
+        //localStorage.setItem('accountObject', JSON.stringify(this.returnedAccount));
         this.router.navigate(['user']);
       }, 
         error => { console.log(`Error: ${error} `), localStorage.setItem('accountId','') }

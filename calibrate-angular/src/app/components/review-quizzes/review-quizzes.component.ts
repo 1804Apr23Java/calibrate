@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Quiz } from '../../classes/quiz';
 import { QuizService } from '../../services/quiz.service';
 
 @Component({
@@ -8,31 +9,31 @@ import { QuizService } from '../../services/quiz.service';
 })
 export class ReviewQuizzesComponent implements OnInit {
 
-  attemptsList: any = [];
+  attemptsList: Quiz[] = [];
   attemptsListString: String;
-  userId: number;
+  accountId: number;
 
   constructor(
     private quizService: QuizService
   ) { }
 
-  getPreviousQuizzesByUserId(): void{
-    this.quizService.getPreviousQuizzesByUserId(this.userId).subscribe(
-      (list: any) => { 
+  getPreviousQuizzesByUserId(accountId: number): void{
+    this.quizService.getPreviousQuizzesByUserId(this.accountId).subscribe(
+      (list: Quiz[]) => { 
+        console.log('am i real');
         this.attemptsList = list; 
+        for (let val in list) {
+          console.log(JSON.stringify(val));
+        }
         this.attemptsListString = JSON.stringify(this.attemptsList);
        }
     );
   }
 
   ngOnInit() {
-    //TEST for user stored in local storage, this will normally be set on login
-    localStorage.setItem("loggedInUser", "44");
-    //END TEST
-
-    this.userId = parseInt(localStorage.getItem("loggedInUser"));
-    this.getPreviousQuizzesByUserId();
-    //TEST for user stored in local storage, this will normally be set on login
+    this.accountId = parseInt(localStorage.getItem("accountId"));
+    this.getPreviousQuizzesByUserId(this.accountId);
+    console.log(this.attemptsListString);
   }
 
 }
