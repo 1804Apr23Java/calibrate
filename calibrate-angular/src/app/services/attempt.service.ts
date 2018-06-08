@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ATTEMPT } from '../mock-quiz';
 import { Http, Response } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
