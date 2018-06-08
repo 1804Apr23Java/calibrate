@@ -4,7 +4,7 @@ import { Account } from '../../classes/account';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AttemptService } from '../../services/attempt.service';
-import { ATTEMPT } from '../../mock-quiz';
+//import { ATTEMPT } from '../../mock-quiz';
 import { Attempt } from '../../classes/attempt';
 import { QuizService } from '../../services/quiz.service';
 import { NewQuiz } from '../../classes/newquiz';
@@ -24,7 +24,8 @@ export class UserviewComponent implements OnInit {
   accountId: number;
   user: Account;
   userstring: String;
-  mockQuiz = ATTEMPT;
+  //mockQuiz = ATTEMPT;
+  mockQuiz: any;
 
   library: Library;
   librarystring: String;
@@ -132,7 +133,7 @@ f        localStorage.setItem('accountUsername', this.returnedAccount.username);
 
     //this.readInAttempt();   <-- WORKS
     //this.generateQuiz();    <-- WORKS
-    this.generateLibrary();
+    // this.generateLibrary();
 
 
 

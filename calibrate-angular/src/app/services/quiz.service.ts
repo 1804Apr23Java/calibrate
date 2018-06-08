@@ -41,7 +41,7 @@ export class QuizService {
   //need to return generated quiz object
   public getNewGeneratedQuiz(quizName: string, libraryIds: number[], quizLength: number){
 
-    console.log(`http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/quiz/generate/${quizName}/byRandom/withLibraries/${JSON.stringify(libraryIds.slice(1,-1))}/numQuestions/${quizLength}`);
+    console.log(`http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/quiz/generate/${quizName}/byRandom/withLibraries/${JSON.stringify(libraryIds).slice(1,-1)}/numQuestions/${quizLength}`);
 
     return this.http.get(`http://ec2-184-72-131-208.compute-1.amazonaws.com:8080/CalibrateBackend/quiz/generate/${quizName}/byRandom/withLibraries/${JSON.stringify(libraryIds).slice(1,-1)}/numQuestions/${quizLength}`).pipe(map((response: Response) => {
       return <Quiz>response.json();

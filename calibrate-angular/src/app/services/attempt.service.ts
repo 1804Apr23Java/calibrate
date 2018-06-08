@@ -31,8 +31,9 @@ export class AttemptService {
 
     //console.log('sending to: ' + `${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1, -1)}`);
 
-    return this.http.get(`${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1,-1)}`)
-      .pipe(map((response: Response) => { return <Attempt>response.json();
+    return this.http.get(`${this.attemptUrl}${localStorage.getItem('accountId')}/forQuiz/${attempt.quizId}/withAnswers/${JSON.stringify(this.list).slice(1, -1)}`)
+      .pipe(map((response: Response) => {
+        return <Attempt>response.json();
       }));
   }
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Library } from 'src/app/classes/library';
 import { LibraryService } from '../../services/library.service';
 import { Observable } from 'rxjs';
+import { Quiz } from 'src/app/classes/quiz';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-take-a-quiz',
@@ -18,7 +20,12 @@ export class TakeAQuizComponent implements OnInit {
   currentlySelectedLibraries: Library[] = [];
   maxQuestions: number = 0;
 
-  constructor(private libraryService: LibraryService) { }
+  newName: any = "";
+  newQuiz: Quiz;
+  newLibraryIds: number[] = [];
+  newQuizLength: number;
+
+  constructor(private libraryService: LibraryService, private quizService: QuizService) { }
 
   getLibrariesByUserId(userId: number): void {
     this.libraryService.getLibrariesByUserId(userId).subscribe(
@@ -70,6 +77,37 @@ export class TakeAQuizComponent implements OnInit {
       numberInputElement.value = this.maxQuestions.toString();
     }
 
+  }
+
+  generateQuizData(): void {
+    this.newName = "";
+    this.newLibraryIds = [];
+    let numberInputElement = <HTMLInputElement>document.getElementById("desiredNumberOfQuestions");
+    this.newQuizLength = parseInt(numberInputElement.value);
+
+    for(let library of this.currentlySelectedLibraries){
+      this.newName = library.name;
+      this.newLibraryIds.push(library.libraryId);
+    }
+
+
+  }
+
+  generateQuiz(): void {
+    this.generateQuizData();
+
+    //quiz: NewQuiz, libraryIds: number[], quizLength: number
+
+    this.quizService.getNewGeneratedQuiz(this.newName, this.newLibraryIds, this.newQuizLength).subscribe(
+      (quiz: Quiz) => {
+        this.newQuiz = quiz;
+      },
+      error => { console.log(`Error: ${error} `); });
+      console.log(this.newQuiz);
+      localStorage.setItem("currentQuizSession", JSON.stringify(this.newQuiz));
+      console.log(this.newQuiz.name);
+      //save quiz in local storage
+      //route to quiz session
   }
 
   ngOnInit() {
