@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Question;
 import com.revature.json.QuestionJSON;
-import com.revature.service.LibraryService;
 import com.revature.service.QuestionService;
 import com.revature.util.BeanToJSONUtil;
 
@@ -24,9 +23,6 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
-
-	@Autowired
-	private LibraryService libraryService;
 	
 	@Autowired
 	private BeanToJSONUtil btju;

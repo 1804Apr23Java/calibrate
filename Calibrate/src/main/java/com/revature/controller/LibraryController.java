@@ -74,8 +74,8 @@ public class LibraryController {
 	}
 	
 	@GetMapping("/id/{id}/status/{status}")
-	public ResponseEntity<Boolean> updateLibrary(@PathVariable int id, @PathVariable Status status){
-		return new ResponseEntity<Boolean>(libraryService.updateLibrary(id, status), HttpStatus.OK);
+	public ResponseEntity<Library> updateLibrary(@PathVariable int id, @PathVariable Status status){
+		return new ResponseEntity<Library>(libraryService.updateLibrary(id, status), HttpStatus.OK);
 	}
 
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.revature.service.AccountService;
 import com.revature.service.AttemptService;
 
 public class Driver {
@@ -15,7 +14,7 @@ public class Driver {
 		
 		AbstractApplicationContext aac = new ClassPathXmlApplicationContext("beans.xml");
 		
-		AccountService acs = aac.getBean(AccountService.class);
+		//AccountService acs = aac.getBean(AccountService.class);
 		AttemptService as = aac.getBean(AttemptService.class);
 		//Attempt att = new Attempt(acc, q, new HashSet<Answer>());
 		//as.addAttempt(att);
@@ -30,7 +29,7 @@ public class Driver {
 		System.out.println("a2: " + attempts2);
 		*/
 		
-		List<Integer> l = new<Integer>ArrayList();
+		List<Integer> l = new ArrayList<Integer>();
 		l.add(318);
 		l.add(294);
 		

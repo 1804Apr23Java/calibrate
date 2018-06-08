@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.Hibernate;
-
 @Entity
 @Table(name = "ACCOUNT")
 public class Account {

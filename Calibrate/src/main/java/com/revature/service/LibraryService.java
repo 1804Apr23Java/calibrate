@@ -36,7 +36,7 @@ public class LibraryService {
 		return libraryRepository.deleteLibrary(id);
 	}
 	
-	public boolean updateLibrary(int id, Status status) {
+	public Library updateLibrary(int id, Status status) {
 		return libraryRepository.updateLibrary(id, status);
 	}
 }

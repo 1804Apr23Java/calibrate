@@ -60,7 +60,7 @@ public class LibraryTest {
 	@Test
 	public void testGetRealLibrariesByAccount() {
 		Account account = acs.addAccount(new Account("user7004","pass7004","email7004", false));
-		Library library = ls.addLibrary(new Library("library7004", Status.PRIVATE, account));
+		ls.addLibrary(new Library("library7004", Status.PRIVATE, account));
 		assertTrue(ls.getLibrariesByStatus(Status.PRIVATE).size() > 0);
 	}
 	
@@ -87,11 +87,11 @@ public class LibraryTest {
 	public void testUpdateRealLibrary() {
 		Account account = acs.addAccount(new Account("user7006","pass7006","email7006", false));
 		Library library = ls.addLibrary(new Library("library7006", Status.PRIVATE, account));
-		assertTrue(ls.updateLibrary(library.getId(), Status.PUBLIC));
+		assertTrue(ls.updateLibrary(library.getId(), Status.PUBLIC).getStatus().equals(Status.PUBLIC));
 	}
 	
 	@Test
 	public void testUpdateFakeLibrary() {
-		assertFalse(ls.updateLibrary(9999, Status.PUBLIC));
+		assertFalse(ls.updateLibrary(9999, Status.PUBLIC).getStatus().equals(Status.PUBLIC));
 	}
 }
