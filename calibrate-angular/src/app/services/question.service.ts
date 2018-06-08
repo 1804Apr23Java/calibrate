@@ -23,4 +23,13 @@ export class QuestionService {
       return <Question>response.json();
     }));
   }
+
+  //get Question by passing URL + id through http
+  public addQuestionsToLibrary(libraryId: number, questionValue: string, difficulty: number): Observable<Question> {
+    console.log('Added question to library: ' + `${this.questionUrl}/add/value/${questionValue}/difficulty/${difficulty}/libraryId/${libraryId}`);
+    return this.http.get(`${this.questionUrl}/add/value/${questionValue}/difficulty/${difficulty}/libraryId/${libraryId}`).pipe(map((response: Response) => {
+      return <Question>response.json();
+    }));
+  }
+
 }

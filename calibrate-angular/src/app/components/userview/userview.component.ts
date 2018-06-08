@@ -9,6 +9,8 @@ import { Attempt } from '../../classes/attempt';
 import { QuizService } from '../../services/quiz.service';
 import { NewQuiz } from '../../classes/newquiz';
 import { Quiz } from '../../classes/quiz';
+import { Question } from '../../classes/question';
+import { QuestionService } from '../../services/question.service';
 
 
 import { LibraryService } from '../../services/library.service';
@@ -33,10 +35,11 @@ export class UserviewComponent implements OnInit {
   newLibrary: Library;
   attempt: Attempt;
   newQuiz: Quiz;
+  newQuestion: Question;
 
   newQuizName: string = 'Brand New Quiz!';
 
-  constructor(private accountService: AccountService, private libraryService: LibraryService, private router: Router, private attemptService: AttemptService, private quizService: QuizService) { }
+  constructor(private accountService: AccountService, private libraryService: LibraryService, private router: Router, private attemptService: AttemptService, private quizService: QuizService, private questionService: QuestionService) { }
 
   // getAccountById(accountId: number): void {
   //   this.accountService.getAccountById(accountId).subscribe(
@@ -66,7 +69,7 @@ export class UserviewComponent implements OnInit {
         localStorage.setItem('accountId', this.returnedAccount.accountId.toString());
         localStorage.setItem('accountEmail', this.returnedAccount.email);
         localStorage.setItem('accountIsAdmin', this.returnedAccount.isAdmin.toString());
-f        localStorage.setItem('accountUsername', this.returnedAccount.username);
+        localStorage.setItem('accountUsername', this.returnedAccount.username);
         //localStorage.setItem('accountObject', JSON.stringify(this.returnedAccount));
         this.router.navigate(['user']);
       }, 
@@ -76,6 +79,19 @@ f        localStorage.setItem('accountUsername', this.returnedAccount.username);
   }
 
   */
+
+ addQuestionToLibrary(): void {
+
+  //quiz: NewQuiz, libraryIds: number[], quizLength: number
+
+  this.questionService.addQuestionsToLibrary(81, "How|do|you|swap|vertical|bars|for|spaces|in|Java*", 5).subscribe(
+    (question: Question) => {
+      this.newQuestion = question;
+      
+      console.log(JSON.stringify('Generated Quiz: ' + JSON.stringify(this.newQuestion)));
+    },
+    error => { console.log(`Error: ${error} `); });
+}
 
   generateLibrary(): void {
 
@@ -130,11 +146,19 @@ f        localStorage.setItem('accountUsername', this.returnedAccount.username);
       this.router.navigate(['login']);
     }
 
+    // HERE IS SOME STUFF THAT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     //this.readInAttempt();   <-- WORKS
     //this.generateQuiz();    <-- WORKS
-    this.generateLibrary();
+    //this.generateLibrary(); <-- WORKS
+    this.addQuestionToLibrary();
+
+    //var replaced = newQuestion.split('|').join(' '); // Helper method to use with questionService.addQuestionToLibrary()
 
 
+    
+
+    
 
 
     // this.getAccountById(81);
