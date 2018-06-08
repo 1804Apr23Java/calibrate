@@ -80,15 +80,19 @@ export class TakeAQuizComponent implements OnInit {
   }
 
   generateQuizData(): void {
-    this.newName = "";
+    this.newName = '';
     this.newLibraryIds = [];
     let numberInputElement = <HTMLInputElement>document.getElementById("desiredNumberOfQuestions");
     this.newQuizLength = parseInt(numberInputElement.value);
 
     for(let library of this.currentlySelectedLibraries){
-      this.newName = library.name;
+      console.log('Generated Quiz Name: ' + JSON.stringify(library));
+      this.newName += library.name;
+      console.log('Last Library Name: ' + JSON.stringify(this.newName));
       this.newLibraryIds.push(library.libraryId);
     }
+
+    localStorage.setItem('currentQuizSession', this.newName);
 
 
   }
@@ -96,18 +100,14 @@ export class TakeAQuizComponent implements OnInit {
   generateQuiz(): void {
     this.generateQuizData();
 
-    //quiz: NewQuiz, libraryIds: number[], quizLength: number
-
     this.quizService.getNewGeneratedQuiz(this.newName, this.newLibraryIds, this.newQuizLength).subscribe(
       (quiz: Quiz) => {
         this.newQuiz = quiz;
+        console.log('New Quiz: ' + JSON.stringify(this.newQuiz));
       },
       error => { console.log(`Error: ${error} `); });
-      console.log(this.newQuiz);
-      localStorage.setItem("currentQuizSession", JSON.stringify(this.newQuiz));
-      console.log(this.newQuiz.name);
-      //save quiz in local storage
-      //route to quiz session
+      localStorage.setItem("currentQuizSession", JSON.stringify(this.newQuiz.name));
+
   }
 
   ngOnInit() {
