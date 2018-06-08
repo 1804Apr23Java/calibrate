@@ -68,4 +68,16 @@ public class QuestionTest {
 		List<Question> fakeQuestions = qs.getQuestionsByLibrary(library.getId());
 		assertEquals(0, fakeQuestions.size());
 	}
+	
+	@Test
+	public void testInsertQuestionByRealLibrary() {
+		Account account = as.addAccount(new Account("user4004", "pass4004", "email4004", false));
+		Library library = ls.addLibrary(new Library("library4004", Status.PRIVATE, account));
+		assertNotNull(qs.addQuestionToLibrary("Hello", 1, library.getId()));
+	}
+	
+	@Test
+	public void testInsertQuestionByFakeLibrary() {
+		assertNull(qs.addQuestionToLibrary("Hello", 1, 9999));
+	}
 }

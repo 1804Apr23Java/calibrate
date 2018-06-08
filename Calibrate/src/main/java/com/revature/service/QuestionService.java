@@ -35,6 +35,7 @@ public class QuestionService {
 	
 	public Question addQuestionToLibrary(String value, int difficulty, int libraryId) {
 		value = value.replace("|", " ");
+		value = value.replace("*", "?");
 		Library library = libraryService.getLibrary(libraryId);
 		if(library == null)
 			return null;
