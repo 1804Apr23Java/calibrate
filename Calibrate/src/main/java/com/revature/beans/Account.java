@@ -8,28 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.Hibernate;
+
 @Entity
 @Table(name = "ACCOUNT")
 public class Account {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
-	@SequenceGenerator(allocationSize = 1, name = "accountSequence", sequenceName = "SQ_USER_PK")
-	@Column(name = "ACCOUNT_ID")
 	private int id;
 
-	@Column(name = "USERNAME", nullable = false)
 	private String username;
 
-	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@Column(name = "EMAIL", nullable = false)
 	private String email;
 
-	@Column(name = "ISADMIN", nullable = false)
 	private boolean isAdmin;
-
+	
 	public Account(int id, String username, String password, String email, boolean isAdmin) {
 		super();
 		this.id = id;
@@ -51,14 +45,20 @@ public class Account {
 		super();
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSequence")
+	@SequenceGenerator(allocationSize = 1, name = "accountSequence", sequenceName = "SQ_USER_PK")
+	@Column(name = "ACCOUNT_ID")
 	public int getId() {
 		return id;
 	}
 
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	@Column(name = "USERNAME", nullable = false)
 	public String getUsername() {
 		return username;
 	}
@@ -67,6 +67,7 @@ public class Account {
 		this.username = username;
 	}
 
+	@Column(name = "PASSWORD", nullable = false)
 	public String getPassword() {
 		return password;
 	}
@@ -75,6 +76,7 @@ public class Account {
 		this.password = password;
 	}
 
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	public String getEmail() {
 		return email;
 	}
@@ -83,11 +85,12 @@ public class Account {
 		this.email = email;
 	}
 
-	public boolean isAdmin() {
+	@Column(name = "ISADMIN", nullable = false)
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
@@ -95,6 +98,5 @@ public class Account {
 	public String toString() {
 		return "Account [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", isAdmin=" + isAdmin + "]";
-	}
-
+	}	
 }

@@ -1,0 +1,22 @@
+<!-- PUBLIC LIBRARIES CONTENT -->
+
+<div class="h4 user-view-header">
+  <p>
+    <span class="fa fa-book quiz-header-icon"></span>
+    <span>Public Libraries</span>
+  </p>
+</div>
+<ul class="list-group">
+  <!-- *ngFor for each library found -->
+  <li *ngFor="let library of libraryList" class="list-group-item d-flex justify-content-between align-items-center list-as-link">
+    <span>
+      <span class="h3">{{library.name}}</span>
+      <br>
+      <small>Author: {{library.author}}</small>
+      <br>
+      <small>Size: {{library.questions.length}} questions</small>
+    </span>
+  </li>
+</ul>
+
+<!-- END PUBLIC LIBRARIES CONTENT -->

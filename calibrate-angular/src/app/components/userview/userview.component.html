@@ -1,0 +1,24 @@
+<app-navbar-logged></app-navbar-logged>
+
+<div style="margin-bottom: 30px"></div>
+<!-- USER PAGE -->
+<div class="row">
+
+    <!-- TABBABLE SIDEBAR -->
+    <div class="col-md-4">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- USER MAIN CONTENT VIEW -->
+    <div class="col-md-8 user-main-content">
+        <router-outlet></router-outlet>
+        <!-- <p>Welcome {{user.email}}</p>
+        <p>Welcome {{userstring}}!</p>
+        <p>Library 81 is {{library}}</p>
+        <p>Library 81 name is {{library.name}}</p>
+        <p>Library 81 size is {{library.questions.length}}</p>
+        <p>Library string is {{librarystring}}</p> 
+        <p>All public libraries are {{libraryList}}</p>
+        <p>Public library string is {{libraryListString}}</p> --> 
+    </div>
+</div>
