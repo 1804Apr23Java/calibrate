@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.json.AccountJSON;
+import com.revature.dto.AccountDTO;
 import com.revature.service.AccountService;
-import com.revature.util.BeanToJSONUtil;
 
 @CrossOrigin
 @RestController
@@ -20,17 +19,16 @@ public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
-	@Autowired
-	private BeanToJSONUtil btju;
 
 	@GetMapping("/{id}")
-	public ResponseEntity<AccountJSON> getAccount(@PathVariable int id) {
-		return new ResponseEntity<AccountJSON>(btju.accountToJSON(accountService.getAccount(id)), HttpStatus.OK);
+	public ResponseEntity<AccountDTO> getAccount(@PathVariable int id) {
+		return new ResponseEntity<AccountDTO>(new AccountDTO(accountService.getAccount(id)), HttpStatus.OK);
 	}
 
+	//change this mapping to a postmapping
 	@GetMapping("/email/{email}/password/{password}")
-	public ResponseEntity<AccountJSON> login(@PathVariable String email, @PathVariable String password) {
-		return new ResponseEntity<AccountJSON>(btju.accountToJSON(accountService.login(email, password)), HttpStatus.OK);
+	public ResponseEntity<AccountDTO> login(@PathVariable String email, @PathVariable String password) {
+		return new ResponseEntity<AccountDTO>(new AccountDTO(accountService.login(email, password)), HttpStatus.OK);
 	}
 	
 }

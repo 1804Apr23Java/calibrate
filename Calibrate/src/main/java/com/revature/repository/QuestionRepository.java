@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Library;
 import com.revature.beans.Question;
-import com.revature.service.LibraryService;
+import com.revature.exception.QuestionNotFoundException;
 
 @Repository
 @Transactional
@@ -24,18 +24,23 @@ public class QuestionRepository {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Autowired
-	private LibraryService libraryService;
-	
 	public Question persistQuestion(Question question) {
 		Session s = sessionFactory.getCurrentSession();
 		s.persist(question);
 		return question;
 	}
 	
+	public Question addQuestion(String value, int difficulty, int libraryId) {
+		Session s = sessionFactory.getCurrentSession();
+		Library library = (Library) s.load(Library.class, libraryId);
+		return persistQuestion(new Question(value, difficulty, library));
+	}
+	
 	public Question getQuestion(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Question question = (Question) s.createCriteria(Question.class).add(Restrictions.eq("id", id)).uniqueResult();
+		if (question == null)
+			throw new QuestionNotFoundException("Question with given id not found");
 		return question;
 	}
 	
@@ -52,5 +57,4 @@ public class QuestionRepository {
 		List<Question> questions = s.createCriteria(Question.class).add(Restrictions.in("library.id", libraryIds)).list();
 		return new ArrayList<Question>(new HashSet<Question>(questions));
 	}
-	
 }

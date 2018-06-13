@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.revature.beans.Question;
-import com.revature.json.QuestionJSON;
-import com.revature.service.LibraryService;
+import com.revature.dto.QuestionDTO;
 import com.revature.service.QuestionService;
-import com.revature.util.BeanToJSONUtil;
 
 @CrossOrigin
 @RestController
@@ -26,26 +24,24 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 
-	@Autowired
-	private LibraryService libraryService;
-	
-	@Autowired
-	private BeanToJSONUtil btju;
-	
 	@GetMapping("/{id}")
-	public ResponseEntity<QuestionJSON> getQuestion(@PathVariable int id) {
-		return new ResponseEntity<QuestionJSON>(btju.questionToJSON(questionService.getQuestion(id)), HttpStatus.OK);
+	public ResponseEntity<QuestionDTO> getQuestion(@PathVariable int id) {
+		return new ResponseEntity<QuestionDTO>(new QuestionDTO(questionService.getQuestion(id)), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/byLibrary/{libraryId}")
-	public ResponseEntity<List<Question>> getQuestionsByLibrary(@PathVariable int libraryId) {
-		return new ResponseEntity<List<Question>>(questionService.getQuestionsByLibrary(libraryId), HttpStatus.OK);
+	public ResponseEntity<List<QuestionDTO>> getQuestionsByLibrary(@PathVariable int libraryId) {
+		List<Question> questions = questionService.getQuestionsByLibrary(libraryId);
+		return new ResponseEntity<List<QuestionDTO>>(
+				questions.stream().map(QuestionDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/add/value/{value}/difficulty/{difficulty}/libraryId/{libraryId}")
-	public ResponseEntity<QuestionJSON> addQuestion(@PathVariable String value, @PathVariable int difficulty, @PathVariable int libraryId) {
-		return new ResponseEntity <QuestionJSON>(btju.questionToJSON(questionService.addQuestionToLibrary(value, difficulty, libraryId)), HttpStatus.OK);
+	public ResponseEntity<QuestionDTO> addQuestion(@PathVariable String value, @PathVariable int difficulty,
+			@PathVariable int libraryId) {
+		value = value.replace("|", " ");
+		value = value.replace("*", "?");
+		return new ResponseEntity<QuestionDTO>(
+				new QuestionDTO(questionService.addQuestionToLibrary(value, difficulty, libraryId)), HttpStatus.OK);
 	}
-	
-	
 }

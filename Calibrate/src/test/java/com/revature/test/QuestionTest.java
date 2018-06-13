@@ -1,21 +1,10 @@
 package com.revature.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import java.util.List;
-
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.revature.beans.Account;
-import com.revature.beans.Library;
-import com.revature.beans.Question;
-import com.revature.beans.Status;
 import com.revature.service.AccountService;
 import com.revature.service.LibraryService;
 import com.revature.service.QuestionService;
@@ -33,6 +22,8 @@ public class QuestionTest {
 
 	@Autowired
 	LibraryService ls;
+	
+	/*
 
 	@Test
 	public void testAddQuestion() {
@@ -80,4 +71,5 @@ public class QuestionTest {
 	public void testInsertQuestionByFakeLibrary() {
 		assertNull(qs.addQuestionToLibrary("Hello", 1, 9999));
 	}
+	*/
 }

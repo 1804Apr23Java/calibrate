@@ -1,7 +1,7 @@
 package com.revature.controller;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.beans.Account;
 import com.revature.beans.Library;
-import com.revature.beans.Question;
 import com.revature.beans.Status;
-import com.revature.json.LibraryJSON;
-import com.revature.service.AccountService;
+import com.revature.dto.LibraryDTO;
 import com.revature.service.LibraryService;
-import com.revature.util.BeanToJSONUtil;
 
 @CrossOrigin
 @RestController
@@ -29,53 +25,45 @@ public class LibraryController {
 	@Autowired
 	private LibraryService libraryService;
 
-	@Autowired
-	private AccountService accountService;
-
-	@Autowired
-	private BeanToJSONUtil btju;
-
 	@GetMapping("/{id}")
-	public ResponseEntity<LibraryJSON> getLibrary(@PathVariable int id) {
-		return new ResponseEntity<LibraryJSON>(btju.libraryToJSON(libraryService.getLibrary(id)), HttpStatus.OK);
+	public ResponseEntity<LibraryDTO> getLibrary(@PathVariable int id) {
+		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.getLibrary(id)), HttpStatus.OK);
 	}
 
 	@GetMapping("/public")
-	public ResponseEntity<List<LibraryJSON>> getPublicLibraries() {
-		return new ResponseEntity<List<LibraryJSON>>(
-				btju.librariesToJSON(libraryService.getLibrariesByStatus(Status.PUBLIC)), HttpStatus.OK);
+	public ResponseEntity<List<LibraryDTO>> getPublicLibraries() {
+		List<Library> libraries = libraryService.getLibrariesByStatus(Status.PUBLIC);
+		return new ResponseEntity<List<LibraryDTO>>(
+				libraries.stream().map(LibraryDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
 
 	@GetMapping("/pending")
-	public ResponseEntity<List<LibraryJSON>> getPendingLibraries() {
-		return new ResponseEntity<List<LibraryJSON>>(
-				btju.librariesToJSON(libraryService.getLibrariesByStatus(Status.PENDING)), HttpStatus.OK);
+	public ResponseEntity<List<LibraryDTO>> getPendingLibraries() {
+		List<Library> libraries = libraryService.getLibrariesByStatus(Status.PENDING);
+		return new ResponseEntity<List<LibraryDTO>>(
+				libraries.stream().map(LibraryDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
 
 	@GetMapping("/byAccount/{accountId}")
-	public ResponseEntity<List<LibraryJSON>> getPublicLibraries(@PathVariable int accountId) {
-		return new ResponseEntity<List<LibraryJSON>>(
-				btju.librariesToJSON(libraryService.getLibrariesByAccount(accountId)), HttpStatus.OK);
+	public ResponseEntity<List<LibraryDTO>> getPublicLibraries(@PathVariable int accountId) {
+		List<Library> libraries = libraryService.getLibrariesByAccount(accountId);
+		return new ResponseEntity<List<LibraryDTO>>(
+				libraries.stream().map(LibraryDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
 
 	@GetMapping("/new/{libraryName}/accountId/{accountId}")
-	public ResponseEntity<LibraryJSON> addLibrary(@PathVariable String libraryName, @PathVariable int accountId) {
-		Account account = accountService.getAccount(accountId);
-		if (account == null) {
-			return null;
-		}
-		Library library = new Library(libraryName, Status.PRIVATE, account, new HashSet<Question>());
-		return new ResponseEntity<LibraryJSON>(btju.libraryToJSON(libraryService.addLibrary(library)), HttpStatus.OK);
+	public ResponseEntity<LibraryDTO> addLibrary(@PathVariable String libraryName, @PathVariable int accountId) {
+		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.addLibrary(libraryName, accountId)), HttpStatus.OK);
 	}
 
 	@GetMapping("/delete/{id}")
 	public ResponseEntity<Boolean> deleteLibrary(@PathVariable int id) {
 		return new ResponseEntity<Boolean>(libraryService.deleteLibrary(id), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/id/{id}/status/{status}")
-	public ResponseEntity<Boolean> updateLibrary(@PathVariable int id, @PathVariable Status status){
-		return new ResponseEntity<Boolean>(libraryService.updateLibrary(id, status), HttpStatus.OK);
+	public ResponseEntity<LibraryDTO> updateLibrary(@PathVariable int id, @PathVariable Status status) {
+		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.updateLibrary(id, status)), HttpStatus.OK);
 	}
 
 }

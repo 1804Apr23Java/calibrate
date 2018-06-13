@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Library;
-import com.revature.beans.Question;
 import com.revature.beans.Status;
 import com.revature.repository.LibraryRepository;
 
@@ -16,11 +15,15 @@ public class LibraryService {
 	@Autowired
 	private LibraryRepository libraryRepository;
 
-	
+	public Library addLibrary(String name, int accountId) {
+		//Library library = new Library(name, )
+		return libraryRepository.addLibrary(name, accountId);
+	}
+
 	public Library addLibrary(Library library) {
 		return libraryRepository.persistLibrary(library);
 	}
-	
+
 	public Library getLibrary(int id) {
 		return libraryRepository.getLibrary(id);
 	}
@@ -28,16 +31,16 @@ public class LibraryService {
 	public List<Library> getLibrariesByStatus(Status status) {
 		return libraryRepository.getLibrariesByStatus(status);
 	}
-	
+
 	public List<Library> getLibrariesByAccount(int accountId) {
 		return libraryRepository.getLibrariesByAccount(accountId);
 	}
-	
+
 	public boolean deleteLibrary(int id) {
 		return libraryRepository.deleteLibrary(id);
 	}
-	
-	public boolean updateLibrary(int id, Status status) {
+
+	public Library updateLibrary(int id, Status status) {
 		return libraryRepository.updateLibrary(id, status);
 	}
 }

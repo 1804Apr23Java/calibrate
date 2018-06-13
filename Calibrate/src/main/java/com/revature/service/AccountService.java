@@ -13,23 +13,27 @@ public class AccountService {
 	private AccountRepository accountRepository;
 
 	public Account getAccount(int id) {
-		return accountRepository.getAccount(id);
+		Account account = accountRepository.getAccount(id);
+		account.setPassword("");
+		return account;
 	}
 
 	public Account addAccount(Account account) {
-		return accountRepository.persistAccount(account);
+		account =  accountRepository.persistAccount(account);
+		account.setPassword("");
+		return account;
 	}
 
 	
 	public Account updateUsername(int id, String username) {
-		return accountRepository.updateUsername(id, username);
+		Account account =  accountRepository.updateUsername(id, username);
+		account.setPassword("");
+		return account;
 	}
 
 	public Account login(String email, String password) {
 		Account account = accountRepository.login(email, password);
-		if (account != null) {
-			account.setPassword("");
-		}
+		account.setPassword("");
 		return account;
 	}
 

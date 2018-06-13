@@ -1,6 +1,5 @@
 package com.revature.repository;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -10,12 +9,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Account;
+import com.revature.exception.AccountNotFoundException;
+import com.revature.exception.InvalidLoginException;
 
 @Repository
 @Transactional
 @EnableTransactionManagement
 public class AccountRepository {
-		
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -28,27 +29,24 @@ public class AccountRepository {
 	public Account getAccount(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
-		return account;
-	}
-
-	
-	public Account updateUsername(int id, String username) {
-		Session s = sessionFactory.getCurrentSession();
-		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("id", id)).uniqueResult();
 		if (account == null)
-			return null;
-		account.setUsername(username);
-		s.persist(account);
+			throw new AccountNotFoundException("404: Account with given id not found.");
 		return account;
 	}
 
+	public Account updateUsername(int id, String username) {
+		Account account = getAccount(id);
+		if (account == null)
+			throw new AccountNotFoundException("404: Account to be updated not found.");
+		account.setUsername(username);
+		return account;
+	}
 
 	public Account login(String email, String password) {
 		Session s = sessionFactory.getCurrentSession();
 		Account account = (Account) s.createCriteria(Account.class).add(Restrictions.eq("email", email)).uniqueResult();
-		if (account == null || !account.getPassword().equals(password)) {
-			return null;
-		}
+		if (account == null || !account.getPassword().equals(password))
+			throw new InvalidLoginException("404: Credentials invalid.");
 		return account;
 	}
 

@@ -1,6 +1,7 @@
 package com.revature.beans;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -47,6 +48,13 @@ public class Attempt {
 		this.answers = answers;
 	}
 
+	public Attempt(Account account, Quiz quiz) {
+		super();
+		this.account = account;
+		this.quiz = quiz;
+		this.answers = new HashSet<Answer>();
+	}
+	
 	public Attempt() {
 		super();
 	}

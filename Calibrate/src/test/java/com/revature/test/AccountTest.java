@@ -1,9 +1,12 @@
 package com.revature.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.beans.Account;
+import com.revature.exception.AccountNotFoundException;
+import com.revature.exception.InvalidLoginException;
 import com.revature.service.AccountService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,6 +24,9 @@ public class AccountTest {
 
 	@Autowired
 	private AccountService as;
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
 	public void testAddAccount() {
@@ -32,7 +40,7 @@ public class AccountTest {
 		as.addAccount(new Account("user1003", "pass1003", "dupEmail", false));
 	}
 
-	@Test
+	@Test(expected=AccountNotFoundException.class)
 	public void testGetFakeAccount() {
 		assertNull(as.getAccount(-1));
 	}
@@ -44,17 +52,16 @@ public class AccountTest {
 		assertNotNull(realAccount);
 	}
 
-	@Test
+	@Test(expected=AccountNotFoundException.class)
 	public void testUpdateFakeUsername() {
-		Account fakeAccount = as.updateUsername(-1, "collinmeaney399@gmail.com");
-		assertNull(fakeAccount);
+		as.updateUsername(-1, "collinmeaney399@gmail.com");
 	}
 
 	@Test
 	public void testUpdateRealUsername() {
 		Account account = as.addAccount(new Account("user1005", "pass1005", "email1005", false));
-		Account realAccount = as.updateUsername(account.getId(), "collinmeaney399@gmail.com");
-		assertNotNull(realAccount);
+		account = as.updateUsername(account.getId(), "collinmeaney399");
+		assertEquals("collinmeaney399", as.getAccount(account.getId()).getUsername());
 	}
 
 	// @Test
@@ -73,16 +80,14 @@ public class AccountTest {
 		assertNotNull(loginAccount);
 	}
 
-	@Test
+	@Test(expected=InvalidLoginException.class)
 	public void testLoginWithFakeLogin() {
-		Account fakeAccount = as.login("email1007", "pass1007");
-		assertNull(fakeAccount);
+		as.login("email1007", "pass1007");
 	}
 
-	@Test
+	@Test(expected=InvalidLoginException.class)
 	public void testLoginWithWrongPassword() {
 		as.addAccount(new Account("user1008", "pass1008", "email1008", false));
-		Account fakeAccount = as.login("email1008", "pass1009");
-		assertNull(fakeAccount);
+		as.login("email1008", "pass1009");
 	}
 }

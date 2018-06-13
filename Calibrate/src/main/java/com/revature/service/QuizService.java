@@ -30,7 +30,6 @@ public class QuizService {
 	}
 
 	public Quiz generateQuiz(String name, List<Integer> libraryIds, int length) {
-
 		List<Question> candidateQuestions = questionRepository.getQuestionsByLibraries(libraryIds);
 		if (candidateQuestions.size() < length)
 			return null;
@@ -39,7 +38,6 @@ public class QuizService {
 	}
 
 	public Quiz generateQuizByHardest(String name, List<Integer> libraryIds, int length) {
-
 		List<Question> candidateQuestions = questionRepository.getQuestionsByLibraries(libraryIds);
 		if (candidateQuestions.size() < length)
 			return null;

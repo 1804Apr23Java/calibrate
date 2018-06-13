@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.Quiz;
+import com.revature.exception.QuizNotFoundException;
 
 @Repository
 @Transactional
@@ -21,6 +22,8 @@ public class QuizRepository {
 	public Quiz getQuiz(int id) {
 		Session s = sessionFactory.getCurrentSession();
 		Quiz quiz = (Quiz) s.createCriteria(Quiz.class).add(Restrictions.eq("id", id)).uniqueResult();
+		if (quiz == null)
+			throw new QuizNotFoundException("404: Quiz with given id not found");
 		return quiz;
 	}
 	

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Quiz;
-import com.revature.json.QuizJSON;
+import com.revature.dto.QuizDTO;
 import com.revature.service.QuizService;
 import com.revature.util.BeanToJSONUtil;
 
@@ -28,19 +28,19 @@ public class QuizController {
 	private BeanToJSONUtil btju;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<QuizJSON> getQuiz(@PathVariable int id) {
+	public ResponseEntity<QuizDTO> getQuiz(@PathVariable int id) {
 		Quiz q = quizService.getQuiz(id);
-		return new ResponseEntity<QuizJSON>(btju.quizToJSON(q), HttpStatus.OK);
+		return new ResponseEntity<QuizDTO>(btju.quizToJSON(q), HttpStatus.OK);
 	}
 	
 	@GetMapping("/generate/{name}/byRandom/withLibraries/{libraryIds}/numQuestions/{length}")
-	public ResponseEntity<QuizJSON> generateQuiz(@PathVariable String name, @PathVariable List<Integer> libraryIds, @PathVariable int length) {
-		return new ResponseEntity<QuizJSON>(btju.quizToJSON(quizService.generateQuiz(name, libraryIds, length)), HttpStatus.OK);
+	public ResponseEntity<QuizDTO> generateQuiz(@PathVariable String name, @PathVariable List<Integer> libraryIds, @PathVariable int length) {
+		return new ResponseEntity<QuizDTO>(btju.quizToJSON(quizService.generateQuiz(name, libraryIds, length)), HttpStatus.OK);
 	}
 
 	@GetMapping("/generate/{name}/byHardest/withLibraries/{libraryIds}/numQuestions/{length}")
-	public ResponseEntity<QuizJSON> generateQuizByHardest(@PathVariable String name, @PathVariable List<Integer> libraryIds, @PathVariable int length) {
-		return new ResponseEntity<QuizJSON>(btju.quizToJSON(quizService.generateQuizByHardest(name, libraryIds, length)), HttpStatus.OK);
+	public ResponseEntity<QuizDTO> generateQuizByHardest(@PathVariable String name, @PathVariable List<Integer> libraryIds, @PathVariable int length) {
+		return new ResponseEntity<QuizDTO>(btju.quizToJSON(quizService.generateQuizByHardest(name, libraryIds, length)), HttpStatus.OK);
 	}
 	
 }

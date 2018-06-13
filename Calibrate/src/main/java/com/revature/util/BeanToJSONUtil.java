@@ -7,45 +7,43 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.revature.beans.Account;
 import com.revature.beans.Answer;
 import com.revature.beans.Attempt;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.beans.Quiz;
-import com.revature.json.AccountJSON;
-import com.revature.json.AnswerJSON;
-import com.revature.json.AttemptJSON;
-import com.revature.json.LibraryJSON;
-import com.revature.json.QuestionJSON;
-import com.revature.json.QuizJSON;
+import com.revature.dto.AnswerDTO;
+import com.revature.dto.AttemptDTO;
+import com.revature.dto.LibraryDTO;
+import com.revature.dto.QuestionDTO;
+import com.revature.dto.QuizDTO;
 
 @Component
 public class BeanToJSONUtil {
 
-	public AnswerJSON answerToJSON(Answer answer) {
+	public AnswerDTO answerToJSON(Answer answer) {
 		if (answer == null)
 			return null;
-		return new AnswerJSON(answer.getId(), answer.getIsCorrect(), answer.getValue(), answer.getQuestion().getId(),
+		return new AnswerDTO(answer.getId(), answer.getIsCorrect(), answer.getValue(), answer.getQuestion().getId(),
 				false);
 	}
 
-	public List<AnswerJSON> answersToJSON(List<Answer> answers) {
+	public List<AnswerDTO> answersToJSON(List<Answer> answers) {
 		if (answers == null)
 			return null;
 		return answers.stream().map(this::answerToJSON).collect(Collectors.toList());
 	}
 
-	public AccountJSON accountToJSON(Account account) {
+	/*public AccountDTO accountToJSON(Account account) {
 		if (account == null)
 			return null;
-		return new AccountJSON(account.getId(), account.getEmail(), account.getIsAdmin(), account.getPassword(),
+		return new AccountDTO(account.getId(), account.getEmail(), account.getIsAdmin(), account.getPassword(),
 				account.getUsername());
-	}
+	}*/
 
-	public List<AccountJSON> accountsToJSON(List<Account> accounts) {
+	/*public List<AccountDTO> accountsToJSON(List<Account> accounts) {
 		return accounts.stream().map(this::accountToJSON).collect(Collectors.toList());
-	}
+	}*/
 
 	/*
 	 * public QuizJSON attemptToJSON(Attempt attempt) {
@@ -72,7 +70,7 @@ public class BeanToJSONUtil {
 			int numCorrect)
 	 */
 
-	public AttemptJSON attemptToJSON(Attempt attempt) {
+	public AttemptDTO attemptToJSON(Attempt attempt) {
 		if (attempt == null)
 			return null;
 		int quizId = attempt.getQuiz().getId();
@@ -90,56 +88,58 @@ public class BeanToJSONUtil {
 				numCorrect++;
 		}
 
-		return new AttemptJSON(quizId, name, questionsToJSON(questions), createdDate, numberOfQuestions, numCorrect);
+		return new AttemptDTO(quizId, name, questionsToJSON(questions), createdDate, numberOfQuestions, numCorrect);
 	}
 
 	/*
 	 * public List<QuizJSON> attemptsToJSON(List<Attempt> attempts) { return
 	 * attempts.stream().map(this::attemptToJSON).collect(Collectors.toList()); }
 	 */
-	public List<AttemptJSON> attemptsToJSON(List<Attempt> attempts) {
+	public List<AttemptDTO> attemptsToJSON(List<Attempt> attempts) {
 		return attempts.stream().map(this::attemptToJSON).collect(Collectors.toList());
 	}
-	public QuizJSON attemptToJSONNoQuestions(Attempt attempt) {
-		return new QuizJSON(attempt.getQuiz().getId(), attempt.getQuiz().getName(), null);
+	public QuizDTO attemptToJSONNoQuestions(Attempt attempt) {
+		return new QuizDTO(attempt.getQuiz().getId(), attempt.getQuiz().getName(), null);
 	}
 
-	public List<QuizJSON> attemptsToJSONNoQuestions(List<Attempt> attempts) {
+	public List<QuizDTO> attemptsToJSONNoQuestions(List<Attempt> attempts) {
 		return attempts.stream().map(this::attemptToJSONNoQuestions).collect(Collectors.toList());
 	}
 
-	public QuestionJSON questionToJSON(Question question) {
+	public QuestionDTO questionToJSON(Question question) {
 		if (question == null)
 			return null;
-		List<AnswerJSON> answers = answersToJSON(new ArrayList<Answer>(question.getAnswers()));
-		return new QuestionJSON(question.getId(), question.getDifficulty(), question.getValue(),
+		List<AnswerDTO> answers = answersToJSON(new ArrayList<Answer>(question.getAnswers()));
+		return new QuestionDTO(question.getId(), question.getDifficulty(), question.getValue(),
 				question.getLibrary().getId(), answers);
 	}
 
-	public List<QuestionJSON> questionsToJSON(List<Question> questions) {
+	public List<QuestionDTO> questionsToJSON(List<Question> questions) {
 		return questions.stream().map(this::questionToJSON).collect(Collectors.toList());
 	}
 
-	public LibraryJSON libraryToJSON(Library library) {
+	public LibraryDTO libraryToJSON(Library library) {
 		if (library == null)
 			return null;
-		List<QuestionJSON> questions = questionsToJSON(new ArrayList<Question>(library.getQuestions()));
-		return new LibraryJSON(library.getId(), library.getName(), library.getStatus(), library.getAccount().getId(),
+		List<QuestionDTO> questions = questionsToJSON(new ArrayList<Question>(library.getQuestions()));
+		return new LibraryDTO(library.getId(), library.getName(), library.getStatus(), library.getAccount().getId(),
 				questions);
 	}
 
-	public List<LibraryJSON> librariesToJSON(List<Library> libraries) {
+	/*
+	public List<LibraryDTO> librariesToJSON(List<Library> libraries) {
 		return libraries.stream().map(this::libraryToJSON).collect(Collectors.toList());
 	}
+	*/
 
-	public QuizJSON quizToJSON(Quiz quiz) {
+	public QuizDTO quizToJSON(Quiz quiz) {
 		if (quiz == null)
 			return null;
 		List<Question> questions = new ArrayList<Question>(quiz.getQuestions());
-		return new QuizJSON(quiz.getId(), quiz.getName(), questionsToJSON(questions));
+		return new QuizDTO(quiz.getId(), quiz.getName(), questionsToJSON(questions));
 	}
 
-	public List<QuizJSON> quizzesToJSON(List<Quiz> quizzes) {
+	public List<QuizDTO> quizzesToJSON(List<Quiz> quizzes) {
 		return quizzes.stream().map(this::quizToJSON).collect(Collectors.toList());
 	}
 

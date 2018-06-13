@@ -1,7 +1,6 @@
 package com.revature.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -16,6 +15,7 @@ import com.revature.beans.Account;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.beans.Status;
+import com.revature.exception.LibraryNotFoundException;
 import com.revature.service.AccountService;
 import com.revature.service.LibraryService;
 import com.revature.service.QuestionService;
@@ -32,6 +32,7 @@ public class LibraryTest {
 	
 	@Autowired
 	QuestionService qs;
+
 	
 	@Test
 	public void testAddLibrary() {
@@ -47,9 +48,9 @@ public class LibraryTest {
 		assertNotNull(ls.getLibrary(library.getId()));
 	}
 	
-	@Test
+	@Test(expected=LibraryNotFoundException.class)
 	public void testGetFakeLibrary() {
-		assertNull(ls.getLibrary(5));
+		ls.getLibrary(5);
 	}
 	
 	@Test
@@ -60,7 +61,7 @@ public class LibraryTest {
 	@Test
 	public void testGetRealLibrariesByAccount() {
 		Account account = acs.addAccount(new Account("user7004","pass7004","email7004", false));
-		Library library = ls.addLibrary(new Library("library7004", Status.PRIVATE, account));
+		ls.addLibrary(new Library("library7004", Status.PRIVATE, account));
 		assertTrue(ls.getLibrariesByStatus(Status.PRIVATE).size() > 0);
 	}
 	
@@ -73,25 +74,26 @@ public class LibraryTest {
 	public void testDeleteRealLibrary() {
 		Account account = acs.addAccount(new Account("user7005","pass7005","email7005", false));
 		Library library = ls.addLibrary(new Library("library7005", Status.PRIVATE, account));
-		Question question = qs.addQuestion(new Question("question7005", 1, library));
+		Question question = qs.addQuestionToLibrary("question7005", 1, library.getId());
 		assertTrue(ls.deleteLibrary(library.getId()));
 		assertNull(qs.getQuestion(question.getId()).getLibrary());
 	}
 	
-	@Test
+	@Test(expected=LibraryNotFoundException.class)
 	public void testDeleteFakeLibrary() {
-		assertFalse(ls.deleteLibrary(9999));
+		ls.deleteLibrary(9999);
 	}
 	
 	@Test
 	public void testUpdateRealLibrary() {
 		Account account = acs.addAccount(new Account("user7006","pass7006","email7006", false));
 		Library library = ls.addLibrary(new Library("library7006", Status.PRIVATE, account));
-		assertTrue(ls.updateLibrary(library.getId(), Status.PUBLIC));
+		assertNotNull(ls.updateLibrary(library.getId(), Status.PUBLIC));
 	}
 	
-	@Test
+	@Test(expected=LibraryNotFoundException.class)
 	public void testUpdateFakeLibrary() {
-		assertFalse(ls.updateLibrary(9999, Status.PUBLIC));
+		ls.updateLibrary(9999, Status.PUBLIC);
 	}
+	
 }

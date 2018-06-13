@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.json.AnswerJSON;
+import com.revature.beans.Answer;
+import com.revature.dto.AnswerDTO;
 import com.revature.service.AnswerService;
 import com.revature.util.BeanToJSONUtil;
 
@@ -22,18 +24,16 @@ public class AnswerController {
 
 	@Autowired
 	private AnswerService answerService;
-	
-	@Autowired
-	private BeanToJSONUtil btju;
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<AnswerJSON> getAnswer(@PathVariable int id) {
-		return new ResponseEntity<AnswerJSON>(btju.answerToJSON(answerService.getAnswer(id)), HttpStatus.OK);
+	public ResponseEntity<AnswerDTO> getAnswer(@PathVariable int id) {
+		return new ResponseEntity<AnswerDTO>(new AnswerDTO(answerService.getAnswer(id)), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/byQuestion/{id}")
-	public ResponseEntity<List<AnswerJSON>> getAnswerByQuestion(@PathVariable int id){
-		return new ResponseEntity<List<AnswerJSON>>(btju.answersToJSON(answerService.getAnswersByQuestion(id)), HttpStatus.OK);
+	public ResponseEntity<List<AnswerDTO>> getAnswersByQuestion(@PathVariable int id) {
+		List<AnswerDTO> answers = answerService.getAnswersByQuestion(id).stream().map(AnswerDTO::new)
+				.collect(Collectors.toList());
+		return new ResponseEntity<List<AnswerDTO>>(answers, HttpStatus.OK);
 	}
-	
 }
