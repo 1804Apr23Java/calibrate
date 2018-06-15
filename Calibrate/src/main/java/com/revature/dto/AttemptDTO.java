@@ -28,23 +28,6 @@ public class AttemptDTO {
 		this.numberOfQuestions = numberOfQuestions;
 		this.numCorrect = numCorrect;
 	}
-	/*
-	 * if (attempt == null) return null; int quizId = attempt.getQuiz().getId();
-	 * String name = attempt.getQuiz().getName(); Date createdDate =
-	 * attempt.getCreatedDate(); List<Question> questions = new
-	 * ArrayList<Question>(attempt.getQuiz().getQuestions()); int numberOfQuestions
-	 * = questions.size(); int numCorrect = 0; for (Question question : questions) {
-	 * List<Integer> correctAnswers = question.getAnswers().stream().filter(answer
-	 * -> answer.getIsCorrect()).map(answer -> answer.getId())
-	 * .collect(Collectors.toList()); List<Integer> chosenAnswers =
-	 * attempt.getAnswers().stream() .filter(answer -> answer.getQuestion().getId()
-	 * == (question.getId())).map(answer ->
-	 * answer.getId()).collect(Collectors.toList()); if
-	 * (correctAnswers.equals(chosenAnswers)) numCorrect++; }
-	 * 
-	 * return new AttemptDTO(quizId, name, questionsToJSON(questions), createdDate,
-	 * numberOfQuestions, numCorrect);
-	 */
 
 	public AttemptDTO(Attempt attempt) {
 		super();
@@ -55,7 +38,6 @@ public class AttemptDTO {
 		this.createdDate = attempt.getCreatedDate();
 		this.numberOfQuestions = this.questions.size();
 		this.numCorrect = 0;
-		List<AnswerDTO> answers = attempt.getAnswers().stream().map(AnswerDTO::new).collect(Collectors.toList());
 		for (QuestionDTO question : this.questions) {
 			List<Integer> correctAnswers = question.getAnswers().stream().filter(answer -> answer.getIsCorrect())
 					.map(answer -> answer.getAnswerId()).collect(Collectors.toList());
@@ -66,12 +48,11 @@ public class AttemptDTO {
 			Collections.sort(chosenAnswers);
 			if (correctAnswers.equals(chosenAnswers))
 				this.numCorrect++;
-			//NOT WORKING, NEED TO FIX LATER
-			for (AnswerDTO answer : question.getAnswers())
-				if (answers.contains(answer)) {
-					System.out.println("something happened here");
+			for (AnswerDTO answer : question.getAnswers()) {
+				if (chosenAnswers.contains(answer.getAnswerId())) {
 					answer.setIsSelected(true);
 				}
+			}
 		}
 	}
 

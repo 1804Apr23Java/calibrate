@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.beans.Answer;
 import com.revature.dto.AnswerDTO;
 import com.revature.service.AnswerService;
-import com.revature.util.BeanToJSONUtil;
 
 @CrossOrigin
 @RestController

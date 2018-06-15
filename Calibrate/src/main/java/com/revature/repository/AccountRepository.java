@@ -41,6 +41,14 @@ public class AccountRepository {
 		account.setUsername(username);
 		return account;
 	}
+	
+	public Account updateEmail(int id, String email) {
+		Account account = getAccount(id);
+		if (account == null)
+			throw new AccountNotFoundException("404: Account to be updated not found.");
+		account.setEmail(email);
+		return account;
+	}
 
 	public Account login(String email, String password) {
 		Session s = sessionFactory.getCurrentSession();
