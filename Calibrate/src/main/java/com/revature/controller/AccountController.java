@@ -48,10 +48,10 @@ public class AccountController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<AccountDTO> add(@RequestParam String email, @RequestParam String password,
-			@RequestParam String username) {
+	public ResponseEntity<AccountDTO> add(@RequestBody AccountDTO account) {
 		return new ResponseEntity<AccountDTO>(
-				new AccountDTO(accountService.addAccount(new Account(username, password, email, false))),
+				new AccountDTO(accountService.addAccount(
+						new Account(account.getUsername(), account.getPassword(), account.getEmail(), false))),
 				HttpStatus.OK);
 	}
 
