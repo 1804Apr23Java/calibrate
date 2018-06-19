@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.Attempt;
 import com.revature.dto.AttemptDTO;
 import com.revature.service.AttemptService;
-import com.revature.util.BeanToJSONUtil;
 
 @CrossOrigin
 @RestController
@@ -24,9 +23,6 @@ public class AttemptController {
 
 	@Autowired
 	private AttemptService attemptService;
-
-	@Autowired
-	private BeanToJSONUtil btju;
 
 	@GetMapping("/{id}")
 	public ResponseEntity<AttemptDTO> getAttempt(@PathVariable int id) {
@@ -43,8 +39,8 @@ public class AttemptController {
 	@GetMapping("/submit/byAccount/{accountId}/forQuiz/{quizId}/withAnswers/{answerIds}")
 	public ResponseEntity<AttemptDTO> submitAttempt(@PathVariable int accountId, @PathVariable int quizId,
 			@PathVariable List<Integer> answerIds) {
-		return new ResponseEntity<AttemptDTO>(
-				btju.attemptToJSON(attemptService.addAttempt(accountId, quizId, answerIds)), HttpStatus.OK);
+		return new ResponseEntity<AttemptDTO>(new AttemptDTO(attemptService.addAttempt(accountId, quizId, answerIds)),
+				HttpStatus.OK);
 	}
 
 }

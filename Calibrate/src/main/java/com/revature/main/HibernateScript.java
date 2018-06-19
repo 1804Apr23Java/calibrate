@@ -1,15 +1,5 @@
 package com.revature.main;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import com.revature.beans.Account;
-import com.revature.beans.Answer;
-import com.revature.beans.Library;
-import com.revature.beans.Question;
-import com.revature.beans.Status;
-import com.revature.util.HibernateUtil;
-
 public class HibernateScript {
 
 	public static void main(String[] args) {
@@ -17,6 +7,8 @@ public class HibernateScript {
 	}
 
 	public static void init() {
+		
+		/*
 
 		Session s = HibernateUtil.getSession();
 		System.out.println(s.isOpen());
@@ -1402,6 +1394,8 @@ public class HibernateScript {
 		s.close();
 		System.out.println(s.isOpen());
 		HibernateUtil.closeSessionFactory();
+		
+		*/
 
 	}
 
