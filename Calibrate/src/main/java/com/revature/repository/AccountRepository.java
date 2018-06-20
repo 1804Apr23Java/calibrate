@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -32,6 +34,13 @@ public class AccountRepository {
 		if (account == null)
 			throw new AccountNotFoundException("404: Account with given id not found.");
 		return account;
+	}
+	
+	public List<Account> getAllAccounts() {
+		Session s = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Account> accounts = (List<Account>) s.createQuery("from Account").list();
+		return accounts;
 	}
 
 	public Account updateUsername(int id, String username) {

@@ -1,5 +1,8 @@
 package com.revature.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +31,12 @@ public class AccountController {
 	@GetMapping("/{id}")
 	public ResponseEntity<AccountDTO> getAccount(@PathVariable int id) {
 		return new ResponseEntity<AccountDTO>(new AccountDTO(accountService.getAccount(id)), HttpStatus.OK);
+	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<AccountDTO>> getAllAccounts() {
+		return new ResponseEntity<List<AccountDTO>>(
+				accountService.getAllAccounts().stream().map(AccountDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
 
 	// change this mapping to a postmapping

@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class AccountService {
 		return account;
 	}
 
+	public List<Account> getAllAccounts() {
+		return accountRepository.getAllAccounts();
+	}
 	
 	public Account updateUsername(int id, String username) {
 		Account account =  accountRepository.updateUsername(id, username);
