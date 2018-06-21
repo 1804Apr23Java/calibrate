@@ -30,14 +30,8 @@ public class AccountService {
 		return accountRepository.getAllAccounts();
 	}
 	
-	public Account updateUsername(int id, String username) {
-		Account account =  accountRepository.updateUsername(id, username);
-		account.setPassword("");
-		return account;
-	}
-	
 	public Account updateEmail(int id, String email) {
-		Account account =  accountRepository.updateUsername(id, email);
+		Account account =  accountRepository.updateEmail(id, email);
 		account.setPassword("");
 		return account;
 	}

@@ -21,9 +21,9 @@
 	<!-- data source -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="${TEAMJIT_URL}"/>
-		<property name="username" value="${TEAMJIT_USERNAME}"/>
-		<property name="password" value="${TEAMJIT_PASSWORD}"/>
+		<property name="url" value="${CALIBRATE_URL}"/>
+		<property name="username" value="${CALIBRATE_USERNAME}"/>
+		<property name="password" value="${CALIBRATE_PASSWORD}"/>
 	</bean>
 	
 	<!-- session factory  -->

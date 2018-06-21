@@ -6,28 +6,35 @@ public class AccountDTO {
 
 	private int accountId;
 	private String email;
-	private boolean isAdmin;
 	private String password;
-	private String username;
+	private String firstName;
+	private String lastName;
+	private boolean isAdmin;
+	private boolean isActive;
 	
-	public AccountDTO(int accountId, String email, boolean isAdmin, String password, String username) {
+	public AccountDTO(int accountId, String email, String password, String firstName, String lastName, boolean isAdmin,
+			boolean isActive) {
 		super();
 		this.accountId = accountId;
 		this.email = email;
-		this.isAdmin = isAdmin;
 		this.password = password;
-		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.isAdmin = isAdmin;
+		this.isActive = isActive;
 	}
 	
 	public AccountDTO(Account account) {
 		super();
 		this.accountId = account.getId();
 		this.email = account.getEmail();
-		this.isAdmin = account.getIsAdmin();
 		this.password = account.getPassword();
-		this.username = account.getUsername();
+		this.firstName = account.getFirstName();
+		this.lastName = account.getLastName();
+		this.isAdmin = account.getIsAdmin();
+		this.isActive = account.getIsActive();
 	}
-	
+
 	public AccountDTO() {
 		super();
 	}
@@ -48,14 +55,6 @@ public class AccountDTO {
 		this.email = email;
 	}
 
-	public boolean getIsAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -63,20 +62,37 @@ public class AccountDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getUsername() {
-		return username;
+	
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	@Override
-	public String toString() {
-		return "AccountJSON [accountId=" + accountId + ", email=" + email + ", isAdmin=" + isAdmin + ", password="
-				+ password + ", username=" + username + "]";
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 	
-	
+	public boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 }

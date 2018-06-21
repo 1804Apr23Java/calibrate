@@ -3,6 +3,7 @@ package com.revature.repository;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.beans.Answer;
 import com.revature.beans.Library;
 import com.revature.beans.Question;
 import com.revature.exception.QuestionNotFoundException;
@@ -30,10 +32,13 @@ public class QuestionRepository {
 		return question;
 	}
 	
-	public Question addQuestion(String value, int difficulty, int libraryId) {
+	public Question addQuestion(String value, int difficulty, int libraryId, Set<Answer> answers) {
 		Session s = sessionFactory.getCurrentSession();
 		Library library = (Library) s.load(Library.class, libraryId);
-		return persistQuestion(new Question(value, difficulty, library));
+		Question question = new Question(value, difficulty, library, answers);
+		for (Answer answer: answers)
+			answer.setQuestion(question);
+		return persistQuestion(question);
 	}
 	
 	public Question getQuestion(int id) {

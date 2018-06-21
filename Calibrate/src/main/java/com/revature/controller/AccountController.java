@@ -60,7 +60,7 @@ public class AccountController {
 	public ResponseEntity<AccountDTO> add(@RequestBody AccountDTO account) {
 		return new ResponseEntity<AccountDTO>(
 				new AccountDTO(accountService.addAccount(
-						new Account(account.getUsername(), account.getPassword(), account.getEmail(), false))),
+						new Account(account.getEmail(), account.getPassword(), account.getFirstName(), account.getLastName()))),
 				HttpStatus.OK);
 	}
 

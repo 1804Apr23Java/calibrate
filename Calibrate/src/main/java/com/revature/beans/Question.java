@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "QUESTION")
 public class Question {
@@ -97,7 +95,6 @@ public class Question {
 		this.difficulty = difficulty;
 	}
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "LIBRARY_ID", nullable = true, foreignKey = @ForeignKey(name = "FK_QUESTION_LIBRARY"))
 	public Library getLibrary() {

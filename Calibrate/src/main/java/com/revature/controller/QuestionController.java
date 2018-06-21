@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,12 +38,10 @@ public class QuestionController {
 				questions.stream().map(QuestionDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
 
-	@GetMapping("/add/value/{value}/difficulty/{difficulty}/libraryId/{libraryId}")
-	public ResponseEntity<QuestionDTO> addQuestion(@PathVariable String value, @PathVariable int difficulty,
-			@PathVariable int libraryId) {
-		value = value.replace("|", " ");
-		value = value.replace("*", "?");
-		return new ResponseEntity<QuestionDTO>(
-				new QuestionDTO(questionService.addQuestionToLibrary(value, difficulty, libraryId)), HttpStatus.OK);
+	@PostMapping("/add")
+	public ResponseEntity<QuestionDTO> addQuestion(@RequestBody QuestionDTO question) {
+		return new ResponseEntity<QuestionDTO>(new QuestionDTO(questionService.addQuestionToLibrary(question.getValue(),
+				question.getDifficulty(), question.getLibraryId(), question.getAnswers())),
+				HttpStatus.OK);
 	}
 }

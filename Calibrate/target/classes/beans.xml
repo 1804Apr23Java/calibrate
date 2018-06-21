@@ -18,8 +18,7 @@
 
 	<!-- enables env variable placeholders -->
 	<context:property-placeholder />
-
-
+	
 	<context:annotation-config />
 
 	<bean name="handlerMapping"
@@ -30,9 +29,9 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="${TEAMJIT_URL}" />
-		<property name="username" value="${TEAMJIT_USERNAME}" />
-		<property name="password" value="${TEAMJIT_PASSWORD}" />
+		<property name="url" value="${CALIBRATE_URL}" />
+		<property name="username" value="${CALIBRATE_USERNAME}" />
+		<property name="password" value="${CALIBRATE_PASSWORD}" />
 	</bean>
 
 	<!-- session factory -->
@@ -45,7 +44,7 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>

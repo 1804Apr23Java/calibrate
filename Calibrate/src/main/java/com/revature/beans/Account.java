@@ -13,32 +13,56 @@ import javax.persistence.Table;
 public class Account {
 
 	private int id;
-
-	private String username;
-
-	private String password;
-
 	private String email;
-
+	private String password;
+	private String firstName;
+	private String lastName;
 	private boolean isAdmin;
+	private boolean isActive;
 	
-	public Account(int id, String username, String password, String email, boolean isAdmin) {
+	public Account(int id, String email, String password, String firstName, String lastName, boolean isAdmin,
+			boolean isActive) {
 		super();
 		this.id = id;
-		this.username = username;
-		this.password = password;
 		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.isAdmin = isAdmin;
+		this.isActive = isActive;
 	}
-
-	public Account(String username, String password, String email, boolean isAdmin) {
+	
+	public Account(String email, String password, String firstName, String lastName, boolean isAdmin,
+			boolean isActive) {
 		super();
-		this.username = username;
-		this.password = password;
 		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.isAdmin = isAdmin;
+		this.isActive = isActive;
 	}
 
+	public Account(String email, String password, String firstName, String lastName, boolean isAdmin) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.isAdmin = isAdmin;
+		this.isActive = true;
+	}
+	
+	public Account(String email, String password, String firstName, String lastName) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.isAdmin = false;
+		this.isActive = true;
+	}
+	
 	public Account() {
 		super();
 	}
@@ -50,28 +74,9 @@ public class Account {
 	public int getId() {
 		return id;
 	}
-
 	
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Column(name = "USERNAME", nullable = false)
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	@Column(name = "PASSWORD", nullable = false)
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Column(name = "EMAIL", nullable = false, unique = true)
@@ -83,6 +88,33 @@ public class Account {
 		this.email = email;
 	}
 
+	@Column(name = "PASSWORD", nullable = false)
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Column(name = "FIRSTNAME", nullable = false)
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	@Column(name = "LASTNAME", nullable = false)
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	@Column(name = "ISADMIN", nullable = false)
 	public boolean getIsAdmin() {
 		return isAdmin;
@@ -91,10 +123,14 @@ public class Account {
 	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	
+	@Column(name = "ISACTIVE", nullable = false)
+	public boolean getIsActive() {
+		return isActive;
+	}
 
-	@Override
-	public String toString() {
-		return "Account [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", isAdmin=" + isAdmin + "]";
-	}	
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 }
