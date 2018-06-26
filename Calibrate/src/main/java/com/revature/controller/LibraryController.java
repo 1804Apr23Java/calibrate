@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -65,5 +67,19 @@ public class LibraryController {
 	public ResponseEntity<LibraryDTO> updateLibrary(@PathVariable int id, @PathVariable Status status) {
 		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.updateLibrary(id, status)), HttpStatus.OK);
 	}
+	
+	@PatchMapping("/makePrivate")
+	public ResponseEntity<LibraryDTO> makeLibraryPrivate(@RequestBody Integer libraryId) {
+		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.updateLibrary(libraryId, Status.PRIVATE)), HttpStatus.OK);
+	}
 
+	@PatchMapping("/makePublic")
+	public ResponseEntity<LibraryDTO> makeLibraryPublic(@RequestBody Integer libraryId) {
+		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.updateLibrary(libraryId, Status.PUBLIC)), HttpStatus.OK);
+	}
+	
+	@PatchMapping("/makePending")
+	public ResponseEntity<LibraryDTO> makeLibraryPending(@RequestBody Integer libraryId) {
+		return new ResponseEntity<LibraryDTO>(new LibraryDTO(libraryService.updateLibrary(libraryId, Status.PENDING)), HttpStatus.OK);
+	}
 }

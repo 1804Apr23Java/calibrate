@@ -35,8 +35,8 @@ public class Driver {
 		
 		Account ac1 = accountS.addAccount(new Account("rt@gmail.com", "pass", "Robert", "Truong", true));
 		Account ac5 = accountS.addAccount(new Account("rt@yahoo.com", "pass", "Robert", "Truong"));
-		Account ac6 = accountS.addAccount(new Account("wh@yahoo.com", "pass", "Robert", "Truong"));
-		Account ac7 = accountS.addAccount(new Account("jlm@yahoo.com", "pass", "Robert", "Truong"));		
+		Account ac6 = accountS.addAccount(new Account("wh@yahoo.com", "pass", "William", "Helton"));
+		Account ac7 = accountS.addAccount(new Account("jlm@yahoo.com", "pass", "Jose Luis", "Munoz"));		
 
 		Library l1 = libraryS.addLibrary("Java", ac5.getId());
 		Library l2 = libraryS.addLibrary("HTML/CSS", ac5.getId());
@@ -46,51 +46,52 @@ public class Driver {
 		libraryS.updateLibrary(l3.getId(), Status.PENDING);
 		libraryS.updateLibrary(l4.getId(), Status.PUBLIC);
 
-		List<AnswerDTO> a1 = new ArrayList<AnswerDTO>();
-		a1.add(new AnswerDTO(0, true, "instanceof", 0, false));
-		a1.add(new AnswerDTO(0, false, "typeof", 0, false));
-		a1.add(new AnswerDTO(0, false, "is", 0, false));
-		a1.add(new AnswerDTO(0, false, "isinstanceof", 0, false));
-		Question q1 = questionS.addQuestionToLibrary(
+		List<AnswerDTO> a11 = new ArrayList<AnswerDTO>();
+		a11.add(new AnswerDTO(true, "instanceof"));
+		a11.add(new AnswerDTO(false, "typeof"));
+		a11.add(new AnswerDTO(false, "is"));
+		a11.add(new AnswerDTO(false, "isinstanceof"));
+		Question q11 = questionS.addQuestionToLibrary(
 				"Which operator returns true if the left operand is an object that is an instance of the right operand class?",
-				1, l1.getId(), a1);
+				1, l1.getId(), a11);
 
-		List<AnswerDTO> a2 = new ArrayList<AnswerDTO>();
-		a2.add(new AnswerDTO(0, true, "true", 0, false));
-		a2.add(new AnswerDTO(0, false, "false", 0, false));
-		Question q2 = questionS.addQuestionToLibrary(
+		List<AnswerDTO> a12 = new ArrayList<AnswerDTO>();
+		a12.add(new AnswerDTO(true, "true"));
+		a12.add(new AnswerDTO(false, "false"));
+		Question q12 = questionS.addQuestionToLibrary(
 				"True or False: If one class can be described as a \"specific example\" of another,"
 						+ " that relationship can be described through inheritance",
-				2, l1.getId(), a2);
+				2, l1.getId(), a12);
 
-		List<AnswerDTO> a3 = new ArrayList<AnswerDTO>();
-		a3.add(new AnswerDTO(0, false, "true", 0, false));
-		a3.add(new AnswerDTO(0, true, "false", 0, false));
-		Question q3 = questionS.addQuestionToLibrary(
+		List<AnswerDTO> a13 = new ArrayList<AnswerDTO>();
+		a13.add(new AnswerDTO(false, "true"));
+		a13.add(new AnswerDTO(true, "false"));
+		Question q13 = questionS.addQuestionToLibrary(
 				"True or False: Inheritance creates a \"has-a(n)\" relationship between two objects", 2, l1.getId(),
-				a3);
+				a13);
 
-		List<AnswerDTO> a4 = new ArrayList<AnswerDTO>();
-		a4.add(new AnswerDTO(0, true, "h1{ }", 0, false));
-		a4.add(new AnswerDTO(0, false, "h1.all{ }", 0, false));
-		a4.add(new AnswerDTO(0, false, "all.h1{ }", 0, false));
-		a4.add(new AnswerDTO(0, false, "Not possible", 0, false));
-		Question q4 = questionS.addQuestionToLibrary("Select all h1 elements in CSS.", 1, l2.getId(), a4);
+		
+		List<AnswerDTO> a21 = new ArrayList<AnswerDTO>();
+		a21.add(new AnswerDTO(true, "h1{ }"));
+		a21.add(new AnswerDTO(false, "h1.all{ }"));
+		a21.add(new AnswerDTO(false, "all.h1{ }"));
+		a21.add(new AnswerDTO(false, "Not possible"));
+		Question q21 = questionS.addQuestionToLibrary("Select all h1 elements in CSS.", 1, l2.getId(), a21);
 
-		List<AnswerDTO> a5 = new ArrayList<AnswerDTO>();
-		a5.add(new AnswerDTO(0, true, "style", 0, false));
-		a5.add(new AnswerDTO(0, false, "head", 0, false));
-		a5.add(new AnswerDTO(0, false, "form", 0, false));
-		a5.add(new AnswerDTO(0, false, "script", 0, false));
-		Question q5 = questionS.addQuestionToLibrary("Which tag is used to define CSS inside of an HTML document?", 1, l2.getId(), a5);
+		List<AnswerDTO> a22 = new ArrayList<AnswerDTO>();
+		a22.add(new AnswerDTO(true, "style"));
+		a22.add(new AnswerDTO(false, "head"));
+		a22.add(new AnswerDTO(false, "form"));
+		a22.add(new AnswerDTO(false, "script"));
+		Question q22 = questionS.addQuestionToLibrary("Which tag is used to define CSS inside of an HTML document?", 1, l2.getId(), a22);
 		
 		
-		List<AnswerDTO> a6 = new ArrayList<AnswerDTO>();
-		a6.add(new AnswerDTO(0, true, "hex color code", 0, false));
-		a6.add(new AnswerDTO(0, false, "byte code", 0, false));
-		a6.add(new AnswerDTO(0, false, "text code", 0, false));
-		a6.add(new AnswerDTO(0, false, "None of the others", 0, false));
-		Question q6 = questionS.addQuestionToLibrary("What does the hexadecimal number (#FA0AB1) represent in CSS?", 3, l2.getId(), a6);
+		List<AnswerDTO> a23 = new ArrayList<AnswerDTO>();
+		a23.add(new AnswerDTO(true, "hex color code"));
+		a23.add(new AnswerDTO(false, "byte code"));
+		a23.add(new AnswerDTO(false, "text code"));
+		a23.add(new AnswerDTO(false, "None of the others"));
+		Question q23 = questionS.addQuestionToLibrary("What does the hexadecimal number (#FA0AB1) represent in CSS?", 3, l2.getId(), a23);
 		
 		List<Integer> libraryIds = new ArrayList<Integer>();
 		libraryIds.add(l1.getId());

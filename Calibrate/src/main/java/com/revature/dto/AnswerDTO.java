@@ -19,6 +19,15 @@ public class AnswerDTO {
 		this.isSelected = isSelected;
 	}
 	
+	public AnswerDTO(boolean isCorrect, String value) {
+		super();
+		this.answerId = 0;
+		this.isCorrect = isCorrect;
+		this.value = value;
+		this.questionId = 0;
+		this.isSelected = false;
+	}
+	
 	public AnswerDTO(Answer answer) {
 		super();
 		this.answerId = answer.getId();
