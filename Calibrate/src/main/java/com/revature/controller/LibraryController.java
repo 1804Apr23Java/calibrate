@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Library;
@@ -19,7 +20,7 @@ import com.revature.beans.Status;
 import com.revature.dto.LibraryDTO;
 import com.revature.service.LibraryService;
 
-@CrossOrigin
+@CrossOrigin(methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/library")
 public class LibraryController {
