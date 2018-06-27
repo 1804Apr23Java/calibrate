@@ -20,7 +20,7 @@ import com.revature.beans.Status;
 import com.revature.dto.LibraryDTO;
 import com.revature.service.LibraryService;
 
-@CrossOrigin(methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin
 @RestController
 @RequestMapping("/library")
 public class LibraryController {
